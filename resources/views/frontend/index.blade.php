@@ -18,6 +18,7 @@
             position: relative;
             background-repeat: no-repeat;
             background-size: cover;
+        }
 
     </style>
 
@@ -29,13 +30,12 @@
         <!-- Additional required wrapper -->
         <!-- If we need navigation buttons -->
         <div class="control">
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
         </div>
-        <div class="swiper-wrapper" >
+        <div class="swiper-wrapper">
             <!-- Slides -->
             @foreach (\App\Models\Slider::where('published', 1)->get() as $key => $slider)
-
                 <div class="swiper-slide">
                     <img src="{{ asset($slider->photo) }}" alt="" class="img-fluid d-block h-100">
                 </div>
@@ -58,8 +58,7 @@
                 @endphp
                 <div class="catCol cat_space_item">
                     <a href="{{ route('products.category', $fastCategory->id) }}">
-                        <img class="categoriImgone" src="{{ asset($fastCategory->banner) }}"
-                            class="img-fluid">
+                        <img class="categoriImgone" src="{{ asset($fastCategory->banner) }}" class="img-fluid">
                     </a>
                     <a href="" class="catButton">
                         {{ $fastCategory->name }}
@@ -108,6 +107,58 @@
 
 
     {{-- /////////////////////////////////////////////////////// --}}
+    {{-- category section  start --}}
+    <style>
+        .cat-items-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -5px;
+        }
+
+        .cat-item {
+            flex: 0 0 12.33%;
+            padding: 0 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .cat-item .cat-icon {
+            display: inline-block;
+            /* padding: 15px; */
+            padding-bottom: 10px
+        }
+        .cat-item .cat-item-inner {
+            display: block;
+            background: #e5e5e5;
+            border-radius: 15px;
+            box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
+            padding: 15px 0 5px 0;
+        }
+        .cat-item a:hover {
+            color: red
+        }
+
+    </style>
+    
+    <section>
+        <div class="container">
+            <div class="cat-items-wrap">
+                @foreach (\App\Models\Category::inRandomOrder()->take(16)->get()
+                as $category)
+                <div class="cat-item">
+                    <a href="{{ route('products.category', $category->id) }}" class="cat-item-inner">
+                        <span class="cat-icon"><img
+                                src="{{ asset($category->banner) }}"
+                                alt="All Laptop" width="80" height="80"></span>
+                        <p>{{ $category->name }}</p>
+                    </a>
+                </div>
+                @endforeach
+            </div>
+        </div>
+        
+    </section>
+    {{-- category section  end --}}
     {{-- product section --}}
     <section class="productFeatured productFetRem">
         @foreach (\App\Models\Category::where('featured', 1)->get() as $key => $category)
@@ -369,9 +420,9 @@
             nextArrow: "<span class='arrow next'><i class='fa fa-angle-right'></i></span>",
             customPaging: function(slider, i) {
                 /* ADDING CUSTOM PAGING
-                 Example
-                 return  return '<li>Something you want to insert</li>';
-         */
+                     Example
+                     return  return '<li>Something you want to insert</li>';
+             */
             },
             responsive: [{
                     breakpoint: 1920,
