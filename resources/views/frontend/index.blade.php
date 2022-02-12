@@ -6,8 +6,8 @@
 
     <style>
         .cat_space_item {
-            padding-left: 10px;
-            padding-right: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
             margin-bottom: 20px;
         }
 
@@ -37,7 +37,7 @@
             @foreach (\App\Models\Slider::where('published', 1)->get() as $key => $slider)
 
                 <div class="swiper-slide">
-                    <img src="{{ asset($slider->photo) }}" alt="" class="img-fluid d-block w-100 h-100">
+                    <img src="{{ asset($slider->photo) }}" alt="" class="img-fluid d-block h-100">
                 </div>
             @endforeach
         </div>

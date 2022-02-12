@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Brand;
 use App\Models\Language;
 use Auth;
 use App\Models\SubSubCategory;
@@ -62,7 +63,8 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('products.create', compact('categories'));
+        $brands = Brand::all();
+        return view('products.create', compact('categories','brands'));
     }
 
     /**
@@ -254,7 +256,8 @@ class ProductController extends Controller
         //dd(json_decode($product->price_variations)->choices_0_S_price);
         $tags = json_decode($product->tags);
         $categories = Category::all();
-        return view('products.edit', compact('product', 'categories', 'tags'));
+         $brands = Brand::all();
+        return view('products.edit', compact('product', 'categories', 'tags','brands'));
     }
 
     /**
@@ -269,7 +272,8 @@ class ProductController extends Controller
         //dd(json_decode($product->price_variations)->choices_0_S_price);
         $tags = json_decode($product->tags);
         $categories = Category::all();
-        return view('products.edit', compact('product', 'categories', 'tags'));
+        $brands = Brand::all();
+        return view('products.edit', compact('product', 'categories', 'tags','brands'));
     }
 
     /**

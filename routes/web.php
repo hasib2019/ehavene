@@ -31,6 +31,7 @@ Route::get('/clear', function() {
     Artisan::call('config:cache');
     Artisan::call('view:clear');
     Artisan::call('optimize:clear');
+    Artisan::call('page-cache:clear');
     return "Cleared!";
  });
 Route::get('/', [HomeController::class, 'index'])->middleware('page-cache')->name('home');

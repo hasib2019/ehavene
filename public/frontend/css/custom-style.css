@@ -2483,7 +2483,7 @@ ul.seller-brand-list .brand-item {
     position: absolute;
     top: 100%;
     border: 1px solid #eceff1;
-    box-shadow: 0 5px 25px 0 rgba(123,123,123,0.15);
+    box-shadow: 0 5px 5px 0 rgba(123,123,123,0.15);
     background: #fff;
     width: 100%;
     /* width: calc(100% - 48px); */
@@ -2584,7 +2584,7 @@ ul.seller-brand-list .brand-item {
 }
 
 .typed-search-box ul a {
-    display: block;
+    /*display: block;*/
     padding: 5px 15px;
     color: #525252;
 }

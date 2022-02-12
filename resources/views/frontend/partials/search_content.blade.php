@@ -1,24 +1,5 @@
 <div>
-    <div class="keyword ">
-        @if (sizeof($keywords) > 0)
-            <div class="title">{{__('Popular Suggestions')}}</div>
-            <ul>
-                @foreach ($keywords as $key => $keyword)
-                    <li><a href="{{ route('suggestion.search', $keyword) }}">{{ $keyword }}</a></li>
-                @endforeach
-            </ul>
-        @endif
-    </div>
-    <div class="category">
-        @if (count($subsubcategories) > 0)
-            <div class="title">{{__('Category Suggestions')}}</div>
-            <ul>
-                @foreach ($subsubcategories as $key => $subsubcategory)
-                    <li><a href="{{ route('products.subsubcategory', $subsubcategory->id) }}">{{ __($subsubcategory->name) }}</a></li>
-                @endforeach
-            </ul>
-        @endif
-    </div>
+   
     <div class="product">
         @if (count($products) > 0)
             <div class="title">{{__('Products')}}</div>
@@ -26,14 +7,15 @@
             <ul>
                 @foreach ($products as $key => $product)
                     <li>
-                        <a href="{{ route('product', $product->slug) }}">
-                            <div class="productCartList border-bottom pb-3 my-2">
+                        <a href="{{ route('product', $product->slug) }}" style="padding-right: 0px; padding-left: 0px; padding-top: 0px; padding-bottom: 0px;
+">
+                            <div class="productCartList">
                                 <div class="items">
-                                    <img src="{{ asset($product->thumbnail_img) }}"
+                                    <img src="{{ asset($product->thumbnail_img) }}" style="width:80px; height:101px;"
                                     class="img-fluid" alt="">
                                 </div>
                                 <div class="items">
-                                    <a href="{{ route('product', $product->slug) }}" class="pname lead">
+                                    <a href="{{ route('product', $product->slug) }}" class="" style="font-weight: 500; line-height: 24px;">
                                         <p>{{ __($product->name) }}</p>
                                     </a>
                                     <div class="type"> @php
@@ -90,6 +72,26 @@
                             </div> --}}
                         </a>
                     </li>
+                @endforeach
+            </ul>
+        @endif
+    </div>
+     <div class="keyword ">
+        @if (sizeof($keywords) > 0)
+            <div class="title">{{__('Popular Suggestions')}}</div>
+            <ul>
+                @foreach ($keywords as $key => $keyword)
+                    <li><a href="{{ route('suggestion.search', $keyword) }}">{{ $keyword }}</a></li>
+                @endforeach
+            </ul>
+        @endif
+    </div>
+    <div class="category">
+        @if (count($subsubcategories) > 0)
+            <div class="title">{{__('Category Suggestions')}}</div>
+            <ul>
+                @foreach ($subsubcategories as $key => $subsubcategory)
+                    <li><a href="{{ route('products.subsubcategory', $subsubcategory->id) }}">{{ __($subsubcategory->name) }}</a></li>
                 @endforeach
             </ul>
         @endif

@@ -125,7 +125,7 @@ style="background-color:#EE3324;"
                     <input type="hidden" name="subsubcategory_id" value="{{ $subsubcategory_id }}">
                 @endisset
 
-                    <div class="col-md-3 form-group mr-5">
+                    <div class="col-md-4 form-group mr-5">
                         <div class="search-widget">
                             <input class="form-control input-lg" type="text" name="q" placeholder="{{__('Search products')}}" @isset($query) value="{{ $query }}" @endisset>
                             <button type="submit" class="btn-inner" style="margin-top: -8px;">

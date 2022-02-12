@@ -177,10 +177,28 @@ $generalsetting = \App\Models\GeneralSetting::first();
         <nav class="menuBar bg-white sticky">
             <div class="container-fluid">
                 <ul id="nav">
-                    @foreach (\App\Models\Category::get() as $key => $category)
+                    @foreach (\App\Models\Category::take(8)->get() as $key => $category)
                         <li><a
                                 href="{{ route('products.category', $category->id) }}">{{ __($category->name) }}</a>
                             <ul>
+                                @foreach ($category->subcategories as $key2 => $subcategory)
+                                    <li><a
+                                            href="{{ route('products.subcategory', $subcategory->id) }}">{{ __($subcategory->name) }}</a>
+                                        <ul style="padding-left: 80px;">
+                                            @foreach ($subcategory->subsubcategories as $key3 => $subsubcategory)
+                                                <li ><a href="{{ route('products.subsubcategory', $subsubcategory->id) }}">{{ __($subsubcategory->name) }}</a>
+
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    @endforeach
+                       @foreach (\App\Models\Category::latest()->take(2)->get() as $key => $category)
+                        <li><a
+                                href="{{ route('products.category', $category->id) }}">{{ __($category->name) }}</a>
+                            <ul id="nav1">
                                 @foreach ($category->subcategories as $key2 => $subcategory)
                                     <li><a
                                             href="{{ route('products.subcategory', $subcategory->id) }}">{{ __($subcategory->name) }}</a>
@@ -284,7 +302,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
     <div class="modal-dialog custom" role="document">
         <div class="modal-content h-100">
             <div class="modal-header">
-                <h5 class="modal-title text-black" id="exampleModalLabel">SEARCH OUR SITE</h5>
+                <h3 class="modal-title text-black" id="exampleModalLabel" style="font-weight: 500; font-size: 16px; font-family: Poppins;">SEARCH OUR SITE</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

@@ -90,6 +90,7 @@
         background: #ffffff;
         /* menu background color */
     }
+  
 
     #nav li a {
         display: block;
@@ -153,7 +154,15 @@
         margin-top: -35px;
         /* aligns top of sub menu with top of list item */
     }
-   
+    #nav1 li:hover ul {
+        display: block;
+        /* shows sub-sublist on hover */
+        margin-right: 330px;
+        /* this should be the same width as the parent list item */
+        margin-top: -35px;
+        /* aligns top of sub menu with top of list item */
+    }
+  
     /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
    div.lglogo {

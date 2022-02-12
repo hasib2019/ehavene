@@ -83,11 +83,22 @@
 	                                </select>
 	                            </div>
 	                        </div>
-	                        <div class="form-group" id="brand">
+	                        <!--<div class="form-group" id="brand">-->
+	                        <!--    <label class="col-lg-2 control-label">{{__('Brand')}}</label>-->
+	                        <!--    <div class="col-lg-7">-->
+	                        <!--        <select class="form-control demo-select2-placeholder" name="brand_id" id="brand_id" >-->
+
+	                        <!--        </select>-->
+	                        <!--    </div>-->
+	                        <!--</div>-->
+	                          <div class="form-group" id="brand">
 	                            <label class="col-lg-2 control-label">{{__('Brand')}}</label>
 	                            <div class="col-lg-7">
-	                                <select class="form-control demo-select2-placeholder" name="brand_id" id="brand_id" >
-
+	                                <select class="form-control demo-select2-placeholder" name="brand_id" >
+	<option>Select an option</option>
+	                                	@foreach($brands as $brand)
+	                                	    <option value="{{$brand->id}}" <?php if($product->category_id == $brand->id) echo "selected"; ?> >{{__($brand->name)}}</option>
+	                                	@endforeach
 	                                </select>
 	                            </div>
 	                        </div>
