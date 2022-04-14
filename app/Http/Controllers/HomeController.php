@@ -21,7 +21,7 @@ use App\Models\BlogComment;
 use App\Models\Shop;
 use App\Models\Color;
 use App\Models\Brand;
-use App\Models\DocDepartment;
+use App\Models\Order;
 use App\Models\DoctorDepartment;
 use App\Models\DoctorExperienced;
 use App\Models\DoctorAppointmnet;
@@ -549,7 +549,6 @@ class HomeController extends Controller
     public function product($slug)
     {
         $product  = Product::where('slug', $slug)->first();
-        // dd( $product );
         if($product!=null){
             updateCartSetup();
             return view('frontend.product_details', compact('product'));
@@ -1093,8 +1092,21 @@ class HomeController extends Controller
         return view("frontend.specialoffer.index");
     }
 
+    public function product_truck()
+    {
+        return view("frontend.truckProduct.index");
+    }
 
-   
-
-
+    public function product_truck_show(Request $request)
+    {
+        $code   = $request->code;
+        $order = Order::where('code', '=', $code)->first();
+        // dd($order);
+        if ($order) {
+            return view('frontend.truckProduct.trucking_show', compact('order'));
+        } else {
+            flash('Order not found')->success();
+            return redirect()->route('product-truck');
+        }
+    }
 }

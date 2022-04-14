@@ -85,8 +85,10 @@ Route::get('/search?subcategory_id={subcategory_id}', 'App\Http\Controllers\Home
 Route::get('/search?subsubcategory_id={subsubcategory_id}', 'App\Http\Controllers\HomeController@search')->name('products.subsubcategory');
 Route::get('//search?brand_id={brand_id}', 'App\Http\Controllers\HomeController@search')->name('products.brand');
 Route::post('/product/variant_price', 'App\Http\Controllers\HomeController@variant_price')->name('products.variant_price');
-Route::get('/shops/visit/{slug}', 'App\Http\Controllers\HomeController@shop')->name('shop.visit');
-Route::get('/shops/visit/{slug}/{type}', 'App\Http\Controllers\HomeController@filter_shop')->name('shop.visit.type');
+Route::get('/shops/visit/{slug}', [HomeController::class,'shop'])->name('shop.visit');
+Route::get('/shops/visit/{slug}/{type}', [HomeController::class,'filter_shop'])->name('shop.visit.type');
+Route::get('/product-truck', [HomeController::class,'product_truck'])->name('product-truck');
+Route::post('/product-truck', [HomeController::class,'product_truck_show'])->name('product_truck.show');
 
 Route::get('/cart', 'App\Http\Controllers\CartController@index')->name('cart');
 Route::post('/cart/nav-cart-items', 'App\Http\Controllers\CartController@updateNavCart')->name('cart.nav_cart');
@@ -122,14 +124,11 @@ Route::get('/order/complete/message/{id}', 'App\Http\Controllers\CheckoutControl
 // SSLCOMMERZ Start
 Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
 Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
-
 Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
 Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
-
 Route::post('/success', [SslCommerzPaymentController::class, 'success']);
 Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
 Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
-
 Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 //SSLCOMMERZ END
 
