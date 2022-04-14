@@ -1,9 +1,9 @@
 @php
 $generalsetting = \App\Models\GeneralSetting::first();
 @endphp
-<div class="">
-    <div class="topBar d-none d-md-block sticky">
-        <div class="row" style="margin: 0 auto; width: 86%;">
+<div class="" style="background: #f6f6f8; border-bottom: 1px solid #dbdbdb;">
+    <div class="topBar d-none d-md-block container">
+        <div class="row">
             <div class="col-md-2">
                 <div class="header-text">
                     <a class="navbar-brand" href="{{ route('home') }}">
@@ -20,8 +20,8 @@ $generalsetting = \App\Models\GeneralSetting::first();
 
             <div class="col-md-6" style="margin: 15px 11px 0px 58px; text-align: center;">
                     <a style="padding: 0.5rem 1rem;" href="{{ route('products') }}">Shop</a>
-                {{-- <li class="nav-item"> <a class="nav-link " href="#">Product</a> </li>
-        <li class="nav-item"> <a class="nav-link " href="#">Sale</a> </li>
+               <a style="padding: 0.5rem 1rem;" href="{{ route('brands.all') }}">Brands</a>
+          {{--<li class="nav-item"> <a class="nav-link " href="#">Sale</a> </li>
         <li class="nav-item"> <a class="nav-link " href="#">Portfolio</a> </li> --}}
                 <a style="padding: 0.5rem 1rem;" href="{{ route('aboutus') }}">About us</a>
                 <a style="padding: 0.5rem 1rem;" href="{{ route('contactus') }}">Contact
@@ -37,7 +37,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
                     </a>
                 @else
                     <a class="cg" href="#">
-                        013000000000
+                        01738356180
                     </a>
                 @endif
                 <span class="iconify" data-icon="carbon:email"></span>
@@ -48,7 +48,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
                     </a>
                 @else
                     <a class="cg" href="#">
-                        contact@company.com
+                        contact@creativeitbari.com
                     </a>
                 @endif
                 </a> --}}
@@ -136,7 +136,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
 </div>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-white px-2 py-0 sticky">
-    <div class="container-fluid">
+    <div class="container">
         <h4 class="categoryMobile">
             <span class="iconify" style="position: relative; font-size: 40px; top: 10px; left: 5px;"
                 data-toggle="modal" data-target="#mobileMenu" data-icon="ci:menu-alt-03"></span>
@@ -156,7 +156,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
             <span class="iconify mx-2" data-toggle="modal" data-target="#searchbar"
             data-icon="clarity:search-line"></span>
           
-            <span class="iconify mr-4 text-dark" data-icon="ei:cart" data-toggle="modal" data-target="#cart"></span>
+            <span class="iconify mr-2 text-dark" data-icon="ei:cart" data-toggle="modal" data-target="#cart"></span>
             <span class="cartNumberMobileTop">
                 <div id="cartNumberTMobile">
                     @if (Session::has('cart'))
@@ -174,7 +174,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
            
         </div>
      
-        <nav class="menuBar bg-white sticky">
+        {{-- <nav class="menuBar bg-white sticky">
             <div class="container-fluid">
                 <ul id="nav">
                     @foreach (\App\Models\Category::take(8)->get() as $key => $category)
@@ -215,18 +215,63 @@ $generalsetting = \App\Models\GeneralSetting::first();
                     @endforeach
                 </ul>
             </div>
-        </nav>
+        </nav> --}}
+        {{-- Hasib modified nav bar  --}}
+       <div class="navbarMenu" id="main-nav">
+   
+        <ul class="navbarMenu-nav">
+            @foreach (\App\Models\Category::take(12)->get() as $key => $category)
+            <li class="nav-item-menu has-child-menu c-1">
+                <a class="nav-link-menu" href="{{ route('products.category', $category->id) }}">{{ __($category->name) }}</a>
+                <ul class="drop-down-menu drop-menu001">
+                    @foreach ($category->subcategories as $key2 => $subcategory)
+                    <li class="nav-item-menu has-child-menu">
+                        <a class="nav-link-menu" href="{{ route('products.subcategory', $subcategory->id) }}">{{ __($subcategory->name) }}</a>
+                        <ul class="drop-down-menu drop-menu002">
+                            @foreach ($subcategory->subsubcategories as $key3 => $subsubcategory)
+                            <li class="nav-item-menu"><a class="nav-link-menu" href="{{ route('products.subsubcategory', $subsubcategory->id) }}">{{ __($subsubcategory->name) }}</a></li>
+                            @endforeach
+                        </ul>
+                    </li>
+                    {{--
+                    <li><a href="https://www.startech.com.bd/desktops" class="see-all">Show All Desktop</a></li> --}} @endforeach
+                </ul>
+            </li>
+            @endforeach
+        </ul>
+ 
+    </div>
+        {{-- Hasib modified nav bar  --}}
 
 
     </div>
 
 </nav>
+<style>
+    .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+        background-color: rgba(0,0,0,.05);
+    
+    }
+    .nav-item .nav-link{    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: .3px;
+    font-weight: 500;
+    font-size: 12px;
+    color: #222;
+    height: 55px;
+    cursor: pointer;}
+    .list-group>li>a{
+        color: #222;
+    }
+    .single-category a { color: #222;}
+</style>
 <!-- modal for mobile menu -->
-<div class="modal " id="mobileMenu" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal " id="mobileMenu" tabindex="-1" role="dialog" aria-hidden="true" style="background-color: rgba(0,0,0,.04);
+    border-bottom: 1px solid rgba(129,129,129,.2);">
     <div class="modal-dialog custom forMobile" role="document">
         <div class="modal-content h-100">
-            <div class="modal-body">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <div class="modal-body" style="padding:0px !important;">
+                <ul class="nav nav-tabs w-100" id="myTab" role="tablist" style="background-color: rgba(0,0,0,.04);">
                     <li class="nav-item">
                         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#menu" role="tab"
                             aria-controls="menu" aria-selected="true">Menu</a>
@@ -237,12 +282,13 @@ $generalsetting = \App\Models\GeneralSetting::first();
                     </li>
 
                 </ul>
-                <div class="tab-content" id="myTabContent">
+                <div class="tab-content" id="myTabContent" style="padding: 1rem 1.5rem;">
                     <div class="tab-pane fade show active" style="overflow-y: auto; max-height: 100vh;" id="menu"
                         role="tabpanel" aria-labelledby="menu-tab">
                         <ul class="list-group list-group-flush">
                             {{-- <li class="list-group-item"><a href="">Demo</a> </li> --}}
                             <li class="list-group-item"> <a href="{{ route('products') }}">Shop</a></li>
+                           <li class="list-group-item"> <a href="{{ route('brands.all') }}">Brands</a></li>
                             {{-- <li class="list-group-item"><a href="">Product</a></li>
                             <li class="list-group-item"><a href="">Sales</a></li> --}}
                             <li class="list-group-item"><a href="{{ route('aboutus') }}">About us</a></li>
@@ -256,11 +302,13 @@ $generalsetting = \App\Models\GeneralSetting::first();
                             <div class="category-accordion">
                                 @foreach (\App\Models\Category::all() as $key => $category)
                                     <div class="single-category">
-                                        <button class="btn w-100 category-name collapsed" type="button"
+                                        <button style="position:left;" class="btn w-100 category-name collapsed" type="button"
                                             data-toggle="collapse" data-target="#category-{{ $key }}"
                                             aria-expanded="true">
                                             <a href="{{ route('products.category', $category->id) }}">
+                                                <img src="{{ asset($category->icon) }}" alt="Girl in a jacket" width="30px" height="30px"> 
                                                 {{ __($category->name) }}</a>
+                                                 
                                         </button>
 
                                         <div id="category-{{ $key }}" class="collapse">
@@ -507,9 +555,10 @@ $generalsetting = \App\Models\GeneralSetting::first();
                             </span>
                         @enderror
                     </div>
+                   
                     <div class="form-group">
                         <label for="exampleInputEmail1">Phone</label>
-                        <input id="emailreg" type="text" class="form-control @error('error') is-invalid @enderror"
+                        <input id="emailreg" type="number" class="form-control @error('error') is-invalid @enderror"
                             value="{{ old('email') }}" placeholder="{{ __('Phone') }}" name="email" required
                             autocomplete="email">
                         @error('email')
@@ -523,16 +572,16 @@ $generalsetting = \App\Models\GeneralSetting::first();
                     {{-- password --}}
                     <div class="form-group">
                         <label for="exampleInputEmail1">Password</label>
-                        <input type="pasword" class="form-control" placeholder="{{ __('Password') }}"
-                            name="password" id="password" pattern="{6,}"
+                        <input type="password" class="form-control" placeholder="{{ __('Password') }}"
+                            name="password" id="passwords" pattern="{6}"
                             title="Must contain at least one number and one uppercase and lowercase letter, and at least 6 or more characters"
                             required>
                     </div>
                     {{-- confirm password --}}
                     <div class="form-group">
                         <label for="exampleInputEmail1">Confirm Password</label>
-                        <input type="pasword" class="form-control" placeholder="{{ __('Password') }}"
-                            name="password_confirmation" id="password_confirmation" required>
+                        <input type="password" class="form-control" placeholder="{{ __('Password') }}"
+                            name="password_confirmation" id="password_confirmations" required>
                     </div>
                     {{-- password validation --}}
                     <div class="row">
@@ -545,6 +594,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
                     {{-- password validation --}}
                     <input class="magic-checkbox" type="checkbox" name="checkbox_example_1" id="checkboxExample_1a"
                         required checked>
+                       I agree with the terms and conditions.
                     <button type="submit" name="register" id="register" class="btn btn-primary btn-lg btn-block">Create
                         Account</button>
                 </form>
@@ -705,13 +755,8 @@ $generalsetting = \App\Models\GeneralSetting::first();
                 })
             }
         });
-
-    });
-</script>
-
-<script>
-    $('#password_confirmation').on('keyup', function() {
-        if ($('#password').val() == $('#password_confirmation').val()) {
+        $('#password_confirmations').on('keyup', function() {
+        if ($('#passwords').val() == $('#password_confirmations').val() && $('#passwords').val()) {
             $('#messagev').html('Password Match').css('color', 'green');
             $('#messagev').addClass('valid');
             $('#messagev').removeClass('invalid');
@@ -722,5 +767,19 @@ $generalsetting = \App\Models\GeneralSetting::first();
             $('#messagev').removeClass('valid')
             $('#register').attr('disabled', 'disabled');
         }
+    });
+    $('#passwords').on('keyup', function() {
+        if ($('#passwords').val() == $('#password_confirmations').val() && $('#password_confirmations').val()) {
+            $('#messagev').html('Password Match').css('color', 'green');
+            $('#messagev').addClass('valid');
+            $('#messagev').removeClass('invalid');
+            $('#register').attr('disabled', false);
+        } else {
+            $('#messagev').html('Password doesn\'t Match').css('color', 'red');
+            $('#messagev').addClass('invalid');
+            $('#messagev').removeClass('valid')
+            $('#register').attr('disabled', 'disabled');
+        }
+    });
     });
 </script>

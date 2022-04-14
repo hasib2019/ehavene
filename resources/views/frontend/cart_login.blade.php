@@ -13,9 +13,9 @@
                                 <div class="row align-items-center">
                                     <div class="col-12 col-lg">
                                         <div class="text-center">
-                                            <h3 class="heading heading-4 strong-500">
+                                            {{-- <h3 class="heading heading-4 strong-500">
                                                 {{ __('Do you already have Account?') }}
-                                            </h3>
+                                            </h3> --}}
                                             <h3 class="heading heading-4 strong-500">
                                                 {{ __('Login') }}
                                             </h3>
@@ -25,11 +25,9 @@
                                             @csrf
                                             <div class="col-lg-12">
                                                 @if ($errors->has('email'))
-                                                    <p style="color: rgb(155, 37, 37)">These credentials do not match our
-                                                        records.</p>
+                                                    <p style="color: rgb(155, 37, 37)">These credentials do not match our records.</p>
                                                 @elseif($errors->has('password'))
-                                                    <p style="color: rgb(155, 37, 37)">These credentials do not match our
-                                                        records.</p>
+                                                    <p style="color: rgb(155, 37, 37)">These credentials do not match our records.</p>
                                                 @elseif($errors->has('account'))
                                                     <p style="color: rgb(155, 37, 37)">Sorry! Account Not Found</p>
                                                 @endif
@@ -111,7 +109,7 @@
                                     <div class="col-12 col-lg">
                                         <div class="text-center">
                                             <h3 class="heading heading-4 strong-500">
-                                                {{ __('New to Ehavene? Quickly Register for an account now.') }}
+                                                {{ __('Registration') }}
                                             </h3>
 
                                         </div>

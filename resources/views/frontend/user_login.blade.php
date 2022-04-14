@@ -35,7 +35,7 @@
                                                         @endif --}}<div class="form-group">
                                                         <!-- <label>{{ __('email') }}</label> -->
                                                         <div class="input-group input-group--style-1">
-                                                            <input type="phone" class="form-control form-control-sm {{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('phone') }}" placeholder="{{__('Phone')}}" name="email" id="email" required>
+                                                            <input type="number" class="form-control form-control-sm {{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('phone') }}" placeholder="{{__('Phone')}}" name="email" id="email" required>
                                                             <span class="input-group-addon">
                                                                 <i class="text-md la la-user"></i>
                                                             </span>

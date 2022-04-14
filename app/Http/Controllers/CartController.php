@@ -35,12 +35,12 @@ class CartController extends Controller
     }
     public function updateNavCartNumber(Request $request)
     {
-        
+
         return view('frontend.partials.cart1');
     }
     public function updateTaka(Request $request)
     {
-        
+
         return view('frontend.partials.carttaka');
     }
 
@@ -57,7 +57,7 @@ class CartController extends Controller
         $tax = 0;
 
         //check the color enabled or disabled for the product
-        if($request->has('color')){
+        if ($request->has('color')) {
             $data['color'] = $request['color'];
             $str = Color::where('code', $request['color'])->first()->name;
         }
@@ -65,28 +65,25 @@ class CartController extends Controller
         //Gets all the choice values of customer choice option and generate a string like Black-S-Cotton
         foreach (json_decode(Product::find($request->id)->choice_options) as $key => $choice) {
             $data[$choice->name] = $request[$choice->name];
-            if($str != null){
-                $str .= '-'.str_replace(' ', '', $request[$choice->name]);
-            }
-            else{
+            if ($str != null) {
+                $str .= '-' . str_replace(' ', '', $request[$choice->name]);
+            } else {
                 $str .= str_replace(' ', '', $request[$choice->name]);
             }
         }
 
         //Check the string and decreases quantity for the stock
-        if($str != null){
+        if ($str != null) {
             $variations = json_decode($product->variations);
             $price = $variations->$str->price;
-            if($variations->$str->qty >= $request['quantity']){
+            if ($variations->$str->qty >= $request['quantity']) {
                 // $variations->$str->qty -= $request['quantity'];
                 // $product->variations = json_encode($variations);
                 // $product->save();
-            }
-            else{
+            } else {
                 return view('frontend.partials.outOfStockCart');
             }
-        }
-        else{
+        } else {
             $price = $product->unit_price;
         }
 
@@ -95,26 +92,22 @@ class CartController extends Controller
         $flash_deal = \App\Models\FlashDeal::where('status', 1)->first();
         if ($flash_deal != null && strtotime(date('d-m-Y')) >= $flash_deal->start_date && strtotime(date('d-m-Y')) <= $flash_deal->end_date && \App\FlashDealProduct::where('flash_deal_id', $flash_deal->id)->where('product_id', $product->id)->first() != null) {
             $flash_deal_product = \App\Models\FlashDealProduct::where('flash_deal_id', $flash_deal->id)->where('product_id', $product->id)->first();
-            if($flash_deal_product->discount_type == 'percent'){
-                $price -= ($price*$flash_deal_product->discount)/100;
-            }
-            elseif($flash_deal_product->discount_type == 'amount'){
+            if ($flash_deal_product->discount_type == 'percent') {
+                $price -= ($price * $flash_deal_product->discount) / 100;
+            } elseif ($flash_deal_product->discount_type == 'amount') {
                 $price -= $flash_deal_product->discount;
             }
-        }
-        else{
-            if($product->discount_type == 'percent'){
-                $price -= ($price*$product->discount)/100;
-            }
-            elseif($product->discount_type == 'amount'){
+        } else {
+            if ($product->discount_type == 'percent') {
+                $price -= ($price * $product->discount) / 100;
+            } elseif ($product->discount_type == 'amount') {
                 $price -= $product->discount;
             }
         }
 
-        if($product->tax_type == 'percent'){
-            $price += ($price*$product->tax)/100;
-        }
-        elseif($product->tax_type == 'amount'){
+        if ($product->tax_type == 'percent') {
+            $price += ($price * $product->tax) / 100;
+        } elseif ($product->tax_type == 'amount') {
             $price += $product->tax;
         }
 
@@ -124,18 +117,16 @@ class CartController extends Controller
         $data['tax'] = $tax;
         $data['shipping_type'] = $product->shipping_type;
 
-        if($product->shipping_type == 'free'){
+        if ($product->shipping_type == 'free') {
             $data['shipping'] = 0;
-        }
-        else{
+        } else {
             $data['shipping'] = $product->shipping_cost;
         }
 
-        if($request->session()->has('cart')){
+        if ($request->session()->has('cart')) {
             $cart = $request->session()->get('cart', collect([]));
             $cart->push($data);
-        }
-        else{
+        } else {
             $cart = collect([$data]);
             $request->session()->put('cart', $cart);
         }
@@ -146,7 +137,7 @@ class CartController extends Controller
     //removes from Cart
     public function removeFromCart(Request $request)
     {
-        if($request->session()->has('cart')){
+        if ($request->session()->has('cart')) {
             $cart = $request->session()->get('cart', collect([]));
             $cart->forget($request->key);
             $request->session()->put('cart', $cart);
@@ -160,7 +151,7 @@ class CartController extends Controller
     {
         $cart = $request->session()->get('cart', collect([]));
         $cart = $cart->map(function ($object, $key) use ($request) {
-            if($key == $request->key){
+            if ($key == $request->key) {
                 $object['quantity'] = $request->quantity;
             }
             return $object;

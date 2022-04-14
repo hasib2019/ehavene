@@ -104,26 +104,35 @@
 
                     <div class="d-flex justify-content-between flex-wrap">
                         @if (home_price($product->id) != home_discounted_price($product->id))
-                            <h5 class="price text-dark">{{ __('Price') }}:
+                            <h5 class="price text-dark">
+                                <!--{{ __('Price') }}:-->
                                 <del>
                                     {{ home_price($product->id) }}
+                                    @if(!@empty($product->unit))
                                     <span>/{{ $product->unit }}</span>
+                                    @endif
                                 </del>
                             </h5>
-                            <h5 class="price text-dark">{{ __('Discount Price') }}:
+                            <h5 class="price text-dark">
+                                <!--{{ __('Discount Price') }}:-->
                                 <div class="product-price">
                                     <strong>
                                         {{ home_discounted_price($product->id) }}
                                     </strong>
+                                      @if(!@empty($product->unit))
                                     <span class="piece">/{{ $product->unit }}</span>
+                                     @endif
                                 </div>
                             </h5>
                         @else
-                            <h5 class="price text-dark">{{ __('Price') }}:
+                            <h5 class="price text-dark">
+                                <!--{{ __('Price') }}:-->
                                 <strong>
                                     {{ home_discounted_price($product->id) }}
                                 </strong>
+                                @if(!@empty($product->unit))
                                 <span class="piece">/{{ $product->unit }}</span>
+                                @endif
                             </h5>
 
 
@@ -139,7 +148,7 @@
                         <span class="text-dark ml-2">(12 reviews)</span>
                     </div>
                     </div>
-                    <p>{{ $product->short_description }} </p>
+                    <p>{!!$product->short_description!!} </p>
                     {{-- form start --}}
                     <form id="option-choice-form">
                         @csrf
@@ -156,8 +165,8 @@
                                 </div>
                             </div>
                         </div>
-
-                        @if (count(json_decode($product->colors)) > 0)
+                        <div style="text-align:center;">
+                             @if (count(json_decode($product->colors)) > 0)
                             <small class="font-weight-bold text-uppercase text-dark"> Color:
                                 <span id="colorName" class="text-capitalize"></span>
                             </small>
@@ -216,15 +225,44 @@
                                     </button>
                                 </span>
                             </div>
+                              @php
+$generalsetting = \App\Models\GeneralSetting::first();
+@endphp
+                     <div class="text-secondary" id="colFour" style="margin-left: 50px;
+    margin-top: 5px;">
+                          
+                              
+                            @if ($generalsetting->phone != null)
+                             
+                                    <a class="btn btn-outline btn-base-1 strong-800" href="tel:{{ $generalsetting->phone }}">
+                                        <i class="la la-phone-square"></i>
+<span class="d-md-inline-block"> {{ $generalsetting->phone }}</span>
+                                    
+                                </a>
+                          
+                            @else
+                                <a class="strong-800" href="tel:01755944277">
+<i class="la la-phone-square"></i>
+                                    01755944277
+
+                                </a>
+                            @endif
+                               
+                        </div>
                         </div>
                     </form>
                     {{-- form close --}}
+                        </div>
+
+                       
                   
-                                                <button class="addCartBtn mt-2 mbl" onclick="addToCart()">Add to Cart</button>
+                  
+                                          <div style="text-align:center;">
+                                                    <button class="addCartBtn mt-2 mbl" onclick="addToCart()">Add to Cart</button>
 
                   
                             <!-- Add to wishlist button -->
-                    <button type="button" class="btn btn-outline btn-base-1 btn-icon-left mr-2 mt-2 ml"
+                    <button type="button" class="btn btn-outline btn-base-1 btn-icon-left mr-2 mt-2"
                     onclick="addToWishList({{ $product->id }})">
                     <i class="la la-heart-o"></i>
                     <span class="d-md-inline-block"> {{ __('Add to wishlist') }}</span>
@@ -236,6 +274,9 @@
                     <i class="la la-refresh"></i>
                     <span class="d-md-inline-block"> {{ __('Add to compare') }}</span>
                     </button>
+                                          </div>
+                    <hr style="padding-bottom: 10px">
+                    <div style="text-align:center;" class="sharethis-inline-share-buttons"></div>
                 
                     <img src="{{ asset('frontend//images/trust_img2.png') }}" class="img-fluid my-3">
                     <div class="product_meta">
@@ -328,15 +369,16 @@
                             </ul>
 
                             <div class="tab-content pt-0">
+                                <!--<div class="tab-pane active show" id="tab_default_1">-->
                                 <div class="tab-pane active show" id="tab_default_1">
-                                    <div class="py-2 px-4">
+                                  
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <?php echo $product->description; ?>
+                                                {!!$product->description!!}
                                             </div>
                                         </div>
                                         <span class="space-md-md"></span>
-                                    </div>
+                                   
                                 </div>
 
                                 <div class="tab-pane" id="tab_default_2">
@@ -487,11 +529,11 @@
                                 <span class="mr-4 pl-2">{{ __('Related products') }}</span>
                             </h3>
                         </div>
-                        <div class="caorusel-box">
+                        <div class="caorusel-box" style="height: 400px;">
                             <div class="slick-carousel" data-slick-items="4" data-slick-lg-items="4"
                                 data-slick-md-items="3" data-slick-sm-items="2" data-slick-xs-items="2">
                                 @foreach (filter_products(\App\Models\Product::where('subcategory_id', $product->subcategory_id)->where('id', '!=', $product->id))->limit(10)->get() as $key => $related_product)
-                                    <div class="product-card-2 card card-product m-2 shop-cards shop-tech">
+                                    <div class="product-card-2 card card-product shop-cards shop-tech">
                                         <div class="card-body p-0">
                                             <div class="card-image">
                                                 {{-- <a href="{{ route('product', $related_product->slug) }}" class="d-block">
@@ -501,11 +543,8 @@
                                                     class="d-block"
                                                     style="background-image:url('{{ asset($related_product->thumbnail_img) }}');">
                                                 </a>
-
                                             </div>
-
                                             <div class="p-1">
-
                                                 <div class="price-box">
                                                     @if (home_base_price($related_product->id) != home_discounted_base_price($related_product->id))
                                                         <del
@@ -520,10 +559,8 @@
                                                 </h2>
                                             </div>
                                             <div class="mb-2">
-                                                
-
                                                 <button type="button"
-                                                    class="addCartBtn mt-3"
+                                                    class="addCartBtn btn btn-sm mt-3"
                                                     onclick="showAddToCartModal({{ $product->id }})">
                                                     <i class="fa fa-eye"></i> Quick View
                                                 </button>
@@ -541,3 +578,13 @@
     </section>
 
 @endsection
+
+ <script type="text/javascript"
+            src="https://platform-api.sharethis.com/js/sharethis.js#property=60ba46686cfa7d00118e7e92&product=inline-share-buttons"
+            async="async"></script>
+        <script src="https://vjs.zencdn.net/7.14.3/video.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/2.6.1/Youtube.min.js"></script>
+    <script>
+        var player = videojs('product-vplayer');
+    </script>
+    

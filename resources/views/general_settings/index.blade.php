@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="col-lg-6 col-lg-offset-3">
+    <div class="col-lg-12">
         <div class="panel">
             <div class="panel-heading">
                 <h3 class="panel-title">{{__('General Settings')}}</h3>
@@ -23,13 +23,19 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label" for="address">{{__('Address')}}</label>
                         <div class="col-sm-9">
-                            <input type="text" id="address" name="address" value="{{ $generalsetting->address }}" class="form-control" required>
+                            <input type="text" id="address" name="address" value="{{ $generalsetting->address }}" class="form-control" required style="width: 100% !important;">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label" for="name">{{__('Footer Text')}}</label>
                         <div class="col-sm-9">
                             <textarea class="form-control" rows="4" name="description" required>{{$generalsetting->description}}</textarea>
+                        </div>
+                    </div>
+                      <div class="form-group">
+                        <label class="col-sm-3 control-label" for="name">{{__('Home Description')}}</label>
+                        <div class="col-sm-9">
+                            <textarea class="editor" rows="4" name="home_description" required>{{$generalsetting->home_description}}</textarea>
                         </div>
                     </div>
                     <div class="form-group">

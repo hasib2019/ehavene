@@ -61,6 +61,7 @@
 
 <!-- Custom style -->
 <link type="text/css" href="{{ asset('frontend/css/custom-style.css') }}" rel="stylesheet">
+<link type="text/css" href="{{ asset('frontend/css/custom-nav.css') }}" rel="stylesheet">
 {{-- extra css add  --}}
 @yield('css')
 
@@ -72,7 +73,25 @@
 
 <!-- Facebook Chat style -->
 {{-- <link href="{{ asset('frontend/css/fb-style.css')}}" rel="stylesheet"> --}}
-
+<!--facebook pixel-->
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '707350517291111');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=707350517291111&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<meta name="facebook-domain-verification" content="mtniwr0mfbfe31xubpy1vz0ixctdeh" />
 <!-- color theme -->
 <link href="{{ asset('frontend/css/colors/'.\App\Models\GeneralSetting::first()->frontend_color.'.css')}}" rel="stylesheet">
 <style>
@@ -176,12 +195,13 @@
     display: none;
   }
       .mbl{
-          border-radius: 40px;
-                        font-size: 14px;
-                        font-weight: 600;
-                        min-height: 40px;
-                        cursor: pointer; 
-                        width: 100%;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 600;
+            min-height: 40px;
+            cursor: pointer; 
+            width: 55%;
+            display: inline;
                        }
                          .hr{
                                margin-top: 1rem!important;
@@ -211,6 +231,20 @@
       gtag('config', @php env('TRACKING_ID') @endphp);
     </script>
 @endif --}}
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/624432c62abe5b455fc25e8e/1fvd6cmhj';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
 
 </head>
 <body>

@@ -83,8 +83,8 @@ style="background-color:#EE3324;"
 @endif >
     <div class="container">
         <div class="row">
-            <div class="col-md-12 text-center text-white">
-                <h4 class="mb-0">
+            <div class="col-md-12 text-center">
+                <h2 class="mb-0" style="color: #ffffff; background-color: #999999; opacity: 90%;">
                     @if(isset($category_id))
                     {{ \App\Models\Category::find($category_id)->name }} | Product Listing
                  @elseif(isset($subcategory_id))
@@ -94,27 +94,18 @@ style="background-color:#EE3324;"
                      @else
                      Product Listing
                  @endif
-                </h4>
-                <p class="mb-0">
-                    @if(isset($category_id))
-                    {{ \App\Models\Category::find($category_id)->description }}
-                 @elseif(isset($subcategory_id))
-                     {{ \App\Models\SubCategory::find($subcategory_id)->description }}
-                 @elseif(isset($subsubcategory_id))
-                     {{ \App\Models\SubSubCategory::find($subsubcategory_id)->description }}
-                     @else
-                     Category Products Hare
-                 @endif
-                </p>
+                </h2>
+              
             </div>
         </div>
     </div>
 </section>
 
 <section>
-    <div class="container py-4">
-        <div class="row">
-            <form class="form-inline" id="search-form" action="{{ route('search') }}" method="GET">
+    <div class="container">
+         <form class="" id="search-form" action="{{ route('search') }}" method="GET">
+        <div class="row pt-3">
+           
                 @isset($category_id)
                     <input type="hidden" name="category_id" value="{{ $category_id }}">
                 @endisset
@@ -125,7 +116,7 @@ style="background-color:#EE3324;"
                     <input type="hidden" name="subsubcategory_id" value="{{ $subsubcategory_id }}">
                 @endisset
 
-                    <div class="col-md-4 form-group mr-5">
+                    <div class="col-md-5 col-sm-12 pb-2">
                         <div class="search-widget">
                             <input class="form-control input-lg" type="text" name="q" placeholder="{{__('Search products')}}" @isset($query) value="{{ $query }}" @endisset>
                             <button type="submit" class="btn-inner" style="margin-top: -8px;">
@@ -134,7 +125,7 @@ style="background-color:#EE3324;"
                         </div>
                     </div>
 
-                    <div class="col-md-3 form-group ml-5">
+                    <div class="col-xs-6 pl-3 pr-4">
                         <select name="" id="" class="form-control sorting sortSelect" data-minimum-results-for-search="Infinity" name="sort_by" onchange="filter()">
                             <option value="">--Select Feature--</option>
                             <option value="1" @isset($sort_by) @if ($sort_by == '1') selected @endif @endisset>{{__('Newest')}}</option>
@@ -145,7 +136,7 @@ style="background-color:#EE3324;"
                         </select>
                     </div>
 
-                    <div class="col-md-3 form-group ml-5">
+                    <div class="col-xs-6">
                         <select name="" id="" class="form-control sorting sortSelect" data-placeholder="{{__('All Brands')}}" name="brand_id" onchange="filter()">
                             <option value="">{{__('All Brands')}}</option>
                             @foreach ($brands as $key => $id)
@@ -213,10 +204,10 @@ style="background-color:#EE3324;"
 
                 <div class="product-info">
                     <h6 class="product-title">
-                        <a class="{{ route('product', $product->slug) }}" href="">{{ __($product->name) }}
+                        <a class="" href="{{ route('product', $product->slug) }}">{{ __($product->name) }}
                         </a>
                     </h6>
-                    <span class="price">
+                    <span class="price" style="margin-top: -30px;">
                         @if(home_base_price($product->id) != home_discounted_base_price($product->id))
                             {{-- <span class="old-product-price strong-300"></span> --}}
                             <del>{{ home_base_price($product->id) }}</del>
@@ -248,8 +239,37 @@ style="background-color:#EE3324;"
         @endforeach
 
         </div>
+        <hr>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-xs-4">
+                    
+                </div>
+                <div class="col-md-4 col-xs-4">
+                    {{ $products->links() }}
+                </div>
+                <div class="col-md-4 col-xs-4">
+                    
+                </div>
+                </div>
+        </div>
     </div>
 </section>
+<section class="py-4 border-top">
+     <div class="container">
+  <p class="mb-0">
+                    @if(isset($category_id))
+                    {!! \App\Models\Category::find($category_id)->description !!}
+                 @elseif(isset($subcategory_id))
+                     {!! \App\Models\SubCategory::find($subcategory_id)->description !!}
+                 @elseif(isset($subsubcategory_id))
+                     {!! \App\Models\SubSubCategory::find($subsubcategory_id)->description !!}
+                     @else
+                     Category Products Hare
+                 @endif
+                </p>
+                </div>
+ </section> 
 
  {{-- <section class="py-4 border-top">
      <div class="container">

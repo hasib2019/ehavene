@@ -90,13 +90,13 @@
                                                     <div class="form-group">
                                                         <!-- <label>{{ __('email') }}</label> -->
                                                         <div class="input-group input-group--style-1">
-                                                            <input id="email" type="text"
+                                                            <input id="emailNew" type="number"
                                                                 class="form-control @error('error') is-invalid @enderror"
                                                                 value="{{ old('email') }}"
                                                                 placeholder="{{ __('Phone') }}" name="email" required
-                                                                autocomplete="email">
+                                                                autocomplete="number">
                                                             <span class="input-group-addon">
-                                                                <i class="text-md la la-envelope"></i>
+                                                                <i class="text-md la la-phone-square"></i>
                                                             </span>
                                                         </div>
                                                     </div>
@@ -104,40 +104,42 @@
                                                         <span class="invalid-feedback">
                                                             <strong>{{ $errors->first('email') }}</strong>
                                                             <strong>{{ $message }}</strong>
-                                                            {{-- <strong>{{ $validator->messages() }}</strong> --}}
+                                                            <strong>{{ $validator->messages() }}</strong>
                                                         </span>
                                                     @enderror
                                                     {{-- @if ($errors->any())
                                                         <h5 style="color: rgb(155, 37, 37)">This email has already been used!!</h5>
                                                         @endif --}}
-                                                    <span id="error_email"></span>
+                                                    <span id="error_emails"></span>
                                                 </div>
                                             </div>
 
-                                            {{-- affiliate code start --}}
-
-                                            <input type="hidden"
-                                                class="form-control{{ $errors->has('reference') ? ' is-invalid' : '' }}"
-                                                @php
-                                                    if (isset($_GET['affiliate_id'])) {
-                                                        $id = decrypt($_GET['affiliate_id']);
-                                                    }
-                                                    if (isset($id)) {
-                                                        echo 'value="' . $id . '"';
-                                                        echo 'readonly';
-                                                    } else {
-                                                        echo 'value="reference"';
-                                                    }
-                                                @endphp placeholder="{{ __('Reference id') }}"
-                                                name="reference">
-                                            {{-- affiliate code end --}}
-
+                                            {{-- email  --}}
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <!-- <label>{{ __('email') }}</label> -->
+                                                        <div class="input-group input-group--style-1">
+                                                            <input id="emailCheck" type="email"
+                                                                class="form-control"
+                                                                value="{{ old('emailAddress') }}"
+                                                                placeholder="{{ __('Email optional') }}" name="emailAddress" required
+                                                                autocomplete="email">
+                                                            <span class="input-group-addon">
+                                                                <i class="text-md la la-envelope"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <span id="error_emailAddress"></span>
+                                                </div>
+                                            </div>
+                                           
                                             <div class="row">
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <!-- <label>{{ __('password') }}</label> -->
                                                         <div class="input-group input-group--style-1">
-<input type="password" id="password" class="form-control"
+<input type="password" id="passwords" class="form-control"
                                                                 placeholder="{{ __('Password') }}" name="password"
                                                                 pattern="{6,}"
                                                                 title="Must contain at least one number and one uppercase and lowercase letter, and at least 6 or more characters"
@@ -159,7 +161,7 @@
                                                         <div class="input-group input-group--style-1">
                                                             <input type="password" class="form-control"
                                                                 placeholder="{{ __('Confirm Password') }}"
-                                                                name="password_confirmation" id="password_confirmation"
+                                                                name="password_confirmation" id="password_confirmations"
                                                                 required>
                                                             <span class="input-group-addon">
                                                                 <i class="text-md la la-lock"></i>
@@ -187,11 +189,7 @@
                                             <div class="row">
                                                 <div class="col-12">
                                                     <div id="message">
-                                                        {{-- <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
-                                                        <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
-                                                        <p id="number" class="invalid">A <b>number</b></p>
-                                                        <p id="length" class="invalid">Minimum <b>8 characters</b></p> --}}
-                                                        <p><span id='messagev'></span></p>
+                                                        <p><span id='messagevn'></span></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -213,7 +211,7 @@
 
                                             <div class="row align-items-center">
                                                 <div class="col-12 text-right  mt-3">
-                                                    <button type="submit" name="register" id="register"
+                                                    <button type="submit" name="register" id="registers"
                                                         class="btn btn-styled btn-base-1 w-100 btn-md">{{ __('Create Account') }}</button>
                                                 </div>
                                             </div>
@@ -263,19 +261,20 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            $('#email').keyup(function() {
+            $('#emailNew').keyup(function() {
                 var error_email = '';
-                var email = $('#email').val();
+                var email = $('#emailNew').val();
+                console.log('email', email)
                 var _token = $('input[name="_token"]').val();
                 var filter = /(^(01){1}[3456789]{1}(\d){8})$/;
                 if (!filter.test(email)) {
-                    $('#error_email').html('<label class="text-danger">Invalid Phone Number</label>');
-                    $('#email').addClass('has-error');
-                    $('#register').attr('disabled', 'disabled');
+                    $('#error_emails').html('<label class="text-danger">Invalid Phone Number</label>');
+                    $('#emailNew').addClass('has-error');
+                    $('#registers').attr('disabled', 'disabled');
                 } else if (email.length > 11) {
-                    $('#error_email').html('<label class="text-danger">Invalid Phone Number</label>');
-                    $('#email').addClass('has-error');
-                    $('#register').attr('disabled', 'disabled');
+                    $('#error_emails').html('<label class="text-danger">Invalid Phone Number</label>');
+                    $('#emailNew').addClass('has-error');
+                    $('#registers').attr('disabled', 'disabled');
                 } else {
                     $.ajax({
                         url: "{{ route('email_available.check') }}",
@@ -286,38 +285,74 @@
                         },
                         success: function(result) {
                             if (result == 'unique') {
-                                $('#error_email').html(
+                                $('#error_emails').html(
                                     '<label class="text-success">Phone Available</label>');
-                                $('#email').removeClass('has-error');
-                                $('#register').attr('disabled', false);
+                                $('#emailNew').removeClass('has-error');
+                                $('#registers').attr('disabled', false);
                             } else {
-                                $('#error_email').html(
+                                $('#error_emails').html(
                                     '<label class="text-danger">Already have a Account</label>'
                                 );
-                                $('#email').addClass('has-error');
-                                $('#register').attr('disabled', 'disabled');
+                                $('#emailNew').addClass('has-error');
+                                $('#registers').attr('disabled', 'disabled');
                             }
                         }
                     })
                 }
             });
-
+            $('#emailCheck').keyup(function() {
+                var error_email = '';
+                var email = $('#emailCheck').val();
+                console.log('emailCheck', email)
+                var _token = $('input[name="_token"]').val();
+                // var filter = /(^(01){1}[3456789]{1}(\d){8})$/;
+                // if (!filter.test(email)) {
+                //     $('#error_emails').html('<label class="text-danger">Invalid Phone Number</label>');
+                //     $('#emailNew').addClass('has-error');
+                //     $('#registers').attr('disabled', 'disabled');
+                // } else if (email.length > 11) {
+                //     $('#error_emails').html('<label class="text-danger">Invalid Phone Number</label>');
+                //     $('#emailNew').addClass('has-error');
+                //     $('#registers').attr('disabled', 'disabled');
+                // } else {
+                    $.ajax({
+                        url: "{{ route('email.emailCheck') }}",
+                        method: "POST",
+                        data: {
+                            emailCheck: email,
+                            _token: _token
+                        },
+                        success: function(result) {
+                            if (result == 'unique') {
+                                $('#error_emailAddress').html(
+                                    '<label class="text-success">Email Available</label>');
+                                $('#emailCheck').removeClass('has-error');
+                                // $('#registers').attr('disabled', false);
+                            } else {
+                                $('#error_emailAddress').html(
+                                    '<label class="text-danger">Already have a Account</label>'
+                                );
+                                $('#emailCheck').addClass('has-error');
+                                // $('#registers').attr('disabled', 'disabled');
+                            }
+                        }
+                    })
+                // }
+            });
+        $('#password_confirmations').on('keyup', function() {
+            
+        if ($('#passwords').val() == $('#password_confirmations').val()) {
+            $('#messagevn').html('Password Match').css('color', 'green');
+            $('#messagevn').addClass('valid');
+            $('#messagevn').removeClass('invalid');
+            $('#registers').attr('disabled', false);
+        } else {
+            $('#messagevn').html('Password doesn\'t Match').css('color', 'red');
+            $('#messagevn').addClass('invalid');
+            $('#messagevn').removeClass('valid')
+            $('#registers').attr('disabled', 'disabled');
+        }
         });
-    </script>
-
-    <script>
-        $('#password_confirmation').on('keyup', function() {
-            if ($('#password').val() == $('#password_confirmation').val()) {
-                $('#messagev').html('Password Match').css('color', 'green');
-                $('#messagev').addClass('valid');
-                $('#messagev').removeClass('invalid');
-                $('#register').attr('disabled', false);
-            } else {
-                $('#messagev').html('Password doesn\'t Match').css('color', 'red');
-                $('#messagev').addClass('invalid');
-                $('#messagev').removeClass('valid')
-                $('#register').attr('disabled', 'disabled');
-            }
         });
     </script>
 @endsection

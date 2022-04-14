@@ -254,13 +254,13 @@ body {
 }
 
 .productFeatured .productContainer .proBadge {
-    height: 50px;
+    height: 40px;
     position: absolute;
     top: 15px;
-    border-radius: 50%;
-    background: #009641;
+    border-radius: 40%;
+    background: #2f3e4c;
     z-index: 1;
-    width: 50px;
+    width: 40px;
     color: #ffff;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -279,13 +279,13 @@ body {
 }
 
 .productFeatured .productContainer .proBadgePer {
-    height: 50px;
+    height: 40px;
     position: absolute;
     top: 15px;
-    border-radius: 50%;
+    border-radius: 40%;
     background: #fd0000;
     z-index: 1;
-    width: 50px;
+    width: 40px;
     color: #ffff;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1861,7 +1861,7 @@ footer .social-sites li a .iconify {
             margin-top: -30px;
     }
     .swiper-container {
-        height: 250px !important;
+        height: 160px !important;
     }
     .categoriImgone{
         width: 100%;
@@ -3832,13 +3832,16 @@ footer .social-sites li a .iconify {
 .productDesign{
     border: 1px solid gainsboro; 
     width:24%; 
-    margin:5px
+    margin:5px;
+    box-shadow: 0px 0px 10px 10px #efebebd9;
+    
 }
 @media (max-width: 768px) {
     .productDesign{
         border: 1px solid gainsboro; 
         width:47%; 
-        margin:5px
+        margin:5px;
+        box-shadow: 0px 0px 10px 10px #efebebd9;
     }  
     .mobileHeight{
         display: none;
@@ -3908,6 +3911,7 @@ footer .social-sites li a .iconify {
     position: sticky;
     top: -1px;
     z-index: 1000;
+    border-bottom: 1px solid #dbdbdb;
   }
 
 
@@ -3957,7 +3961,7 @@ footer .social-sites li a .iconify {
 .cartno {
     position: absolute;
     top: -2px;
-    left: 112px;
+    left: 150px;
     z-index: 1;
     width: 20px;
     height: 20px;

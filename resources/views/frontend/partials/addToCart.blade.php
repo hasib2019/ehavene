@@ -26,28 +26,33 @@
                 </h2>
 
                 <div class="row no-gutters mt-4">
-                    <div class="col-2">
+                    <div class="col-4">
                         <div class="product-description-label">{{__('Price')}}:</div>
                     </div>
-                    <div class="col-10">
+                    <div class="col-8">
                         <div class="product-price-old">
                             <del>
                                 {{ home_price($product->id) }}
-                                <span>/{{ $product->unit }}</span>
+                                 @if(!@empty($product->unit))
+                                    <span>/{{ $product->unit }}</span>
+                                    @endif
                             </del>
                         </div>
                     </div>
                 </div>
                 <div class="row no-gutters mt-3">
-                    <div class="col-2">
+                    <div class="col-4">
                         <div class="product-description-label">{{__('Discount Price')}}:</div>
                     </div>
-                    <div class="col-10">
+                    <div class="col-8">
                         <div class="product-price">
                             <strong>
                                 {{ home_discounted_price($product->id) }}
                             </strong>
-                            <span class="piece">/{{ $product->unit }}</span>
+                             @if(!@empty($product->unit))
+                                    <span class="piece">/{{ $product->unit }}</span>
+                                    @endif
+                           
                         </div>
                     </div>
                 </div>
@@ -100,16 +105,19 @@
                                 <br>
                             </div>
                         @endforeach
-{{ $product->short_description }}
+                        @php
+                        echo $product->short_description
+                        @endphp
+                       
                     <hr>
                     
 
                     <!-- Quantity + Add to cart -->
                     <div class="row no-gutters">
-                        <div class="col-2">
+                        <div class="col-4">
                             <div class="product-description-label mt-2">{{__('Quantity')}}:</div>
                         </div>
-                        <div class="col-10">
+                        <div class="col-8">
                             <div class="product-quantity d-flex align-items-center">
                                 <div class="input-group input-group--style-2 pr-3" style="width: 160px;">
                                     <span class="input-group-btn">
@@ -146,10 +154,10 @@
 
                 </form>
 
-                <div class="d-table width-100 mt-3">
+                <div class="d-table mt-3">
                     <div class="d-table-cell">
                         <!-- Add to cart button -->
-                        <button type="button" class="addCartBtn btn-sm mt-2 mbl" onclick="addToCart()">
+                        <button type="button" class="addCartBtn btn-lg mb-2" onclick="addToCart()">
                             <i class="icon ion-bag"></i> {{__('Add to cart')}}
                         </button>
                          <!-- Add to cart button -->
@@ -160,9 +168,9 @@
                          <button type="button" class="btn btn-base-3 btn-sm  btn-icon-left" onclick="addToCart()">
                             <i class="icon ion-bag"></i> {{__('Add to cart')}}
                         </button> --}}
-                    <span class="hr"> </span>
+                    
                             <!-- Add to wishlist button -->
-                      <button type="button" class="btn btn-outline btn-sm btn-base-1 btn-icon-left ml" onclick="addToWishList({{ $product->id }})">
+                      <button type="button" class="btn btn-outline btn-sm btn-base-1 btn-icon-left" onclick="addToWishList({{ $product->id }})">
                         <i class="la la-heart-o"></i>
                         <span class="d-md-inline-block"> {{__('Add to wishlist')}}</span>
                     </button>
@@ -175,6 +183,7 @@
                     </div>
                     
                 </div>
+                
 
             </div>
         </div>

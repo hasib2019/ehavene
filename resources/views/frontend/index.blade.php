@@ -29,15 +29,15 @@
     <div class="swiper-container">
         <!-- Additional required wrapper -->
         <!-- If we need navigation buttons -->
-        <div class="control">
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-        </div>
+        <!--<div class="control">-->
+        <!--    <div class="swiper-button-prev"></div>-->
+        <!--    <div class="swiper-button-next"></div>-->
+        <!--</div>-->
         <div class="swiper-wrapper">
             <!-- Slides -->
             @foreach (\App\Models\Slider::where('published', 1)->get() as $key => $slider)
                 <div class="swiper-slide">
-                    <img src="{{ asset($slider->photo) }}" alt="" class="img-fluid d-block h-100">
+                    <img src="{{ asset($slider->photo) }}" alt="" class="img-fluid h-100" style="width: 100%">
                 </div>
             @endforeach
         </div>
@@ -47,7 +47,7 @@
     {{-- //////////////////////////////////////////////////////////////////////////////// --}}
     {{-- featureCategories --}}
     <section class="featureCategories mt-3">
-        <div class="container">
+        <div class="container containerNo">
             <div class="inner">
                 @php
                     $fastCategory = \App\Models\Category::where('id', 25)->first();
@@ -129,9 +129,9 @@
         }
         .cat-item .cat-item-inner {
             display: block;
-            background: #e5e5e5;
+            background: #ffffff;
             border-radius: 15px;
-            box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
+            box-shadow: 0px 0px 7px 0px rgb(0 0 0 / 10%);
             padding: 15px 0 5px 0;
         }
         .cat-item a:hover {
@@ -140,16 +140,16 @@
 
     </style>
     
-    <section>
+   {{-- <section>
         <div class="container">
             <div class="cat-items-wrap">
-                @foreach (\App\Models\Category::inRandomOrder()->take(16)->get()
+                @foreach (\App\Models\Category::inRandomOrder()->get()
                 as $category)
                 <div class="cat-item">
                     <a href="{{ route('products.category', $category->id) }}" class="cat-item-inner">
                         <span class="cat-icon"><img
                                 src="{{ asset($category->banner) }}"
-                                alt="All Laptop" width="80" height="80"></span>
+                                alt="All Laptop" width="100" height="100"></span>
                         <p>{{ $category->name }}</p>
                     </a>
                 </div>
@@ -157,7 +157,7 @@
             </div>
         </div>
         
-    </section>
+    </section> --}}
     {{-- category section  end --}}
     {{-- product section --}}
     <section class="productFeatured productFetRem">
@@ -167,11 +167,11 @@
                     <div class="col-md-12 text-center my-2">
                         <h4 class="mb-0 titlePro"><a
                                 href="{{ route('products.category', $category->id) }}">{{ $category->name }}</a></h4>
-                        <h6 class="mb-0"><i>Top view in this week</i></h6>
+                        <!--<h6 class="mb-0"><i>Top view in this week</i></h6>-->
                     </div>
                 </div>
                 <div class="row productView mx-lg-auto">
-                    @foreach (filter_products(\App\Models\Product::where('category_id', $category->id))->limit(12)->get()
+                    @foreach (filter_products(\App\Models\Product::inRandomOrder()->where('category_id', $category->id))->limit(8)->get()
         as $key => $related_product)
                         <div class="productDesign">
                             <div class="productContainer">
@@ -255,12 +255,13 @@
         @endforeach
     </section>
 
+ 
 
     <section class="newSale py-3">
         <div class="container">
             <div class="row">
                 @foreach (\App\Models\Banner::all() as $key => $banner)
-                    <div class="col-md-6">
+                    <div class="col-md-6 mb-4">
                         <div class="innerSale">
                             <img src="{{ asset($banner->photo) }}" class="img-fluid">
                             <a href="" class="info">
@@ -285,63 +286,21 @@
     </section>
 
 
-    {{-- <section class="  py-5 ">
-    <div class="container">
-        <div class="col-md-12 text-center mb-5">
-            <h4 class="mb-0 titlePro ">LATES FROM BLOG</h4>
-            <h6 class="mb-0"><i>The freshest and most exciting news </i></h6>
-        </div>
+   
 
-        <div class="row">
-            <div class="col-md-4">
-                <a href="" style="text-decoration: none;">
-                    <div class="innerSale">
-                        <img src="{{asset('frontend/images/images/blog-01.jpg')}}" class="img-fluid">
-                    </div>
-                    <h5 class="mt-3 text-link">Spring – Summer Trending 2020</h5>
-                </a>
-                <h6>By adminon April 6, 2020</h6>
-                <p>Typography is the work of typesetters, compositors, typographers, graphic designers, art directors, manga artists, ...</p>
-            </div>
-
-            <div class="col-md-4">
-                <a href="" style="text-decoration: none;">
-                    <div class="innerSale">
-                        <img src="{{asset('frontend/images/images/blog-01.jpg')}}" class="img-fluid">
-                    </div>
-                    <h5 class="mt-3 text-link">Spring – Summer Trending 2020</h5>
-                </a>
-                <h6>By adminon April 6, 2020</h6>
-                <p>Typography is the work of typesetters, compositors, typographers, graphic designers, art directors, manga artists, ...</p>
-            </div>
-
-            <div class="col-md-4">
-                <a href="" style="text-decoration: none;">
-                    <div class="innerSale">
-                        <img src="{{asset('frontend/images/images/blog-01.jpg')}}" class="img-fluid">
-                    </div>
-                    <h5 class="mt-3 text-link">Spring – Summer Trending 2020</h5>
-                </a>
-                <h6>By adminon April 6, 2020</h6>
-                <p>Typography is the work of typesetters, compositors, typographers, graphic designers, art directors, manga artists, ...</p>
-            </div>
-        </div>
-
-    </div>
-</section> --}}
-
-    <section class="  py-3 ">
+    <section class="py-1">
         <div class="container-fluid">
             <div class="col-md-12 text-center mb-5">
                 <h4 class="mb-0 titlePro ">Our Most Popular Brand</h4>
                 {{-- <h6 class="mb-0"><i>Top view in this week</i></h6> --}}
             </div>
-            <div class="slider slider-nav px-5" id="brand">
-                @foreach (\App\Models\Brand::latest()->take(12)->get()
+            <div class="slider slider-nav px-3" id="brand">
+                @foreach (\App\Models\Brand::latest()->get()
         as $brand)
                     <a href="{{ route('products.brand', $brand->id) }}">
-                        <div class="d-flex justify-content-center brandForFooter" style="">
-                            <img src="{{ asset($brand->logo) }}" class="brand img-fluid">
+                        <div class="d-flex justify-content-center ml-1 mr-2" >
+                            <img src="{{ asset($brand->logo) }}" class="img-fluid" style="border-radius: 10px;
+            box-shadow: 2px 2px 2px 2px rgb(0 0 0 / 20%);">
                         </div>
                     </a>
                 @endforeach
@@ -356,34 +315,47 @@
                     <div> <i class="iconify mr-3" data-icon="fluent:vehicle-car-48-regular"></i></div>
                     <div class="content">
                         <h6 class="title mb-0 text-dark font-weight-bold">FREE SHIPPING</h6>
-                        <p class="">Free shipping on all US order or order above $100</p>
+                        <p class="">Free shipping on all US order or order above 100</p>
                     </div>
                 </div>
                 <div class="col-md-3 d-flex">
                     <div> <span class="iconify mr-3" data-icon="heroicons-outline:support"></span></div>
                     <div class="content">
                         <h6 class="title mb-0 text-dark font-weight-bold">SUPPORT 24/7</h6>
-                        <p class="">Free shipping on all US order or order above $100</p>
+                        <p class="">Free shipping on all US order or order above 100</p>
                     </div>
                 </div>
                 <div class="col-md-3 d-flex">
                     <div><span class="iconify mr-3" data-icon="bi:arrow-return-left"></span> </div>
                     <div class="content">
                         <h6 class="title mb-0 text-dark font-weight-bold">30 DAYS RETURN</h6>
-                        <p class="">Free shipping on all US order or order above $100</p>
+                        <p class="">Free shipping on all US order or order above 100</p>
                     </div>
                 </div>
                 <div class="col-md-3 d-flex">
                     <div><span class="iconify mr-3" data-icon="grommet-icons:secure"></span></div>
                     <div class="content">
                         <h6 class="title mb-0 text-dark font-weight-bold">100% PAYMENT SECURE</h6>
-                        <p class="">Free shipping on all US order or order above $100</p>
+                        <p class="">Free shipping on all US order or order above 100</p>
                     </div>
                 </div>
 
             </div>
         </div>
     </section>
+     <section class="py-5 ">
+    <div class="container">
+        <div class="row">
+           @php
+$generalsetting = \App\Models\GeneralSetting::first();
+@endphp
+
+ {!! $generalsetting->home_description !!}
+
+        </div>
+
+    </div>
+</section>
 @endsection
 @section('script')
     <script>

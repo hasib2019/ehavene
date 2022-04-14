@@ -1,44 +1,49 @@
 @php
 $generalsetting = \App\Models\GeneralSetting::first();
 @endphp
-<footer class="py-3 mt-4">
+<style>
+    ul {
+    list-style:none;
+}
+</style>
+<footer class="py-3 mt-4" style="background: #F6F6F8 !important;">
     <div class="container">
         <div class="my-4">
             <div class="row justify-content-lg-between">
-                <div class="col-lg-3 col-md-3 col-sm-12  my-2">
+                <div class="col-lg-3 col-md-3 col-sm-6">
                     <h5 onclick="mobileViewActive('logos');" class="text-secondary d-flex justify-content-between">
-                    <span class="getfooter">Get in touch</span>                  
+                    <span class="getfooter">GET IN TOUCH</span>                  
                         <span class="iconify clickableIcon" data-icon="akar-icons:plus"></span>
                     </h5>
                     <!-- Nav Link -->
-                    <ul class="nav nav-sm nav-x-0 nav-white flex-column  visualcolumn" id="colOne">
-                        <li class="nav-item py-1"></i>@if ($generalsetting->logo != null)
-                            <img src="{{ asset($generalsetting->logo) }}" width="150px" class="img-fluid" style="display: block"
-                                alt="Ehevene">
+                    <ul class="flex-column  visualcolumn" id="colOne">
+                        <li class=""></i>@if ($generalsetting->logo != null)
+                            <img src="{{ asset($generalsetting->logo) }}" class="img-fluid"
+                                alt="Ehevene" style="width:160px;">
                         @else
                             <img src="{{ asset('frontend/images/logo.png') }}" width="150px" class="img-fluid"
                                 alt="Ehevene">
                         @endif
                         </li>
-                        <li class="nav-item py-1"><i class="fa fa-map-marker"> </i>
+                        <li class=""><i class="fa fa-map-marker"> </i>
                         @if ($generalsetting->address != null)
                             {{ $generalsetting->address }}
                         @else
                             Add Address here from Backend
                         @endif
                         </li>
-                        <li class="nav-item py-1"><i class="fa fa-envelope"> </i>
+                        <li class=""><i class="fa fa-envelope"> </i>
                             @if ($generalsetting->email != null)
                                 <a class="cg" href="mailto:{{ $generalsetting->email }}">
                                     {{ $generalsetting->email }}
                                 </a>
                             @else
                                 <a class="cg" href="#">
-                                    contact@company.com
+                                    contact@creativeitbari.com
                                 </a>
                             @endif
                         </li>
-                        <li class="nav-item py-1"><i class="fa fa-mobile" aria-hidden="true"> </i>
+                        <li class=""><i class="fa fa-mobile" aria-hidden="true"> </i>
                             @if ($generalsetting->phone != null)
                                 <a class="cg" href="tel:{{ $generalsetting->phone }}">
 
@@ -46,8 +51,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
                                 </a>
                             @else
                                 <a class="cg" href="#">
-
-                                    013000000000
+                                    01738356180
                                 </a>
                             @endif
                         </li>
@@ -56,42 +60,42 @@ $generalsetting = \App\Models\GeneralSetting::first();
                     <!-- End Nav Link -->
                 </div>
 
-                <div class="col-lg-2 col-md-2 col-sm-12  my-2">
+                <div class="col-lg-2 col-md-2 col-sm-6">
                     <h5 onclick="mobileViewActive('info');" class="text-secondary d-flex justify-content-between">
-                        <span>Top Categories</span>
+                        <span>TOP CATEGORIES</span>
                         <span class="iconify clickableIcon" data-icon="akar-icons:plus"></span>
                     </h5>
                     <!-- Nav Link -->
-                    <ul class="nav nav-sm nav-x-0 nav-white flex-column  visualcolumn" id="colTwo">
+                    <ul class=" flex-column  visualcolumn" id="colTwo">
                         @foreach (\App\Models\Category::where('featured', 1)->limit(5)->get()
     as $key => $category)
-                            <li class="nav-item py-1"> <a href="{{ route('products.category', $category->id) }}"
+                            <li class=""> <a href="{{ route('products.category', $category->id) }}"
                                     class="text-secondary">{{ __($category->name) }}</a></li>
                         @endforeach
                     </ul>
                     <!-- End Nav Link -->
                 </div>
-                <div class="col-lg-2 col-md-2 col-sm-12  my-2">
+                <div class="col-lg-2 col-md-2 col-sm-6">
                     <h5 onclick="mobileViewActive('link');" class="text-secondary d-flex justify-content-between">
-                        <span>USEFUL LINK</span>
+                        <span>USEFULL LINK</span>
                         <span class="iconify clickableIcon" data-icon="akar-icons:plus"></span>
                     </h5>
 
                     <!-- Nav Link -->
-                    <ul class="nav nav-sm nav-x-0 nav-white flex-column visualcolumn" id="colThree">
-                        <li class="nav-item py-1"><a class="text-secondary" href="{{ route('aboutus') }}">About
+                    <ul class="flex-column visualcolumn" id="colThree">
+                        <li class="n"><a class="text-secondary" href="{{ route('aboutus') }}">About
                                 us</a></li>
-                        <li class="nav-item py-1"><a class="text-secondary" href="{{ route('contactus') }}">Contact
+                        <li class=""><a class="text-secondary" href="{{ route('contactus') }}">Contact
                                 Us</a></li>
-                        <li class="nav-item py-1"><a class="text-secondary"
+                        <li class=""><a class="text-secondary"
                                 href="{{ route('privacypolicy') }}">Privacy</a></li>
-                        <li class="nav-item py-1"><a class="text-secondary"
+                        <li class=""><a class="text-secondary"
                                 href="{{ route('returnpolicy') }}">Returns Policy</a></li>
-                        <li class="nav-item py-1"><a class="text-secondary" href="{{ route('faq') }}">FAQ</a></li>
+                        <li class="n"><a class="text-secondary" href="{{ route('faq') }}">FAQ</a></li>
                     </ul>
                     <!-- End Nav Link -->
                 </div>
-                <div class="col-lg-2 col-md-2 col-sm-12  my-2">
+                <div class="col-lg-2 col-md-2 col-sm-6">
                     <!-- End Nav Link -->
                     <div id="contact">
                         <h5 onclick="mobileViewActive('contact');"
@@ -108,7 +112,6 @@ $generalsetting = \App\Models\GeneralSetting::first();
                                 </a>
                             @else
                                 <a class="cg" href="#">
-
                                     01738356180
                                 </a>
                             @endif
@@ -175,17 +178,17 @@ $generalsetting = \App\Models\GeneralSetting::first();
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-12  my-2">
+                <div class="col-lg-3 col-md-3 col-sm-6">
                     <h5 onclick="mobileViewActive('apps');" class="text-secondary d-flex justify-content-between">
-                        <span>Newsletter Signup</span>
+                        <span>NEWSLETTER SIGNUP</span>
                         <span class="iconify clickableIcon" data-icon="akar-icons:plus"></span>
                     </h5>
                     <!-- Nav Link -->
-                    <ul class="nav nav-sm nav-x-0 nav-white flex-column visualcolumn" id="colFive">
-                        <li class="nav-item w-100">
+                    <ul class=" visualcolumn" id="colFive">
+                        <li class="text-right">
                             Subscribe to our newsletter and get 10% off your first purchase
                         </li>
-                        <li class="nav-item w-100">
+                        <li class="">
                             <a class="py-1 d-block app_download_link" href=" "><img class='img-fluid' loading="lazy"
                                     src="{{ asset('frontend/images/images/apple_store.png') }}"></a>
                         </li>
@@ -199,7 +202,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
             <div class="row">
                 <div class="col-lg-7 col-md-7 col-sm-12 mb-2 my-2">
                     <!-- Copyright -->
-                    <div>
+                    <div class="text-center">
                         <p class="text-secondary small mobileHeightfooter">© Copyright <a href="https://www.ehavene.com/">Ehavene</a> 2021.
                             All rights reserved. Design & Development by <a
                                 href="https://creativeitbari.com">CreativeITbari</a>.</p>

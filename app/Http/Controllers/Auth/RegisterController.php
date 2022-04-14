@@ -56,9 +56,9 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            // 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'emailAddress' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'email' => ['required','regex:/^([0-9\s\-\+\(\)]*)$/','min:11'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
     }
 
@@ -70,36 +70,35 @@ class RegisterController extends Controller
      */
     protected function store(Request $data)
     {
-    if($data['password']==$data['password_confirmation']){
+    if($data['password']==$data['password_confirmation']){       
         
-        
-        $commission = Master::where('softcode', '=','ref_commission')->first()->hardcode;
+        // $commission = Master::where('softcode', '=','ref_commission')->first()->hardcode;
         //update user
-        if($data['reference'] == 'reference'){
+        // if($data['reference'] == 'reference'){
             
-        }else{
+        // }else{
             
-            $reference_id = User::where('ref_id', '=', $data['reference'])->first()->id;
-            $updateuser = User::find(User::where('ref_id', '=', $data['reference'])->first()->id);
-            $updateuser->balance = $updateuser->balance+$commission;
-            $updateuser->save();
+        //     $reference_id = User::where('ref_id', '=', $data['reference'])->first()->id;
+        //     $updateuser = User::find(User::where('ref_id', '=', $data['reference'])->first()->id);
+        //     $updateuser->balance = $updateuser->balance+$commission;
+        //     $updateuser->save();
            
-            $tran = new Transaction;
-            $tran->user_id = $reference_id;
-            $tran->ref_by = $data['reference'];
-            $tran->status = "Pending";
-            $tran->amount = $commission;
-            $tran->earning_type = "Reference";
-            $tran->save();
-        }
+        //     $tran = new Transaction;
+        //     $tran->user_id = $reference_id;
+        //     $tran->ref_by = $data['reference'];
+        //     $tran->status = "Pending";
+        //     $tran->amount = $commission;
+        //     $tran->earning_type = "Reference";
+        //     $tran->save();
+        // }
         //update user
-        
+        // dd($data['emailAddress']);
         $phone = $data['email'];
         $codeverify = rand(1234, 4568);
         $user = User::create([
           'name' => $data['name'],
           'phone' => $data['email'],
-          'ref_by' => $data['reference'],
+          'email' => $data['emailAddress'],
           'password' => Hash::make($data['password']),
           'email_verified_at' => now(),
           'status' => 1,

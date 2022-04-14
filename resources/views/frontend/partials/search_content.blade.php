@@ -31,7 +31,7 @@
                                             <span class="badge badge badge-pill bg-red">{{__('Out of stock')}}</span>
                                         @endif
                                     @endif</div>
-                                    <div class="price"> @if(home_base_price($product->id) != home_discounted_base_price($product->id))
+                                    <div class="price" style="margin-top: -35px"> @if(home_base_price($product->id) != home_discounted_base_price($product->id))
                                         <del class="old-product-price strong-400">{{ home_base_price($product->id) }}</del>
                                     @endif
                                     <span class="product-price strong-600">{{ home_discounted_base_price($product->id) }}</span></div>

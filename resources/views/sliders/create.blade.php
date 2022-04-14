@@ -11,7 +11,7 @@
             <div class="form-group">
                 <div class="col-sm-3">
                     <label class="control-label">{{__('Slider Images')}}</label>
-                    <strong>(1200px*350px)</strong>
+                    <strong>(1400px*600px)</strong>
                 </div>
                 <div class="col-sm-9">
                     <div id="photos">

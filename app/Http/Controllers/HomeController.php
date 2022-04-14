@@ -20,6 +20,7 @@ use App\Models\Seller;
 use App\Models\BlogComment;
 use App\Models\Shop;
 use App\Models\Color;
+use App\Models\Brand;
 use App\Models\DocDepartment;
 use App\Models\DoctorDepartment;
 use App\Models\DoctorExperienced;
@@ -36,6 +37,7 @@ use App\Models\BlogCategory;
 use App\Models\Division;
 use App\Models\District;
 use App\Models\Upazila;
+
 
 class HomeController extends Controller
 {
@@ -99,9 +101,27 @@ class HomeController extends Controller
      // email check
      function emailcheck(Request $request)
      {
-      if($request->get('email'))
+      if($request->get('emails'))
       {
-       $email = $request->get('email');
+       $email = $request->get('emails');
+       $data = DB::table("users")
+        ->where('email','=', $email)
+        ->count();
+       if($data > 0)
+       {
+        echo 'not_unique';
+       }
+       else
+       {
+        echo 'unique';
+       }
+      }
+     }
+     function emailcheckuser(Request $request)
+     {
+      if($request->get('emailCheck'))
+      {
+       $email = $request->get('emailCheck');
        $data = DB::table("users")
         ->where('email','=', $email)
         ->count();
@@ -529,7 +549,7 @@ class HomeController extends Controller
     public function product($slug)
     {
         $product  = Product::where('slug', $slug)->first();
-        //dd( $product );
+        // dd( $product );
         if($product!=null){
             updateCartSetup();
             return view('frontend.product_details', compact('product'));
@@ -557,7 +577,7 @@ class HomeController extends Controller
 
     public function listing(Request $request)
     {
-        $products = filter_products(Product::orderBy('created_at', 'desc'))->paginate(19);
+        $products = filter_products(Product::inRandomOrder())->paginate(32);
         return view('frontend.product_listing', compact('products'));
     }
 
@@ -565,6 +585,12 @@ class HomeController extends Controller
     {
         $categories = Category::all();
         return view('frontend.all_category', compact('categories'));
+    }
+    
+     public function all_brands(Request $request)
+    {
+        $brands = Brand::all();
+        return view('frontend.brand', compact('brands'));
     }
 
     public function show_product_upload_form(Request $request)
@@ -679,7 +705,7 @@ class HomeController extends Controller
             }
         }
 
-        $products = filter_products($products)->paginate(18)->appends(request()->query());
+        $products = filter_products($products)->paginate(32)->appends(request()->query());
 
         return view('frontend.product_listing', compact('products', 'query', 'category_id', 'subcategory_id', 'subsubcategory_id', 'brand_id', 'sort_by', 'seller_id','min_price', 'max_price'));
     }

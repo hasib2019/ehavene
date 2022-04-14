@@ -60,6 +60,7 @@ Route::post('/users/registration/resend-otp', 'App\Http\Controllers\Auth\Registe
 // email check
 Route::post('/email_available/check', 'App\Http\Controllers\HomeController@check')->name('email_available.check');
 Route::post('/email/check', 'App\Http\Controllers\HomeController@emailcheck')->name('email.check');
+Route::post('/email/check-user', 'App\Http\Controllers\HomeController@emailcheckuser')->name('email.emailCheck');
 Route::post('/email/recheck', 'App\Http\Controllers\HomeController@emailrecheck')->name('email.recheck');
 Route::post('/phone_available/check', 'App\Http\Controllers\HomeController@phonecheck')->name('phone_available.check');
 // password reset
@@ -149,6 +150,7 @@ Route::post('/orders/details', 'App\Http\Controllers\OrderController@order_detai
 Route::post('/orders/update_status', 'App\Http\Controllers\OrderController@update_status')->name('orders.update_status');
 
 Route::get('/categories', 'App\Http\Controllers\HomeController@all_categories')->name('categories.all');
+Route::get('/brands', 'App\Http\Controllers\HomeController@all_brands')->name('brands.all');
 Route::get('/search', 'App\Http\Controllers\HomeController@search')->name('search');
 Route::get('/search?q={search}', 'App\Http\Controllers\HomeController@search')->name('suggestion.search');
 Route::post('/ajax-search', 'App\Http\Controllers\HomeController@ajax_search')->name('search.ajax');

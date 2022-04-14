@@ -173,13 +173,13 @@
                                         <input type="hidden" class="form-control" value="{{ $user->shipping_cost }}" name="shipping" id="shippingcost" readonly>
                                         <input type="hidden" name="checkout_type" value="logged">
   <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-5">
                                         <a href="{{ route('products') }}" class="link link--style-3">
                                             <i class="la la-mail-reply"></i>
                                             {{__('Return to home')}}
                                         </a>
                                     </div>
-                                    <div class="col-6 text-right">
+                                    <div class="col-7 text-right" style="margin-bottom: 8px;">
                                         @if(Auth::check())
                                         @if(Auth::user()->shipping_address)
                                             <button type="button" class="btn btn-styled btn-base-1" onclick="getPaymentInfo()" >{{__('Continue to Payment')}}</button>
@@ -409,13 +409,13 @@
 
                                 <input type="hidden" name="checkout_type" value="guest">
                             <div class="row align-items-center pt-4 shophide">
-                                <div class="col-6">
+                                <div class="col-5">
                                     <a href="{{ route('products') }}" class="link link--style-3">
                                         <i class="ion-android-arrow-back"></i>
                                         {{__('Return to shop')}}
                                     </a>
                                 </div>
-                                <div class="col-6 text-right">
+                                <div class="col-7 text-right" style="margin-bottom: 8px;">
                                     <button type="button" class="btn btn-styled btn-base-1" onclick="getPaymentInfo()">{{__('Continue to Payment')}}</button>
                                 </div>
                             </div>

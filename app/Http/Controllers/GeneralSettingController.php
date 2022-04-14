@@ -146,6 +146,7 @@ class GeneralSettingController extends Controller
         $generalsetting->phone = $request->phone;
         $generalsetting->email = $request->email;
         $generalsetting->description = $request->description;
+        $generalsetting->home_description = $request->home_description;
         $generalsetting->facebook = $request->facebook;
         $generalsetting->instagram = $request->instagram;
         $generalsetting->twitter = $request->twitter;
