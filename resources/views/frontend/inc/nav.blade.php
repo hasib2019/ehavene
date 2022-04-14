@@ -214,7 +214,6 @@ $generalsetting = \App\Models\GeneralSetting::first();
         </nav> --}}
         {{-- Hasib modified nav bar  --}}
        <div class="navbarMenu" id="main-nav">
-   
         <ul class="navbarMenu-nav">
             @foreach (\App\Models\Category::take(12)->get() as $key => $category)
             <li class="nav-item-menu has-child-menu c-1">
