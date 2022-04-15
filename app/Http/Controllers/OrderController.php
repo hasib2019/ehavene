@@ -410,23 +410,24 @@ class OrderController extends Controller
 
             // sms send
 
-            // $phone = $request->session()->get('shipping_info')['phone'];
-            // $sms = "Order Received & thanks for shopping with us. Your Order ID is #$order->code. Check your status here: aponhealth.com";
-            // $curl = curl_init();
-            // curl_setopt_array($curl, array(
-            //     CURLOPT_URL => "https://api.mobireach.com.bd/SendTextMessage?Username=lextlink&Password=Dhaka@5599&From=Apon%20Health&To=88".$phone."&Message=".urlencode($sms)."",
-            //     CURLOPT_RETURNTRANSFER => true,
-            //     CURLOPT_TIMEOUT => 30,
-            //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            //     CURLOPT_CUSTOMREQUEST => "GET",
-            //     CURLOPT_HTTPHEADER => array(
-            //         "cache-control: no-cache"
-            //     ),
-            // ));
-            // $response = curl_exec($curl);
-            // $err = curl_error($curl);
-            // curl_close($curl);
-
+            $phone = $request->session()->get('shipping_info')['phone'];
+            $sms = "Order Received & thanks for shopping with us. Your Order ID is #$order->code. Check your status here: https://ehavene.com.bd/product-truck";
+            $url = 'https://www.24bulksmsbd.com/api/smsSendApi';
+            $data = array(
+                'customer_id' => 128,
+                'api_key' => 172929182721250301911695556,
+                'message' =>$sms,	
+                'mobile_no' => $phone
+            );
+            
+            $curl = curl_init($url);
+            curl_setopt($curl, CURLOPT_POST, true);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);     
+            $output = curl_exec($curl);
+            curl_close($curl);
             // sms send end
             $request->session()->put('order_id', $order->id);
         }
