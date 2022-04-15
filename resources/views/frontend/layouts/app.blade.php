@@ -72,6 +72,7 @@
 @endif
 {{-- serch console add  --}}
 <meta name="google-site-verification" content="-fRrJFS_wfFvJoxRghPnoOdehBLbMYnvwG-CpX5WZD4" />
+<meta name="msvalidate.01" content="2DA8E1841A9BA8557D45514335B6631C" />
 <!-- Facebook Chat style -->
 {{-- <link href="{{ asset('frontend/css/fb-style.css')}}" rel="stylesheet"> --}}
 <!--facebook pixel-->
