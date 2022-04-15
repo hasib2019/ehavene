@@ -407,13 +407,15 @@ class OrderController extends Controller
 
             // sms send
 
+                //     CURLOPT_URL => "https://api.mobireach.com.bd/SendTextMessage?Username=lextlink&Password=Dhaka@5599&From=Apon%20Health&To=88".$phone."&Message=".urlencode($sms)."",
+
             $phone = $request->session()->get('shipping_info')['phone'];
             $sms = "Order Received & thanks for shopping with us. Your Order ID is #$order->code. Check your status here: https://ehavene.com.bd/product-truck";
             $url = 'https://www.24bulksmsbd.com/api/smsSendApi';
             $data = array(
                 'customer_id' => 128,
                 'api_key' => 172929182721250301911695556,
-                'message' =>$sms,	
+                'message' =>"($sms)",	
                 'mobile_no' => $phone
             );
 
@@ -425,6 +427,7 @@ class OrderController extends Controller
             curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);     
             $output = curl_exec($curl);
             curl_close($curl);
+            echo $output;
             // sms send end
             $request->session()->put('order_id', $order->id);
         }
