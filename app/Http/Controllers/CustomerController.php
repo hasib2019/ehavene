@@ -14,7 +14,7 @@ use App\Models\ShippingAddess;
 use App\Models\PrescriptionImage;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
-Use Response;
+use Response;
 use Mail;
 
 class CustomerController extends Controller
@@ -28,19 +28,18 @@ class CustomerController extends Controller
     {
 
 
-        if(!empty($request->input('area'))){
+        if (!empty($request->input('area'))) {
 
             $area = $request->input('area');
             $customers = User::where('user_type', '=', 'customer')->where('area', '=', $area)->orWhere('city', '=', $area)->orWhere('region', '=', $area)->orderBy('created_at', 'desc')->get();
-
-        }else{
+        } else {
             $customers = User::where('user_type', '=', 'customer')->orderBy('created_at', 'desc')->get();
         }
         return view('customers.index', compact('customers'));
     }
     public function viewMedUser()
     {
-        $customers = User::where('user_type', '=', 'customer')->where('medication','=', 'Yes')->orderBy('created_at', 'desc')->get();
+        $customers = User::where('user_type', '=', 'customer')->where('medication', '=', 'Yes')->orderBy('created_at', 'desc')->get();
         return view('customers.meduser', compact('customers'));
     }
 
@@ -55,8 +54,7 @@ class CustomerController extends Controller
         $districts = District::all();
         $upazilas = Upazila::all();
 
-        return view('customers.create', compact('upazilas','districts','region'));
-
+        return view('customers.create', compact('upazilas', 'districts', 'region'));
     }
 
     /**
@@ -71,7 +69,7 @@ class CustomerController extends Controller
         $patient->name = $request->name;
         $patient->email = $request->email;
         $patient->password = Hash::make(123456);
-        $patient->email_verified_at= now();
+        $patient->email_verified_at = now();
         $patient->dob = $request->dob;
         $patient->medication = $request->medication;
         $patient->address = $request->address;
@@ -84,7 +82,7 @@ class CustomerController extends Controller
         $patient->ref_by = 'reference';
         $patient->status = '1';
 
-        if($patient->save()){
+        if ($patient->save()) {
             $shipping = new ShippingAddess;
             $shipping->user_id = $patient->id;
             $shipping->name = $request->name;
@@ -97,70 +95,67 @@ class CustomerController extends Controller
             $shipping->post_code = $request->postal_code;
             $shipping->shipping_cost = $request->shipping_cost;
 
-            if($shipping->save()){
+            if ($shipping->save()) {
                 $user = User::findOrFail($patient->id);
                 $user->shipping_address = $shipping->id;
                 $user->save();
             }
 
             //email send
-            $mail['subject']="Apon Health Register Confirmation";
-            $mail['msg']="123456";
-            $mail['email']=$request->email;
-            $mail['phone']=$request->phone;
+            $mail['subject'] = "Apon Health Register Confirmation";
+            $mail['msg'] = "123456";
+            $mail['email'] = $request->email;
+            $mail['phone'] = $request->phone;
             $email_to = $request->email;
-            Mail::send('emails.doctor', compact('mail'), function($message)use($mail,$email_to) {
-                $message->from('support@hasibuzzaman.com', 'Apon Health');
+            Mail::send('emails.doctor', compact('mail'), function ($message) use ($mail, $email_to) {
+                $message->from('support@ehavene.com.bd', 'Apon Health');
                 $message->to($email_to)
-                ->subject($mail['subject']);
-                });
+                    ->subject($mail['subject']);
+            });
             // sms send
-        //     $phone = $request->phone;
-        //     $sms = "Your account user phone: ".$phone.", and password: 123456 Please visit https://aponhealth.com/users/login";
-        //     $curl = curl_init();
-        //   curl_setopt_array($curl, array(
-        //       CURLOPT_URL => "https://api.mobireach.com.bd/SendTextMessage?Username=lextlink&Password=Dhaka@5599&From=Apon%20Health&To=88".$phone."&Message=".urlencode($sms)."",
-        //       CURLOPT_RETURNTRANSFER => true,
-        //       CURLOPT_TIMEOUT => 30,
-        //       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        //       CURLOPT_CUSTOMREQUEST => "GET",
-        //       CURLOPT_HTTPHEADER => array(
-        //           "cache-control: no-cache"
-        //       ),
-        //   ));
-        //   $response = curl_exec($curl);
-        //   $err = curl_error($curl);
-        //   curl_close($curl);
+            //     $phone = $request->phone;
+            //     $sms = "Your account user phone: ".$phone.", and password: 123456 Please visit https://aponhealth.com/users/login";
+            //     $curl = curl_init();
+            //   curl_setopt_array($curl, array(
+            //       CURLOPT_URL => "https://api.mobireach.com.bd/SendTextMessage?Username=lextlink&Password=Dhaka@5599&From=Apon%20Health&To=88".$phone."&Message=".urlencode($sms)."",
+            //       CURLOPT_RETURNTRANSFER => true,
+            //       CURLOPT_TIMEOUT => 30,
+            //       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            //       CURLOPT_CUSTOMREQUEST => "GET",
+            //       CURLOPT_HTTPHEADER => array(
+            //           "cache-control: no-cache"
+            //       ),
+            //   ));
+            //   $response = curl_exec($curl);
+            //   $err = curl_error($curl);
+            //   curl_close($curl);
 
 
 
             $customer = new Customer;
-            $customer->user_id= $patient->id;
-                if($customer->save()){
-                    flash(__('New Patient added successfully'))->success();
-                    return redirect()->route('customers.index');
-                }else{
-                    flash(__('New Patient Not Added'))->error();
-                    return redirect()->route('customers.index');
-                }
-
+            $customer->user_id = $patient->id;
+            if ($customer->save()) {
+                flash(__('New Patient added successfully'))->success();
+                return redirect()->route('customers.index');
+            } else {
+                flash(__('New Patient Not Added'))->error();
+                return redirect()->route('customers.index');
             }
+        }
     }
-    
+
     // check mail
     function check(Request $request)
     {
-     if($request->email)
-     {
-      $email = $request->email;
-      $data = User::where('email','=', $email)->count();
-      if($data > 0){
-       echo 'not_unique';
-      }else
-      {
-       echo 'unique';
-      }
-     }
+        if ($request->email) {
+            $email = $request->email;
+            $data = User::where('email', '=', $email)->count();
+            if ($data > 0) {
+                echo 'not_unique';
+            } else {
+                echo 'unique';
+            }
+        }
     }
 
     /**
@@ -188,7 +183,7 @@ class CustomerController extends Controller
 
         $customers = User::where('id', '=', decrypt($id))->first();
         // dd( $customers );
-        return view('customers.edit', compact('customers','upazilas','districts','region'));
+        return view('customers.edit', compact('customers', 'upazilas', 'districts', 'region'));
     }
 
     /**
@@ -209,7 +204,7 @@ class CustomerController extends Controller
         $customer->med_upcoming = "Null";
         $customer->preiod = "Null";
 
-        if($customer->save()){
+        if ($customer->save()) {
             flash(__('Deleted successfully'))->success();
             return redirect()->route('customers.medication');
         }
@@ -235,7 +230,7 @@ class CustomerController extends Controller
         $patient->phone = $request->phone;
         $patient->status = '1';
 
-        if($patient->save()){
+        if ($patient->save()) {
 
             //new code start
             $shipping = ShippingAddess::findOrFail(ShippingAddess::where('user_id', $id)->first()->id);
@@ -250,20 +245,20 @@ class CustomerController extends Controller
             $shipping->post_code = $request->postal_code;
             $shipping->shipping_cost = $request->shipping_cost;
 
-            if($shipping->save()){
+            if ($shipping->save()) {
                 $user = User::findOrFail($id);
                 $user->shipping_address = $shipping->id;
                 $user->save();
             }
             // new code end
 
-            
+
             flash(__('Patient has been Updated successfully'))->success();
             return redirect()->route('customers.index');
-      }
+        }
 
-      flash(__('Something went wrong'))->error();
-      return back();
+        flash(__('Something went wrong'))->error();
+        return back();
     }
 
     /**
@@ -281,7 +276,7 @@ class CustomerController extends Controller
         $customer->med_upcoming = Null;
         $customer->preiod = Null;
 
-        if($customer->save()){
+        if ($customer->save()) {
             flash(__('Deleted successfully'))->success();
             return redirect()->route('customers.medication');
         }
@@ -294,7 +289,7 @@ class CustomerController extends Controller
     {
         // Order::where('user_id', Customer::findOrFail($id)->user->id)->delete();
         // User::destroy(Customer::findOrFail($id)->user->id);
-        if(User::destroy($id)){
+        if (User::destroy($id)) {
             flash(__('Customer has been deleted successfully'))->success();
             return redirect()->route('customers.index');
         }
@@ -314,14 +309,9 @@ class CustomerController extends Controller
         $user = User::where('id', '=', decrypt($id))->first();
         $phone = User::where('id', '=', decrypt($id))->first()->phone;
         // dd($phone );
-        $pimg = PrescriptionImage::where('mobile', '=', $phone)->orwhere('user_id', '=', decrypt($id))->orderBy('created_at','DESC')->get();
+        $pimg = PrescriptionImage::where('mobile', '=', $phone)->orwhere('user_id', '=', decrypt($id))->orderBy('created_at', 'DESC')->get();
 
         // dd($pimg );
-           return view('customers.profile', compact('user','orders','purchase','amount','pimg'));
-
+        return view('customers.profile', compact('user', 'orders', 'purchase', 'amount', 'pimg'));
     }
-
-
-
-
 }
