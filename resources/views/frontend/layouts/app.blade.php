@@ -72,7 +72,13 @@
 @endif
 {{-- serch console add  --}}
 <meta name="google-site-verification" content="-fRrJFS_wfFvJoxRghPnoOdehBLbMYnvwG-CpX5WZD4" />
+{{-- bing console added --}}
 <meta name="msvalidate.01" content="2DA8E1841A9BA8557D45514335B6631C" />
+<!-- Clarity tracking code for https://ehavene.com.bd/ -->
+<script>
+(function(c,l,a,r,i,t,y){        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);    })(window, document, "clarity", "script", "bhir5ela5h");
+</script>
+
 <!-- Facebook Chat style -->
 {{-- <link href="{{ asset('frontend/css/fb-style.css')}}" rel="stylesheet"> --}}
 <!--facebook pixel-->
