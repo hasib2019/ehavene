@@ -78,7 +78,14 @@
 <script>
 (function(c,l,a,r,i,t,y){        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);    })(window, document, "clarity", "script", "bhir5ela5h");
 </script>
-
+{{-- tag manager  --}}
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NLJ5K3M');</script>
+<!-- End Google Tag Manager -->
 <!-- Facebook Chat style -->
 {{-- <link href="{{ asset('frontend/css/fb-style.css')}}" rel="stylesheet"> --}}
 <!--facebook pixel-->
@@ -228,17 +235,6 @@ src="https://www.facebook.com/tr?id=707350517291111&ev=PageView&noscript=1"
 <!-- jQuery -->
 <script src="{{ asset('frontend/js/vendor/jquery.min.js') }}"></script>
 
-{{-- @if (\App\Models\BusinessSetting::where('type', 'google_analytics')->first()->value == 1)
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133955404-1"></script>
-
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', @php env('TRACKING_ID') @endphp);
-    </script>
-@endif --}}
 
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
@@ -269,6 +265,13 @@ s0.parentNode.insertBefore(s1,s0);
     @include('frontend.inc.footer')
 
     @include('frontend.partials.modal')
+
+    {{-- tag manager  body side --}}
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NLJ5K3M"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    {{-- tag manager end  --}}
 
     <div class="modal fade" id="addToCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-zoom product-modal" id="modal-size" role="document">
