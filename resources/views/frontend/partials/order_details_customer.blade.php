@@ -22,11 +22,11 @@
             </li>
             </li>
             <li @if($order->delivery_status == 'delivered' || $order->delivery_status == 'on_delivery') class="done" @else class="active" @endif>
-                <div class="icon">4</div>
+                <div class="icon">3</div>
                 <div class="title">{{__('On delivery')}}</div>
             </li>
             <li @if($order->delivery_status == 'delivered') class="done" @else class="active" @endif>
-                <div class="icon">5</div>
+                <div class="icon">4</div>
                 <div class="title">{{__('Delivered')}}</div>
             </li>
         </ul>

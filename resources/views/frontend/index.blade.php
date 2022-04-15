@@ -10,7 +10,6 @@
             margin-right: 10px;
             margin-bottom: 20px;
         }
-
         .nt_bg_lz {
             display: block;
             width: 100%;
@@ -19,7 +18,6 @@
             background-repeat: no-repeat;
             background-size: cover;
         }
-
     </style>
 
 @endsection
@@ -139,7 +137,7 @@
         }
 
     </style>
-    
+
    {{-- <section>
         <div class="container">
             <div class="cat-items-wrap">
@@ -156,7 +154,7 @@
                 @endforeach
             </div>
         </div>
-        
+
     </section> --}}
     {{-- category section  end --}}
     {{-- product section --}}
@@ -255,7 +253,7 @@
         @endforeach
     </section>
 
- 
+
 
     <section class="newSale py-3">
         <div class="container">
@@ -286,7 +284,7 @@
     </section>
 
 
-   
+
 
     <section class="py-1">
         <div class="container-fluid">

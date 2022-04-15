@@ -18,14 +18,14 @@ $generalsetting = \App\Models\GeneralSetting::first();
                 </div>
             </div>
 
-            <div class="col-md-6" style="margin: 15px 11px 0px 58px; text-align: center;">
+            <div class="col-md-7" style="margin: 15px 0px 0px 0px; text-align: center;">
                     <a style="padding: 0.5rem 1rem;" href="{{ route('products') }}">Shop</a>
                <a style="padding: 0.5rem 1rem;" href="{{ route('brands.all') }}">Brands</a>
-          {{--<li class="nav-item"> <a class="nav-link " href="#">Sale</a> </li>
-        <li class="nav-item"> <a class="nav-link " href="#">Portfolio</a> </li> --}}
                 <a style="padding: 0.5rem 1rem;" href="{{ route('aboutus') }}">About us</a>
                 <a style="padding: 0.5rem 1rem;" href="{{ route('contactus') }}">Contact
-                    Us</a><a style="padding: 0.5rem 1rem;" href="{{ route('faq') }}">FAQ</a>
+                    Us</a>
+                <a style="padding: 0.5rem 1rem;" href="{{ route('faq') }}">FAQ</a>
+                <a style="padding: 0.5rem 1rem;" href="{{ route('product-truck') }}">Product Truck</a>
             </div>
 
             <div class="col-md-3">
@@ -102,12 +102,8 @@ $generalsetting = \App\Models\GeneralSetting::first();
                                 @endif
                             </div>
                         </div>
-                       
-                       
-                       
                     </div>
                     {{-- ============================================ --}}
-
                 </div>
             </div>
             {{-- fixed cart item  --}}
@@ -218,7 +214,6 @@ $generalsetting = \App\Models\GeneralSetting::first();
         </nav> --}}
         {{-- Hasib modified nav bar  --}}
        <div class="navbarMenu" id="main-nav">
-   
         <ul class="navbarMenu-nav">
             @foreach (\App\Models\Category::take(12)->get() as $key => $category)
             <li class="nav-item-menu has-child-menu c-1">
@@ -294,6 +289,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
                             <li class="list-group-item"><a href="{{ route('aboutus') }}">About us</a></li>
                             <li class="list-group-item"><a href="{{ route('contactus') }}">Contact Us</a></li>
                             <li class="list-group-item"><a href="{{ route('faq') }}">FAQ</a></li>
+                            
                         </ul>
                     </div>
                     <div class="tab-pane fade" style="overflow-y: auto; max-height: 100vh;" id="categories"
@@ -690,7 +686,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
                         </div>
                     @else
                         <div class="shadow-sm py-2 px-1 text-center border-bottom"> Free Shipping for all orders
-                            over $100.00</div>
+                            over 100.00</div>
                         <div class="emptyProduct d-flex flex-column align-items-center justify-content-center">
                             <span class="iconify" data-icon="clarity:shopping-bag-line"></span>
                             <span class="py-2">Your cart is empty.</span>
