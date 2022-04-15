@@ -70,7 +70,8 @@
     <link type="text/css" href="{{ asset('frontend/css/active.rtl.css') }}" rel="stylesheet">
 
 @endif
-
+{{-- serch console add  --}}
+<meta name="google-site-verification" content="-fRrJFS_wfFvJoxRghPnoOdehBLbMYnvwG-CpX5WZD4" />
 <!-- Facebook Chat style -->
 {{-- <link href="{{ asset('frontend/css/fb-style.css')}}" rel="stylesheet"> --}}
 <!--facebook pixel-->
