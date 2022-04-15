@@ -70,6 +70,8 @@
     <link type="text/css" href="{{ asset('frontend/css/active.rtl.css') }}" rel="stylesheet">
 
 @endif
+{{-- webmaster  --}}
+<meta name="yandex-verification" content="b6b328dcbe4cc92a" />
 {{-- serch console add  --}}
 <meta name="google-site-verification" content="-fRrJFS_wfFvJoxRghPnoOdehBLbMYnvwG-CpX5WZD4" />
 {{-- bing console added --}}
