@@ -267,6 +267,16 @@ s0.parentNode.insertBefore(s1,s0);
     @include('frontend.partials.modal')
 
     {{-- tag manager  body side --}}
+    {{-- analysis  --}}
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-82ZZPPJLYJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-82ZZPPJLYJ');
+</script>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NLJ5K3M"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
