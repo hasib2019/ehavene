@@ -86,7 +86,7 @@ class OrderController extends Controller
             ->join('order_details', 'orders.id', '=', 'order_details.order_id')
             ->select('orders.id')
             ->where('orders.meduserorder', 0)
-            ->where('orders.delivery_status','=','pending')
+            ->where('orders.delivery_status', '=', 'pending')
             ->distinct()
             ->get();
 
@@ -100,7 +100,7 @@ class OrderController extends Controller
             ->orderBy('id', 'desc')
             ->join('order_details', 'orders.id', '=', 'order_details.order_id')
             ->select('orders.id')
-            ->where('orders.delivery_status','=','pending')
+            ->where('orders.delivery_status', '=', 'pending')
             ->where('orders.meduserorder', 1)
             ->distinct()
             ->get();
@@ -115,7 +115,7 @@ class OrderController extends Controller
             ->orderBy('id', 'desc')
             ->join('order_details', 'orders.id', '=', 'order_details.order_id')
             ->select('orders.id')
-            ->where('orders.delivery_status','=','wpayment')
+            ->where('orders.delivery_status', '=', 'wpayment')
             ->where('orders.meduserorder', 1)
             ->distinct()
             ->get();
@@ -129,7 +129,7 @@ class OrderController extends Controller
             ->orderBy('id', 'desc')
             ->join('order_details', 'orders.id', '=', 'order_details.order_id')
             ->select('orders.id')
-            ->where('orders.delivery_status','=','complain')
+            ->where('orders.delivery_status', '=', 'complain')
             ->where('orders.meduserorder', 0)
             ->distinct()
             ->get();
@@ -144,7 +144,7 @@ class OrderController extends Controller
             ->orderBy('id', 'desc')
             ->join('order_details', 'orders.id', '=', 'order_details.order_id')
             ->select('orders.id')
-            ->where('orders.delivery_status','=','complain')
+            ->where('orders.delivery_status', '=', 'complain')
             ->where('orders.meduserorder', 1)
             ->distinct()
             ->get();
@@ -152,7 +152,7 @@ class OrderController extends Controller
         return view('orders.medindex', compact('orders'));
     }
 
-// Processing
+    // Processing
     public function admin_orders_processing(Request $request)
     {
         $orders = DB::table('orders')
@@ -160,7 +160,7 @@ class OrderController extends Controller
             ->join('order_details', 'orders.id', '=', 'order_details.order_id')
             ->select('orders.id')
             ->where('orders.meduserorder', 0)
-            ->where('orders.delivery_status','=','processing')
+            ->where('orders.delivery_status', '=', 'processing')
             ->distinct()
             ->get();
 
@@ -174,7 +174,7 @@ class OrderController extends Controller
             ->orderBy('id', 'desc')
             ->join('order_details', 'orders.id', '=', 'order_details.order_id')
             ->select('orders.id')
-            ->where('orders.delivery_status','=','processing')
+            ->where('orders.delivery_status', '=', 'processing')
             ->where('orders.meduserorder', 1)
             ->distinct()
             ->get();
@@ -189,7 +189,7 @@ class OrderController extends Controller
             ->join('order_details', 'orders.id', '=', 'order_details.order_id')
             ->select('orders.id')
             ->where('orders.meduserorder', 0)
-            ->where('orders.delivery_status','=','on_delivery')
+            ->where('orders.delivery_status', '=', 'on_delivery')
             ->distinct()
             ->get();
 
@@ -203,7 +203,7 @@ class OrderController extends Controller
             ->orderBy('id', 'desc')
             ->join('order_details', 'orders.id', '=', 'order_details.order_id')
             ->select('orders.id')
-            ->where('orders.delivery_status','=','on_delivery')
+            ->where('orders.delivery_status', '=', 'on_delivery')
             ->where('orders.meduserorder', 1)
             ->distinct()
             ->get();
@@ -211,64 +211,64 @@ class OrderController extends Controller
         return view('orders.medindex', compact('orders'));
     }
 
-      // delivered
-      public function admin_orders_delivered(Request $request)
-      {
-          $orders = DB::table('orders')
-              ->orderBy('id', 'desc')
-              ->join('order_details', 'orders.id', '=', 'order_details.order_id')
-              ->select('orders.id')
-              ->where('orders.meduserorder', 0)
-              ->where('orders.delivery_status','=','delivered')
-              ->distinct()
+    // delivered
+    public function admin_orders_delivered(Request $request)
+    {
+        $orders = DB::table('orders')
+            ->orderBy('id', 'desc')
+            ->join('order_details', 'orders.id', '=', 'order_details.order_id')
+            ->select('orders.id')
+            ->where('orders.meduserorder', 0)
+            ->where('orders.delivery_status', '=', 'delivered')
+            ->distinct()
             ->get();
 
-          return view('orders.index', compact('orders'));
-      }
+        return view('orders.index', compact('orders'));
+    }
 
-       // medication delivered
-       public function admin_medorders_delivered(Request $request)
-       {
-           $orders = DB::table('orders')
-               ->orderBy('id', 'desc')
-               ->join('order_details', 'orders.id', '=', 'order_details.order_id')
-               ->select('orders.id')
-               ->where('orders.delivery_status','=','delivered')
-               ->where('orders.meduserorder', 1)
-               ->distinct()
+    // medication delivered
+    public function admin_medorders_delivered(Request $request)
+    {
+        $orders = DB::table('orders')
+            ->orderBy('id', 'desc')
+            ->join('order_details', 'orders.id', '=', 'order_details.order_id')
+            ->select('orders.id')
+            ->where('orders.delivery_status', '=', 'delivered')
+            ->where('orders.meduserorder', 1)
+            ->distinct()
             ->get();
 
-           return view('orders.medindex', compact('orders'));
-       }
-        // rejected
-        public function admin_orders_rejected(Request $request)
-        {
-            $orders = DB::table('orders')
-                ->orderBy('id', 'desc')
-                ->join('order_details', 'orders.id', '=', 'order_details.order_id')
-                ->select('orders.id')
-                ->where('orders.meduserorder', 0)
-                ->where('orders.delivery_status','=','rejected')
-                ->distinct()
+        return view('orders.medindex', compact('orders'));
+    }
+    // rejected
+    public function admin_orders_rejected(Request $request)
+    {
+        $orders = DB::table('orders')
+            ->orderBy('id', 'desc')
+            ->join('order_details', 'orders.id', '=', 'order_details.order_id')
+            ->select('orders.id')
+            ->where('orders.meduserorder', 0)
+            ->where('orders.delivery_status', '=', 'rejected')
+            ->distinct()
             ->get();
 
-            return view('orders.index', compact('orders'));
-        }
+        return view('orders.index', compact('orders'));
+    }
 
-        // medication rejected
-        public function admin_medorders_rejected(Request $request)
-        {
-            $orders = DB::table('orders')
-                ->orderBy('id', 'desc')
-                ->join('order_details', 'orders.id', '=', 'order_details.order_id')
-                ->select('orders.id')
-                ->where('orders.delivery_status','=','rejected')
-                ->where('orders.meduserorder', 1)
-                ->distinct()
+    // medication rejected
+    public function admin_medorders_rejected(Request $request)
+    {
+        $orders = DB::table('orders')
+            ->orderBy('id', 'desc')
+            ->join('order_details', 'orders.id', '=', 'order_details.order_id')
+            ->select('orders.id')
+            ->where('orders.delivery_status', '=', 'rejected')
+            ->where('orders.meduserorder', 1)
+            ->distinct()
             ->get();
 
-            return view('orders.medindex', compact('orders'));
-        }
+        return view('orders.medindex', compact('orders'));
+    }
 
     /**
      * Display a listing of the sales to admin.
@@ -278,15 +278,14 @@ class OrderController extends Controller
     public function sales(Request $request)
     {
 
-        if(!empty($request->input('fromDate')) && !empty($request->input('toDate'))){
+        if (!empty($request->input('fromDate')) && !empty($request->input('toDate'))) {
             $fromDate = $request->input('fromDate');
             $toDate   = $request->input('toDate');
             $orders = Order::where([
                 ['created_at', '>=', $fromDate],
                 ['created_at', '<=', $toDate],
             ])->orderBy('code', 'desc')->get();
-
-        }else{
+        } else {
             $orders = Order::orderBy('code', 'desc')->get();
         }
 
@@ -323,47 +322,45 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $order = new Order;
-        if(Auth::check()){
+        if (Auth::check()) {
             $order->user_id = Auth::user()->id;
-        }
-        else{
+        } else {
             $order->guest_id = mt_rand(100000, 999999);
         }
         $order->shipping_address = json_encode($request->session()->get('shipping_info'));
         $order->shipping_cost = (int)$request->session()->get('shipcost');
         $order->payment_type = $request->payment_option;
-        if($request->payment_option=='wallet'){
+        if ($request->payment_option == 'wallet') {
             $order->payment_status = 'paid';
         }
         $order->code = date('Ymd-his');
         $order->date = strtotime(date('d-m-Y'));
         $order->upcoming = 0;
 
-        if($order->save()){
+        if ($order->save()) {
             $subtotal = 0;
             $tax = 0;
             $shipping = 0;
-            foreach (Session::get('cart') as $key => $cartItem){
+            foreach (Session::get('cart') as $key => $cartItem) {
                 $product = Product::find($cartItem['id']);
-                $subtotal += $cartItem['price']*$cartItem['quantity'];
-                $tax += $cartItem['tax']*$cartItem['quantity'];
+                $subtotal += $cartItem['price'] * $cartItem['quantity'];
+                $tax += $cartItem['tax'] * $cartItem['quantity'];
                 $shipping += $cartItem['shipping'];
                 // $shippingcost = $cartItem['shipping'];
                 $product_variation = null;
-                if(isset($cartItem['color'])){
+                if (isset($cartItem['color'])) {
                     $product_variation .= Color::where('code', $cartItem['color'])->first()->name;
                 }
-                foreach (json_decode($product->choice_options) as $choice){
+                foreach (json_decode($product->choice_options) as $choice) {
                     $str = $choice->name; // example $str =  choice_0
                     if ($product_variation != null) {
-                        $product_variation .= '-'.str_replace(' ', '', $cartItem[$str]);
-                    }
-                    else {
+                        $product_variation .= '-' . str_replace(' ', '', $cartItem[$str]);
+                    } else {
                         $product_variation .= str_replace(' ', '', $cartItem[$str]);
                     }
                 }
 
-                if($product_variation != null){
+                if ($product_variation != null) {
                     $variations = json_decode($product->variations);
                     $variations->$product_variation->qty -= $cartItem['quantity'];
                     $product->variations = json_encode($variations);
@@ -371,7 +368,7 @@ class OrderController extends Controller
                 }
 
                 $order_detail = new OrderDetail;
-                $order_detail->order_id  =$order->id;
+                $order_detail->order_id  = $order->id;
                 $order_detail->seller_id = $product->user_id;
                 $order_detail->product_id = $product->id;
                 $order_detail->variation = $product_variation;
@@ -382,13 +379,13 @@ class OrderController extends Controller
                 $product->num_of_sale++;
                 $product->save();
             }
-            
-            $drate = Master::where('softcode','=','discount')->first()->hardcode/100;
-            $damount = $subtotal*$drate;
+
+            $drate = Master::where('softcode', '=', 'discount')->first()->hardcode / 100;
+            $damount = $subtotal * $drate;
 
             $order->discount = $damount;
-            $order->grand_total = $subtotal + $tax + $order->shipping_cost-$damount;
-            if($order->save()){
+            $order->grand_total = $subtotal + $tax + $order->shipping_cost - $damount;
+            if ($order->save()) {
                 $order_id = $order->id;
                 // DB::update('update prescription_images set order_id = ? , status = ? where user_id = ? and status = ?',[$order_id,1,Auth::user()->id,0]);
             }
@@ -397,37 +394,37 @@ class OrderController extends Controller
 
             $pdf = PDF::loadView('invoices.customer_invoice', compact('order'));
             $output = $pdf->output();
-            file_put_contents(public_path().'/invoices/'.'Order#'.$order->code.'.pdf', $output);
+            file_put_contents(public_path() . '/invoices/' . 'Order#' . $order->code . '.pdf', $output);
             $array['view'] = 'emails.invoice';
-            $array['subject'] = 'Order Placed - '.$order->code;
-            $array['from'] = 'support@hasibuzzaman.com';
+            $array['subject'] = 'Order Placed - ' . $order->code;
+            $array['from'] = 'support@ehavene.com.bd';
             $array['content'] = 'Hi, Your order has been placed';
-            $array['file'] = public_path().'/invoices/Order#'.$order->code.'.pdf';
-            $array['file_name'] = 'Order#'.$order->code.'.pdf';
-            $array['subjectsingle'] = 'Order Placed - '.$order->code;
+            $array['file'] = public_path() . '/invoices/Order#' . $order->code . '.pdf';
+            $array['file_name'] = 'Order#' . $order->code . '.pdf';
+            $array['subjectsingle'] = 'Order Placed - ' . $order->code;
             Mail::to($request->session()->get('shipping_info')['email'])->queue(new InvoiceEmailManager($array));
             unlink($array['file']);
 
             // sms send
 
-            // $phone = $request->session()->get('shipping_info')['phone'];
-            // $sms = "Order Received & thanks for shopping with us. Your Order ID is #$order->code. Check your status here: https://ehavene.com.bd/product-truck";
-            // $url = 'https://www.24bulksmsbd.com/api/smsSendApi';
-            // $data = array(
-            //     'customer_id' => 128,
-            //     'api_key' => 172929182721250301911695556,
-            //     'message' =>$sms,	
-            //     'mobile_no' => $phone
-            // );
-            
-            // $curl = curl_init($url);
-            // curl_setopt($curl, CURLOPT_POST, true);
-            // curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-            // curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
-            // curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-            // curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);     
-            // $output = curl_exec($curl);
-            // curl_close($curl);
+            $phone = $request->session()->get('shipping_info')['phone'];
+            $sms = "Order Received & thanks for shopping with us. Your Order ID is #$order->code. Check your status here: https://ehavene.com.bd/product-truck";
+            $url = 'https://www.24bulksmsbd.com/api/smsSendApi';
+            $data = array(
+                'customer_id' => 128,
+                'api_key' => 172929182721250301911695556,
+                'message' =>$sms,	
+                'mobile_no' => $phone
+            );
+
+            $curl = curl_init($url);
+            curl_setopt($curl, CURLOPT_POST, true);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);     
+            $output = curl_exec($curl);
+            curl_close($curl);
             // sms send end
             $request->session()->put('order_id', $order->id);
         }
@@ -489,14 +486,13 @@ class OrderController extends Controller
     public function destroy($id)
     {
         $order = Order::findOrFail($id);
-        if($order != null){
-            foreach($order->orderDetails as $key => $orderDetail){
+        if ($order != null) {
+            foreach ($order->orderDetails as $key => $orderDetail) {
                 $orderDetail->delete();
             }
             $order->delete();
             flash('Order has been deleted successfully')->success();
-        }
-        else{
+        } else {
             flash('Something went wrong')->error();
         }
         return back();
@@ -510,18 +506,18 @@ class OrderController extends Controller
 
     public function update_delivery_status(Request $request)
     {
-         // dd($request->user_id);
-        if($request->status == 'delivered'){
-            
-            $user = User::where('id','=', $request->user_id)->first()->ref_by;
-           
-            
-             if($user != "reference"){
-                 
+        // dd($request->user_id);
+        if ($request->status == 'delivered') {
+
+            $user = User::where('id', '=', $request->user_id)->first()->ref_by;
+
+
+            if ($user != "reference") {
+
                 $reference_id = User::where('ref_id', '=', $user)->first()->id;
-                  
-                $salescommission = Master::where('softcode', '=','sales_commission')->first()->hardcode;
-                $commission = $request->price * $salescommission/100;
+
+                $salescommission = Master::where('softcode', '=', 'sales_commission')->first()->hardcode;
+                $commission = $request->price * $salescommission / 100;
                 $updateuser = User::find(User::where('ref_id', '=', $user)->first()->id);
                 $updateuser->balance = $updateuser->balance + $commission;
                 $updateuser->save();
@@ -533,15 +529,12 @@ class OrderController extends Controller
                 $tran->amount = $commission;
                 $tran->earning_type = "Sales Commission";
                 $tran->save();
-
-
-             }  
-            
+            }
         }
-        
+
         $order = Order::findOrFail($request->order_id);
-            $order->delivery_status = $request->status;
-            $order->save();
+        $order->delivery_status = $request->status;
+        $order->save();
         return 1;
     }
 
@@ -565,11 +558,11 @@ class OrderController extends Controller
     public function admin_custom_orders(Request $request)
     {
         $peoducts = Product::all();
-        $order_id= date('Ymd-his');
+        $order_id = date('Ymd-his');
         $region = Division::all();
         $districts = District::all();
         $upazilas = Upazila::all();
-        return view('orders.customorder', compact('peoducts','order_id','region','districts','upazilas'));
+        return view('orders.customorder', compact('peoducts', 'order_id', 'region', 'districts', 'upazilas'));
     }
 
     public function custom_order_confirm(Request $request)
@@ -596,12 +589,11 @@ class OrderController extends Controller
         $data['post_code'] = $post_code;
         $shipping_info = $data;
         // ship info
-        $usercheck = User::where('phone', '=' ,$request->phone)->first('id');
-        if(!empty($usercheck)){
+        $usercheck = User::where('phone', '=', $request->phone)->first('id');
+        if (!empty($usercheck)) {
             $order->user_id = $usercheck->id;
-        }
-        else{
-            if(!empty($request->checkusser)){
+        } else {
+            if (!empty($request->checkusser)) {
                 $newuser = new User();
                 $newuser->name = $name;
                 $newuser->email = $email;
@@ -609,8 +601,8 @@ class OrderController extends Controller
                 $newuser->email_verified_at = now();
                 $newuser->medication = 'Yes';
                 $newuser->save();
-                $order->user_id= $newuser->id;
-            }else{
+                $order->user_id = $newuser->id;
+            } else {
                 $order->guest_id = mt_rand(100000, 999999);
             }
         }
@@ -622,52 +614,51 @@ class OrderController extends Controller
         $order->upcoming_date = $request->date;
         $order->upcoming = 1;
 
-        if($order->save()){
-                $product_ids= $request->product_id;
-                $price = $request->price;
-                $qty = $request->qty;
-                $auth = Auth::user()->id;
-                if($city=='Dhaka'){
-                    $shipping = 60;
-                }else{
-                    $shipping = 120;
-                }
-                foreach($product_ids as $key => $product_id)
-                {
-                    $input['product_id'] = $product_id;
-                    $input['order_id'] = $order->id;
-                    $input['seller_id'] = $auth;
-                    $input['variation '] = '';
-                    $input['price'] = $price[$key]*$qty[$key];
-                    $input['tax '] = 0;
-                    $input['shipping_cost'] = $shipping;
-                    $input['quantity'] = $qty[$key];
-                    OrderDetail::create($input);
-                }
+        if ($order->save()) {
+            $product_ids = $request->product_id;
+            $price = $request->price;
+            $qty = $request->qty;
+            $auth = Auth::user()->id;
+            if ($city == 'Dhaka') {
+                $shipping = 60;
+            } else {
+                $shipping = 120;
             }
-            // stores the pdf for invoice
-            $pdf = PDF::loadView('invoices.customer_invoice', compact('order'));
-            $output = $pdf->output();
-            file_put_contents(public_path().'/invoices/'.'Order#'.$order->code.'.pdf', $output);
-
-            $array['view'] = 'emails.invoice';
-            $array['subject'] = 'Order Placed - '.$order->code;
-            $array['from'] = 'support@hasibuzzaman.com';
-            $array['content'] = 'Hi. Your order has been placed';
-            $array['file'] = public_path().'/invoices/Order#'.$order->code.'.pdf';
-            $array['file_name'] = 'Order#'.$order->code.'.pdf';
-
-            //sends email to customer with the invoice pdf attached
-                Mail::to($email)->queue(new InvoiceEmailManager($array));
-
-            unlink($array['file']);
-
-            $request->session()->put('order_id', $order->id);
-            flash(__('New Custom Order added successfully'))->success();
-            return redirect()->route('orders.index.admin');
+            foreach ($product_ids as $key => $product_id) {
+                $input['product_id'] = $product_id;
+                $input['order_id'] = $order->id;
+                $input['seller_id'] = $auth;
+                $input['variation '] = '';
+                $input['price'] = $price[$key] * $qty[$key];
+                $input['tax '] = 0;
+                $input['shipping_cost'] = $shipping;
+                $input['quantity'] = $qty[$key];
+                OrderDetail::create($input);
+            }
         }
+        // stores the pdf for invoice
+        $pdf = PDF::loadView('invoices.customer_invoice', compact('order'));
+        $output = $pdf->output();
+        file_put_contents(public_path() . '/invoices/' . 'Order#' . $order->code . '.pdf', $output);
 
-        public function shippingMethod()
+        $array['view'] = 'emails.invoice';
+        $array['subject'] = 'Order Placed - ' . $order->code;
+        $array['from'] = 'support@ehavene.com.bd';
+        $array['content'] = 'Hi. Your order has been placed';
+        $array['file'] = public_path() . '/invoices/Order#' . $order->code . '.pdf';
+        $array['file_name'] = 'Order#' . $order->code . '.pdf';
+
+        //sends email to customer with the invoice pdf attached
+        Mail::to($email)->queue(new InvoiceEmailManager($array));
+
+        unlink($array['file']);
+
+        $request->session()->put('order_id', $order->id);
+        flash(__('New Custom Order added successfully'))->success();
+        return redirect()->route('orders.index.admin');
+    }
+
+    public function shippingMethod()
     {
         $methods = ShippingMethod::all();
         return view("shipmethod.index", compact('methods'));
@@ -675,8 +666,7 @@ class OrderController extends Controller
 
     public function shippingMethodCreate()
     {
-            return view('shipmethod.create');
-
+        return view('shipmethod.create');
     }
 
     public function shippingMethodStore(Request $request)
@@ -685,7 +675,7 @@ class OrderController extends Controller
         $link->title = $request->title;
         $link->price = $request->price;
         $link->status = "1";
-        if($link->save()){
+        if ($link->save()) {
             flash('Shipping method has been inserted successfully')->success();
             return redirect()->route('shippingmethod.index');
         }
@@ -704,7 +694,7 @@ class OrderController extends Controller
         $link = ShippingMethod::findOrFail($id);
         $link->title = $request->title;
         $link->price = $request->price;
-        if($link->save()){
+        if ($link->save()) {
             flash('Shipping method has been updated successfully')->success();
             return redirect()->route('shippingmethod.index');
         }
@@ -715,7 +705,7 @@ class OrderController extends Controller
     public function shippingMethodDelete($id)
     {
         $link = ShippingMethod::findOrFail($id);
-        if(ShippingMethod::destroy($id)){
+        if (ShippingMethod::destroy($id)) {
             flash('Shipping method has been deleted successfully')->success();
             return redirect()->route('shippingmethod.index');
         }
@@ -728,7 +718,7 @@ class OrderController extends Controller
     {
         $category = ShippingMethod::findOrFail($request->id);
         $category->status = $request->status;
-        if($category->save()){
+        if ($category->save()) {
             return 1;
         }
         return 0;
@@ -742,16 +732,14 @@ class OrderController extends Controller
     public function orderTrackingShow(Request $request)
     {
         // dd($request->code);
-            $code   = $request->code;
-            $order = Order::where('code', '=', $code)->first();
-            if ($order) {
-                return view('orders.trackingshow', compact('order'));
-            } else {
-                flash('Order not found')->success();
-                return redirect()->route('order-tracking.index');
-            }
-
-
+        $code   = $request->code;
+        $order = Order::where('code', '=', $code)->first();
+        if ($order) {
+            return view('orders.trackingshow', compact('order'));
+        } else {
+            flash('Order not found')->success();
+            return redirect()->route('order-tracking.index');
+        }
     }
 
     public function orderComplainStore(Request $request)
@@ -759,7 +747,7 @@ class OrderController extends Controller
         $order = Order::findOrFail($request->order_id);
         $order->delivery_status = 'complain';
         $order->complain = $request->complain;
-        if($order->save()){
+        if ($order->save()) {
             flash('Complain has been saved successfully')->success();
             return redirect()->route('order-tracking.index');
         }
@@ -767,4 +755,3 @@ class OrderController extends Controller
         return view('orders.tracking');
     }
 }
-
