@@ -406,25 +406,23 @@ class OrderController extends Controller
             unlink($array['file']);
 
             // sms send
-            ;
-
-            $phone = $request->session()->get('shipping_info')['phone'];
-            $sms = "Order Received & thanks for shopping with us. Your Order ID is #$order->code. Check your status here: https://ehavene.com.bd/product-truck";
+            // $phone = $request->session()->get('shipping_info')['phone'];
+            // $sms = "Order Received & thanks for shopping with us. Your Order ID is #$order->code. Check your status here: https://ehavene.com.bd/product-truck";
            
-            $curl = curl_init();
-            curl_setopt_array($curl, array(
-                CURLOPT_URL => "https://www.24bulksmsbd.com/api/smsSendApi?customer_id=128&api_key=172929182721250301911695556&message=".$sms."&mobile_no=".$phone."",
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_TIMEOUT => 30,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => "GET",
-                CURLOPT_HTTPHEADER => array(
-                    "cache-control: no-cache"
-                ),
-            ));
-            $response = curl_exec($curl);
-            $err = curl_error($curl);
-            curl_close($curl);
+            // $curl = curl_init();
+            // curl_setopt_array($curl, array(
+            //     CURLOPT_URL => "https://www.24bulksmsbd.com/api/smsSendApi?customer_id=128&api_key=172929182721250301911695556&message=".$sms."&mobile_no=".$phone."",
+            //     CURLOPT_RETURNTRANSFER => true,
+            //     CURLOPT_TIMEOUT => 30,
+            //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            //     CURLOPT_CUSTOMREQUEST => "GET",
+            //     CURLOPT_HTTPHEADER => array(
+            //         "cache-control: no-cache"
+            //     ),
+            // ));
+            // $response = curl_exec($curl);
+            // $err = curl_error($curl);
+            // curl_close($curl);
             // sms send end
             $request->session()->put('order_id', $order->id);
         }
