@@ -184,7 +184,7 @@
                                         -{{ percentage($related_product->id) }}%
                                     </div>
                                 @endif
-                                <a href="{{ route('product', $related_product->slug) }}">
+                                <a href="{{ route('product', strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $related_product->slug)))) }}">
                                     <img class="img-fluid product-photo"
                                         src="{{ asset($related_product->thumbnail_img) }}" alt="" />
                                 </a>
@@ -194,13 +194,7 @@
                                         <span class="iconify" data-icon="clarity:eye-show-solid"></span>
                                         <article class="d-inline">Quick View</article>
                                     </button>
-                                    {{-- <a href="single-product.html" class="btn-invisible"><span class="iconify"
-                            data-icon="clarity:plus"></span> <article class="d-inline">Add To Cart</article></a> --}}
-                                    {{-- <button class="btn-invisible" onclick="showAddToCartModalshop({{ $related_product->id }})">
-                                <span class="iconify"
-                                data-icon="clarity:add-line"></span> <article class="d-inline">Add to cart</article>
-                            </button> --}}
-                                    <a href="{{ route('product', $related_product->slug) }}">
+                                    <a href="{{ route('product', strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $related_product->slug)))) }}">
                                         <button class="btn-invisible">
                                             <span class="iconify" data-icon="ei:cart"></span>
                                             <article class="d-inline">Details View</article>
@@ -212,7 +206,7 @@
                             <div class="product-info mb-2">
                                 <h6 class="product-title">
                                     <a class=""
-                                        href="{{ route('product', $related_product->slug) }}">{{ __($related_product->name) }}</a>
+                                        href="{{ route('product', strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $related_product->slug)))) }}">{{ __($related_product->name) }}</a>
                                 </h6>
                                 <span class="price p-2">
                                     @if (home_discounted_base_price($related_product->id) != home_price($related_product->id))
