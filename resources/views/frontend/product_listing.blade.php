@@ -168,7 +168,7 @@ style="background-color:#EE3324;"
                             {{__('New')}}
                     </div>
                     @endif
-                    <a href="{{ route('product', $product->slug) }}">
+                    <a href="{{ route('product', strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product->slug)))) }}">
                         <img class="img-fluid product-photo" src="{{ asset($product->thumbnail_img) }}" alt="" />
                     </a>
 
@@ -182,7 +182,7 @@ style="background-color:#EE3324;"
                         {{-- <button class="btn-invisible" onclick="addToWishList({$product->id}})">
                             <span class="iconify" data-icon="clarity:shopping-cart-line"></span> <article class="d-inline">Add To Wishlist</article>
                         </button> --}}
-                        <a href="{{ route('product', $product->slug) }}">
+                        <a href="{{ route('product', strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product->slug)))) }}">
                             <button class="btn-invisible">
                                 <span class="iconify"
                                 data-icon="ei:cart"></span> <article class="d-inline">Details View</article>
@@ -204,7 +204,7 @@ style="background-color:#EE3324;"
 
                 <div class="product-info">
                     <h6 class="product-title">
-                        <a class="" href="{{ route('product', $product->slug) }}">{{ __($product->name) }}
+                        <a class="" href="{{ route('product', strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product->slug)))) }}">{{ __($product->name) }}
                         </a>
                     </h6>
                     <span class="price" style="margin-top: -30px;">

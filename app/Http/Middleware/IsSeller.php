@@ -20,7 +20,8 @@ class IsSeller
             return $next($request);
         }
         else{
-            abort(404);
+            // abort(404);
+            return redirect()->route('home');
         }
     }
 }

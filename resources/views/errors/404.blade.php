@@ -1,7 +1,7 @@
-@extends('layouts.blank')
+@extends('frontend/layouts.app')
 
 @section('content')
-<div class="text-center">
+<div class="text-center" style="height: 500px; margin-top: 200px;">
     <h1 class="error-code text-danger">{{__('404')}}</h1>
     <p class="h4 text-uppercase text-bold">{{__('Page Not Found!')}}</p>
     <div class="pad-btm">
