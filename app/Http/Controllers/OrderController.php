@@ -409,6 +409,7 @@ class OrderController extends Controller
             $phone = $request->session()->get('shipping_info')['phone'];
             $sms = "Your Order ID is #$order->code. Check your status here: https://ehavene.com.bd/product-truck";
             Http::get('https://www.24bulksmsbd.com/api/smsSendApi?customer_id=128&api_key=172929182721250301911695556&message='.urlencode($sms).'&mobile_no='.$phone.'');
+            
             // sms send end
             $request->session()->put('order_id', $order->id);
         }
