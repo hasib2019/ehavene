@@ -143,7 +143,7 @@ class ProductController extends Controller
         }
 
         $random = Str::random(5);
-        $product->slug = preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $request->name)).'-'.$random;
+        $product->slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $request->slug)));
 
         if($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0){
             $product->colors = json_encode($request->colors);
@@ -358,7 +358,7 @@ class ProductController extends Controller
             ImageOptimizer::optimize(base_path('public/').$product->meta_img);
         }
 
-        $product->slug = preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $request->name)).'-'.substr($product->slug, -5);
+        $product->slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $request->slug)));
 
         if($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0){
             $product->colors = json_encode($request->colors);
