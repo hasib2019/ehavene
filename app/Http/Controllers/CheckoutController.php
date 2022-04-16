@@ -76,7 +76,8 @@ class CheckoutController extends Controller
             	return redirect()->route('order.complete.message', $orderid);
             }
         }else{
-            abort(404);
+            // abort(404);
+            return redirect()->route('home');
         }
     }
 

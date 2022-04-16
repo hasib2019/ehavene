@@ -294,7 +294,8 @@ class HomeController extends Controller
             return view('frontend.customer.dashboard', compact('address','billaddress'));
         }
         else {
-            abort(404);
+            // abort(404);
+            return redirect()->route('home');
         }
     }
 
@@ -553,7 +554,8 @@ class HomeController extends Controller
             updateCartSetup();
             return view('frontend.product_details', compact('product'));
         }
-        abort(404);
+        // abort(404);
+        return redirect()->route('home');
     }
 
     public function shop($slug)
@@ -562,7 +564,8 @@ class HomeController extends Controller
         if($shop!=null){
             return view('frontend.seller_shop', compact('shop'));
         }
-        abort(404);
+        // abort(404);
+        return redirect()->route('home');
     }
 
     public function filter_shop($slug, $type)
@@ -571,7 +574,8 @@ class HomeController extends Controller
         if($shop!=null && $type != null){
             return view('frontend.seller_shop', compact('shop', 'type'));
         }
-        abort(404);
+        // abort(404);
+        return redirect()->route('home');
     }
 
     public function listing(Request $request)
