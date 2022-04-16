@@ -55,6 +55,12 @@
 									<input type="text" class="form-control" name="name" placeholder="{{__('Product Name')}}" onchange="update_sku()" required>
 								</div>
 							</div>
+							<div class="form-group">
+								<label class="col-lg-2 control-label">{{__('Product Slug')}}</label>
+								<div class="col-lg-7">
+									<input type="text" class="form-control" name="slug" placeholder="{{__('Product Slug')}}" required>
+								</div>
+							</div>
 							<div class="form-group" id="category">
 								<label class="col-lg-2 control-label">{{__('Category')}}</label>
 								<div class="col-lg-7">
