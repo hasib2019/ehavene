@@ -674,7 +674,7 @@
                                     <div class="product-card-2 card card-product m-2 shop-cards shop-tech">
                                         <div class="card-body p-0">
                                             <div class="card-image">
-                                                <a href="{{ route('product', $related_product->slug) }}" class="d-block" style="background-image:url('{{ asset($related_product->thumbnail_img) }}');">
+                                                <a href="{{ route('product', strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $related_product->slug)))) }}" class="d-block" style="background-image:url('{{ asset($related_product->thumbnail_img) }}');">
                                                 </a>
                                             </div>
 
@@ -686,7 +686,7 @@
                                                     <span class="product-price strong-600">{{ home_discounted_base_price($related_product->id) }}</span>
                                                 </div>
                                                 <h2 class="product-title p-0 mt-2 text-truncate-2">
-                                                    <a href="{{ route('product', $related_product->slug) }}">{{ __($related_product->name) }}</a>
+                                                    <a href="{{ route('product', strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $related_product->slug)))) }}">{{ __($related_product->name) }}</a>
                                                 </h2>
                                             </div>
                                         </div>

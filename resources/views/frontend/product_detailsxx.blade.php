@@ -484,7 +484,7 @@
                                                 {{-- <a href="{{ route('product', $related_product->slug) }}" class="d-block">
                                                 <img data-original="{{ asset($related_product->thumbnail_img) }}" alt="">
                                             </a> --}}
-                                                <a href="{{ route('product', $related_product->slug) }}"
+                                                <a href="{{ route('product', strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $related_product->slug)))) }}"
                                                     class="d-block"
                                                     style="background-image:url('{{ asset($related_product->thumbnail_img) }}');">
                                                 </a>
@@ -503,7 +503,7 @@
                                                 </div>
                                                 <h2 class="product-title p-0 mt-2 text-truncate-2">
                                                     <a
-                                                        href="{{ route('product', $related_product->slug) }}">{{ __($related_product->name) }}</a>
+                                                        href="{{ route('product', strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $related_product->slug)))) }}">{{ __($related_product->name) }}</a>
                                                 </h2>
                                             </div>
                                             <div class="">
