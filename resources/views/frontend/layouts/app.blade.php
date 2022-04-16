@@ -74,6 +74,7 @@
 <meta name="yandex-verification" content="b6b328dcbe4cc92a" />
 {{-- serch console add  --}}
 <meta name="google-site-verification" content="-fRrJFS_wfFvJoxRghPnoOdehBLbMYnvwG-CpX5WZD4" />
+<meta name="google-site-verification" content="X0iUvCMcdm0zes5mzq2Y_0IBbqS4rKAF-9jBY7VR6s0" />
 {{-- bing console added --}}
 <meta name="msvalidate.01" content="2DA8E1841A9BA8557D45514335B6631C" />
 <!-- Clarity tracking code for https://ehavene.com.bd/ -->

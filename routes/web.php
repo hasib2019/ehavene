@@ -34,7 +34,7 @@ Route::get('/clear', function() {
     Artisan::call('page-cache:clear');
     return "Cleared!";
  });
-Route::get('/', [HomeController::class, 'index'])->middleware('page-cache')->name('home');
+Route::get('/', [HomeController::class, 'index'])->middleware('page-cache');
 Route::get('/home', [HomeController::class, 'index'])->middleware('page-cache')->name('home');
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
