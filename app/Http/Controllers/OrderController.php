@@ -406,7 +406,8 @@ class OrderController extends Controller
             unlink($array['file']);
 
             // sms send tanjil pagla dakis ki hoise
-            $sms = urlencode("Your Order ID is:-$order->code. Check your status here: https://ehavene.com.bd/product-truck");
+            $sms = "Your Order ID is:-$order->code. Check your status here: https://ehavene.com.bd/product-truck";
+            // $sms = urlencode("Your Order ID is:-$order->code. Check your status here: https://ehavene.com.bd/product-truck");
             $phone = $request->session()->get('shipping_info')['phone'];
             // Http::get('https://www.24bulksmsbd.com/api/smsSendApi?customer_id=128&api_key=172929182721250301911695556&message='.urlencode($sms).'&mobile_no='.$phone.'');
             $url = 'https://www.24bulksmsbd.com/api/smsSendApi';
