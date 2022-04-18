@@ -405,11 +405,27 @@ class OrderController extends Controller
             Mail::to($request->session()->get('shipping_info')['email'])->queue(new InvoiceEmailManager($array));
             unlink($array['file']);
 
-            // sms send
+            // sms send tanjil pagla dakis ki hoise
+            $sms = urlencode("Your Order ID is:-$order->code. Check your status here: https://ehavene.com.bd/product-truck");
             $phone = $request->session()->get('shipping_info')['phone'];
-            $sms = "Your Order ID is #$order->code. Check your status here: https://ehavene.com.bd/product-truck";
             // Http::get('https://www.24bulksmsbd.com/api/smsSendApi?customer_id=128&api_key=172929182721250301911695556&message='.urlencode($sms).'&mobile_no='.$phone.'');
-            
+            $url = 'https://www.24bulksmsbd.com/api/smsSendApi';
+            $data = array(
+                'customer_id' => 128,
+                'api_key' => 172929182721250301911695556,
+                'message' =>$sms,	
+                'mobile_no' => $phone
+            );
+
+            $curl = curl_init($url);
+            curl_setopt($curl, CURLOPT_POST, true);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);     
+            $output = curl_exec($curl);
+            curl_close($curl);
+            // echo $output;
             // sms send end
             $request->session()->put('order_id', $order->id);
         }
