@@ -4,6 +4,16 @@
 </IfModule>
 
 RewriteEngine On
+# new
+# ensure www.
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# ensure https
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# new end
 RewriteCond %{REQUEST_FILENAME} -d [OR]
 RewriteCond %{REQUEST_FILENAME} -f
 RewriteRule ^ ^$1 [N]
@@ -15,8 +25,8 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ index.php
 
- # Redirect Trailing Slashes...
-   RewriteRule ^(.*)/$ /$1 [L,R=301]
+# Redirect Trailing Slashes...
+RewriteRule ^(.*)/$ /$1 [L,R=301]
 
 # Serve Cached Page If Available...
 RewriteCond %{REQUEST_URI} ^/?$
@@ -27,3 +37,26 @@ RewriteRule . page-cache%{REQUEST_URI}.html [L]
 RewriteCond %{DOCUMENT_ROOT}/page-cache%{REQUEST_URI}.json -f
 RewriteRule . page-cache%{REQUEST_URI}.json [L]
 </IfModule>
+
+RewriteCond %{HTTP_HOST} ^ehavene\.com\.bd$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.ehavene\.com\.bd$
+RewriteRule ^/?$ "https\:\/\/www\.ehavene\.com\.bd\/" [R=301,L]
+server {
+
+   # file truncated
+
+    # gzip compression settings
+    gzip on;
+    gzip_comp_level 5;
+    gzip_min_length 256;
+    gzip_proxied any;
+    gzip_vary on;
+
+   # browser cache control
+   location ~* \.(ico|css|js|gif|jpeg|jpg|png|woff|ttf|otf|svg|woff2|eot)$ {
+         expires 1d;
+         access_log off;
+         add_header Pragma public;
+         add_header Cache-Control "public, max-age=86400";
+    }
+}
