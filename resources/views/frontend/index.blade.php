@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 @section('title')
-    Ehavene Online shopping house
+    Ehavene | Skin Care, Health & Beauty Shop in Bangladesh
 @stop
 @section('css')
 

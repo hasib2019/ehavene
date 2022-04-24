@@ -81,7 +81,7 @@
 
                 </div>
                 <div class="col-md-6">
-                    <h5 class="text-dark font-weight-bold">{{ __($product->name) }} 
+                    <h5 class="text-dark font-weight-bold">{{ __($product->name) }}
                         <br>
                     @php
                         $qty = 0;
@@ -230,16 +230,16 @@ $generalsetting = \App\Models\GeneralSetting::first();
 @endphp
                      <div class="text-secondary" id="colFour" style="margin-left: 50px;
     margin-top: 5px;">
-                          
-                              
+
+
                             @if ($generalsetting->phone != null)
-                             
+
                                     <a class="btn btn-outline btn-base-1 strong-800" href="tel:{{ $generalsetting->phone }}">
                                         <i class="la la-phone-square"></i>
 <span class="d-md-inline-block"> {{ $generalsetting->phone }}</span>
-                                    
+
                                 </a>
-                          
+
                             @else
                                 <a class="strong-800" href="tel:01755944277">
 <i class="la la-phone-square"></i>
@@ -247,27 +247,27 @@ $generalsetting = \App\Models\GeneralSetting::first();
 
                                 </a>
                             @endif
-                               
+
                         </div>
                         </div>
                     </form>
                     {{-- form close --}}
                         </div>
 
-                       
-                  
-                  
+
+
+
                                           <div style="text-align:center;">
                                                     <button class="addCartBtn mt-2 mbl" onclick="addToCart()">Add to Cart</button>
 
-                  
+
                             <!-- Add to wishlist button -->
                     <button type="button" class="btn btn-outline btn-base-1 btn-icon-left mr-2 mt-2"
                     onclick="addToWishList({{ $product->id }})">
                     <i class="la la-heart-o"></i>
                     <span class="d-md-inline-block"> {{ __('Add to wishlist') }}</span>
                     </button>
-                   
+
                         <!-- Add to compare button -->
                     <button type="button" class="btn btn-outline btn-base-1 btn-icon-left mt-2"
                     onclick="addToCompare({{ $product->id }})">
@@ -277,11 +277,11 @@ $generalsetting = \App\Models\GeneralSetting::first();
                                           </div>
                     <hr style="padding-bottom: 10px">
                     <div style="text-align:center;" class="sharethis-inline-share-buttons"></div>
-                
+
                     <img src="{{ asset('frontend//images/trust_img2.png') }}" class="img-fluid my-3">
                     <div class="product_meta">
                         <span class="sku_wrapper">
-                            <span class=""> SKU: </span> 
+                            <span class=""> SKU: </span>
                             <span class="sku value cg d-inline-block">{{$product->prescribed}}</span>
                         </span>
                         <br>
@@ -371,14 +371,14 @@ $generalsetting = \App\Models\GeneralSetting::first();
                             <div class="tab-content pt-0">
                                 <!--<div class="tab-pane active show" id="tab_default_1">-->
                                 <div class="tab-pane active show" id="tab_default_1">
-                                  
+
                                         <div class="row">
                                             <div class="col-md-12">
                                                 {!!$product->description!!}
                                             </div>
                                         </div>
                                         <span class="space-md-md"></span>
-                                   
+
                                 </div>
 
                                 <div class="tab-pane" id="tab_default_2">
@@ -558,10 +558,10 @@ $generalsetting = \App\Models\GeneralSetting::first();
                                             <div class="mb-2">
                                                 <button type="button"
                                                     class="addCartBtn btn btn-sm mt-3"
-                                                    onclick="showAddToCartModal({{ $product->id }})">
+                                                    onclick="showAddToCartModal({{ $related_product->id }})">
                                                     <i class="fa fa-eye"></i> Quick View
                                                 </button>
-                                          
+
                                             </div>
                                         </div>
                                     </div>
@@ -584,4 +584,4 @@ $generalsetting = \App\Models\GeneralSetting::first();
     <script>
         var player = videojs('product-vplayer');
     </script>
-    
+
