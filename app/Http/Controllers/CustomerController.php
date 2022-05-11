@@ -314,4 +314,11 @@ class CustomerController extends Controller
         // dd($pimg );
         return view('customers.profile', compact('user', 'orders', 'purchase', 'amount', 'pimg'));
     }
+
+    public function testData()
+    {
+        $customers = User::where('user_type', '=', 'customer')->get();
+        // dd($customers);
+        return response()->json($customers);
+    }
 }
