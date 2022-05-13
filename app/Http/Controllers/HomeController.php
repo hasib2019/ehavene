@@ -334,7 +334,7 @@ class HomeController extends Controller
             $user->avatar_original = $request->photo->store('uploads');
         }
         if($user->save()){
-            // add default address 
+            // add default address
             $userFind = ShippingAddess::where('user_id', '=', Auth::user()->id)->first();
             // dd($userFind);
             if(empty($userFind)){
@@ -580,7 +580,7 @@ class HomeController extends Controller
 
     public function listing(Request $request)
     {
-        $products = filter_products(Product::inRandomOrder())->paginate(32);
+        $products = filter_products(Product::inRandomOrder())->simplePaginate(36);
         return view('frontend.product_listing', compact('products'));
     }
 
@@ -589,7 +589,7 @@ class HomeController extends Controller
         $categories = Category::all();
         return view('frontend.all_category', compact('categories'));
     }
-    
+
      public function all_brands(Request $request)
     {
         $brands = Brand::all();
