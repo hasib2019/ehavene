@@ -57,6 +57,7 @@ Route::post('/users/registration/sucess', 'App\Http\Controllers\Auth\RegisterCon
 Route::get('/users/registration/varify/{user_id}', 'App\Http\Controllers\Auth\RegisterController@varified')->name('varified');
 Route::post('/users/registration/varified', 'App\Http\Controllers\Auth\RegisterController@varifiedconfirm')->name('smsvarified');
 Route::post('/users/registration/resend-otp', 'App\Http\Controllers\Auth\RegisterController@resendotp')->name('resend.otp');
+Route::post('/users/registration/resend-sms', 'App\Http\Controllers\Auth\RegisterController@resendsms')->name('resend.sms');
 // email check
 Route::post('/email_available/check', 'App\Http\Controllers\HomeController@check')->name('email_available.check');
 Route::post('/email/check', 'App\Http\Controllers\HomeController@emailcheck')->name('email.check');
