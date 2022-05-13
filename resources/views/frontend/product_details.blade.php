@@ -83,16 +83,15 @@
                 <div class="col-md-6">
                     <h5 class="text-dark font-weight-bold">{{ __($product->name) }}
                         <br>
-                    @php
-                        $qty = 0;
-                        foreach (json_decode($product->variations) as $key => $variation) {
-                            $qty += $variation->qty;
-                        }
-                    @endphp
+                        @php
+                            $qty = 0;
+                            foreach (json_decode($product->variations) as $key => $variation) {
+                                $qty += $variation->qty;
+                            }
+                        @endphp
                         @if (count(json_decode($product->variations, true)) >= 1)
                             @if ($qty > 0)
                                 <span class="badge badge-md badge-pill bg-green">{{ __('In stock') }}</span>
-
                             @else
                                 <span class="badge badge-md badge-pill bg-red">{{ __('Out of stock') }}</span>
                             @endif
@@ -108,8 +107,8 @@
                                 <!--{{ __('Price') }}:-->
                                 <del>
                                     {{ home_price($product->id) }}
-                                    @if(!@empty($product->unit))
-                                    <span>/{{ $product->unit }}</span>
+                                    @if (!@empty($product->unit))
+                                        <span>/{{ $product->unit }}</span>
                                     @endif
                                 </del>
                             </h5>
@@ -119,9 +118,9 @@
                                     <strong>
                                         {{ home_discounted_price($product->id) }}
                                     </strong>
-                                      @if(!@empty($product->unit))
-                                    <span class="piece">/{{ $product->unit }}</span>
-                                     @endif
+                                    @if (!@empty($product->unit))
+                                        <span class="piece">/{{ $product->unit }}</span>
+                                    @endif
                                 </div>
                             </h5>
                         @else
@@ -130,25 +129,25 @@
                                 <strong>
                                     {{ home_discounted_price($product->id) }}
                                 </strong>
-                                @if(!@empty($product->unit))
-                                <span class="piece">/{{ $product->unit }}</span>
+                                @if (!@empty($product->unit))
+                                    <span class="piece">/{{ $product->unit }}</span>
                                 @endif
                             </h5>
 
 
                         @endif
                         <div class="review d-flex flex-wrap justify-content-center align-items-center">
-                        <span>
-                            <i class="iconify" data-icon="codicon:star-full"></i>
-                            <i class="iconify" data-icon="codicon:star-full"></i>
-                            <i class="iconify" data-icon="codicon:star-full"></i>
-                            <i class="iconify" data-icon="codicon:star-full"></i>
-                            <i class="iconify" data-icon="codicon:star-full"></i>
-                        </span>
-                        <span class="text-dark ml-2">(12 reviews)</span>
+                            <span>
+                                <i class="iconify" data-icon="codicon:star-full"></i>
+                                <i class="iconify" data-icon="codicon:star-full"></i>
+                                <i class="iconify" data-icon="codicon:star-full"></i>
+                                <i class="iconify" data-icon="codicon:star-full"></i>
+                                <i class="iconify" data-icon="codicon:star-full"></i>
+                            </span>
+                            <span class="text-dark ml-2">(12 reviews)</span>
+                        </div>
                     </div>
-                    </div>
-                    <p>{!!$product->short_description!!} </p>
+                    <p>{!! $product->short_description !!} </p>
                     {{-- form start --}}
                     <form id="option-choice-form">
                         @csrf
@@ -166,136 +165,128 @@
                             </div>
                         </div>
                         <div style="text-align:center;">
-                             @if (count(json_decode($product->colors)) > 0)
-                            <small class="font-weight-bold text-uppercase text-dark"> Color:
-                                <span id="colorName" class="text-capitalize"></span>
-                            </small>
-                            <div class="variationSec my-2">
-                                <!-- color 1 -->
-                                @foreach (json_decode($product->colors) as $key => $color)
-                                    <input type="radio" class="variation"
-                                        id="{{ $product->id }}-color-{{ $key }}" name="color"
-                                        value="{{ $color }}">
-                                    <label for="{{ $product->id }}-color-{{ $key }}" title="grey"
-                                        style="background: {{ $color }};">
-                                        <div class="setColor" style="background: {{ $color }};"
-                                            onclick="catchColor(event);"></div>
-                                    </label>
-                                @endforeach
+                            @if (count(json_decode($product->colors)) > 0)
+                                <small class="font-weight-bold text-uppercase text-dark"> Color:
+                                    <span id="colorName" class="text-capitalize"></span>
+                                </small>
+                                <div class="variationSec my-2">
+                                    <!-- color 1 -->
+                                    @foreach (json_decode($product->colors) as $key => $color)
+                                        <input type="radio" class="variation"
+                                            id="{{ $product->id }}-color-{{ $key }}" name="color"
+                                            value="{{ $color }}">
+                                        <label for="{{ $product->id }}-color-{{ $key }}" title="grey"
+                                            style="background: {{ $color }};">
+                                            <div class="setColor" style="background: {{ $color }};"
+                                                onclick="catchColor(event);"></div>
+                                        </label>
+                                    @endforeach
 
-                            </div>
-                        @endif
-
-                        @foreach (json_decode($product->choice_options) as $key => $choice)
-                            <small class="font-weight-bold text-uppercase text-dark">
-                                {{ $choice->title }}:
-                                {{-- <span id="sizeName" class="text-capitalize"></span> --}}
-                            </small>
-                            <br>
-                            <div class="variationSize my-2">
-                                <!-- color 1 -->
-                                @foreach ($choice->options as $key => $option)
-                                    <input type="radio" class="variation"
-                                        id="{{ $choice->name }}-{{ $option }}" name="{{ $choice->name }}"
-                                        value="{{ $option }}">
-                                    <label for="{{ $choice->name }}-{{ $option }}" title="small">
-                                        <div class="setValue" onclick="catchSize(event);">{{ $option }}</div>
-                                    </label>
-                                @endforeach
-                                <br>
-                            </div>
-                        @endforeach
-                        <div class="addCart d-flex">
-
-                            <div class="cart float-left">
-                                {{-- <button id="dec" onclick="dec()">-</button>
-                        <input type="text" id="cartValue" value="1" name="quantity">
-                        <button onclick="inc()">+</button> --}}
-                                <span class="m">
-                                    <button class="btn btn-number" type="button" data-type="minus" data-field="quantity"
-                                        disabled="disabled">
-                                        <i class="la la-minus"></i>
-                                    </button>
-                                </span>
-                                <input type="text" name="quantity" class="form-control input-number text-center"
-                                    placeholder="1" value="1" min="1" max="100">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-number" type="button" data-type="plus" data-field="quantity">
-                                        <i class="la la-plus"></i>
-                                    </button>
-                                </span>
-                            </div>
-                              @php
-$generalsetting = \App\Models\GeneralSetting::first();
-@endphp
-                     <div class="text-secondary" id="colFour" style="margin-left: 50px;
-    margin-top: 5px;">
-
-
-                            @if ($generalsetting->phone != null)
-
-                                    <a class="btn btn-outline btn-base-1 strong-800" href="tel:{{ $generalsetting->phone }}">
-                                        <i class="la la-phone-square"></i>
-<span class="d-md-inline-block"> {{ $generalsetting->phone }}</span>
-
-                                </a>
-
-                            @else
-                                <a class="strong-800" href="tel:01755944277">
-<i class="la la-phone-square"></i>
-                                    01755944277
-
-                                </a>
+                                </div>
                             @endif
 
-                        </div>
-                        </div>
+                            @foreach (json_decode($product->choice_options) as $key => $choice)
+                                <small class="font-weight-bold text-uppercase text-dark">
+                                    {{ $choice->title }}:
+                                    {{-- <span id="sizeName" class="text-capitalize"></span> --}}
+                                </small>
+                                <br>
+                                <div class="variationSize my-2">
+                                    <!-- color 1 -->
+                                    @foreach ($choice->options as $key => $option)
+                                        <input type="radio" class="variation"
+                                            id="{{ $choice->name }}-{{ $option }}" name="{{ $choice->name }}"
+                                            value="{{ $option }}">
+                                        <label for="{{ $choice->name }}-{{ $option }}" title="small">
+                                            <div class="setValue" onclick="catchSize(event);">{{ $option }}
+                                            </div>
+                                        </label>
+                                    @endforeach
+                                    <br>
+                                </div>
+                            @endforeach
+                            <div class="addCart d-flex">
+
+                                <div class="cart float-left ml-2">
+                                    {{-- <button id="dec" onclick="dec()">-</button>
+                        <input type="text" id="cartValue" value="1" name="quantity">
+                        <button onclick="inc()">+</button> --}}
+                                    <span class="m">
+                                        <button class="btn btn-number" type="button" data-type="minus" data-field="quantity"
+                                            disabled="disabled">
+                                            <i class="la la-minus"></i>
+                                        </button>
+                                    </span>
+                                    <input type="text" name="quantity" class="form-control input-number text-center"
+                                        placeholder="1" value="1" min="1" max="100">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-number" type="button" data-type="plus" data-field="quantity">
+                                            <i class="la la-plus"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                                @php
+                                    $generalsetting = \App\Models\GeneralSetting::first();
+                                @endphp
+                                <div class="text-secondary" id="colFour" style="margin-left: 5px; margin-top: 5px;">
+                                    @if ($generalsetting->phone != null)
+                                        <a class="btn btn-outline btn-base-1 strong-800"
+                                            href="tel:{{ $generalsetting->phone }}">
+                                            <i class="la la-phone-square"></i>
+                                            <span class="d-md-inline-block"> {{ $generalsetting->phone }}</span>
+
+                                        </a>
+                                    @else
+                                        <a class="strong-800" href="tel:01755944277">
+                                            <i class="la la-phone-square"></i>
+                                            01755944277
+
+                                        </a>
+                                    @endif
+
+                                </div>
+                            </div>
                     </form>
                     {{-- form close --}}
-                        </div>
-
-
-
-
-                                          <div style="text-align:center;">
-                                                    <button class="addCartBtn mt-2 mbl" onclick="addToCart()">Add to Cart</button>
-
-
-                            <!-- Add to wishlist button -->
-                    <button type="button" class="btn btn-outline btn-base-1 btn-icon-left mr-2 mt-2"
-                    onclick="addToWishList({{ $product->id }})">
-                    <i class="la la-heart-o"></i>
-                    <span class="d-md-inline-block"> {{ __('Add to wishlist') }}</span>
+                </div>
+                <div style="margin-top:10px">
+                    <button class="addCartBtn mt-2 mbl" onclick="addToCart()">Add to Cart</button>
+                    <!-- Add to wishlist button -->
+                    <button type="button" class="btn btn-outline btn-base-1 btn-icon-left mr-2 mbMargin"
+                        onclick="addToWishList({{ $product->id }})">
+                        <i class="la la-heart-o"></i>
+                        <span class="d-md-inline-block"> {{ __('Add to wishlist') }}</span>
                     </button>
 
-                        <!-- Add to compare button -->
-                    <button type="button" class="btn btn-outline btn-base-1 btn-icon-left mt-2"
-                    onclick="addToCompare({{ $product->id }})">
-                    <i class="la la-refresh"></i>
-                    <span class="d-md-inline-block"> {{ __('Add to compare') }}</span>
+                    <!-- Add to compare button -->
+                    <button type="button" class="btn btn-outline btn-base-1 btn-icon-left"
+                        onclick="addToCompare({{ $product->id }})">
+                        <i class="la la-refresh"></i>
+                        <span class="d-md-inline-block"> {{ __('Add to compare') }}</span>
                     </button>
-                                          </div>
-                    <hr style="padding-bottom: 10px">
-                    <div style="text-align:center;" class="sharethis-inline-share-buttons"></div>
+                </div>
+                <hr style="padding-bottom: 10px">
+                <div style="text-align:center;" class="sharethis-inline-share-buttons"></div>
 
-                    <img src="{{ asset('frontend//images/trust_img2.png') }}" class="img-fluid my-3">
-                    <div class="product_meta">
-                        <span class="sku_wrapper">
-                            <span class=""> SKU: </span>
-                            <span class="sku value cg d-inline-block">{{$product->prescribed}}</span>
-                        </span>
-                        <br>
-                        <span class="posted_in">
-                            <span class="">Categories:</span>
-                            <a href="{{ route('products.category', $product->category_id) }}">{{ $product->category->name }}</a>
-                        </span>
-                            <br>
-                        <span class="tagged_as"><span class=""> Tags:</span>
-                            {{ $product->tags }}
-                        </span>
-                    </div>
+                <img src="{{ asset('frontend//images/trust_img2.png') }}" class="img-fluid my-3">
+                <div class="product_meta">
+                    <span class="sku_wrapper">
+                        <span class=""> SKU: </span>
+                        <span class="sku value cg d-inline-block">{{ $product->prescribed }}</span>
+                    </span>
+                    <br>
+                    <span class="posted_in">
+                        <span class="">Categories:</span>
+                        <a
+                            href="{{ route('products.category', $product->category_id) }}">{{ $product->category->name }}</a>
+                    </span>
+                    <br>
+                    <span class="tagged_as"><span class=""> Tags:</span>
+                        {{ $product->tags }}
+                    </span>
                 </div>
             </div>
+        </div>
         </div>
     </section>
     <section>
@@ -372,12 +363,12 @@ $generalsetting = \App\Models\GeneralSetting::first();
                                 <!--<div class="tab-pane active show" id="tab_default_1">-->
                                 <div class="tab-pane active show" id="tab_default_1">
 
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                {!!$product->description!!}
-                                            </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            {!! $product->description !!}
                                         </div>
-                                        <span class="space-md-md"></span>
+                                    </div>
+                                    <span class="space-md-md"></span>
 
                                 </div>
 
@@ -387,13 +378,11 @@ $generalsetting = \App\Models\GeneralSetting::first();
                                         <div class="embed-responsive embed-responsive-16by9 mb-5">
                                             @if ($product->video_provider == 'youtube' && $product->video_link != null)
                                                 <iframe class="embed-responsive-item"
-                                                    src="{{$product->video_link }}"></iframe>
-                                            @elseif ($product->video_provider == 'dailymotion' && $product->video_link
-                                                != null)
+                                                    src="{{ $product->video_link }}"></iframe>
+                                            @elseif ($product->video_provider == 'dailymotion' && $product->video_link != null)
                                                 <iframe class="embed-responsive-item"
                                                     src="https://www.dailymotion.com/embed/video/{{ explode('video/', $product->video_link)[1] }}"></iframe>
-                                            @elseif ($product->video_provider == 'vimeo' && $product->video_link !=
-                                                null)
+                                            @elseif ($product->video_provider == 'vimeo' && $product->video_link != null)
                                                 <iframe
                                                     src="https://player.vimeo.com/video/{{ explode('vimeo.com/', $product->video_link)[1] }}"
                                                     width="500" height="281" frameborder="0" webkitallowfullscreen
@@ -417,7 +406,8 @@ $generalsetting = \App\Models\GeneralSetting::first();
                                         @foreach ($product->reviews as $key => $review)
                                             <div class="block block-comment">
                                                 <div class="block-image">
-                                                    <img src="{{ asset($review->user->avatar_original) }}" class="rounded-circle">
+                                                    <img src="{{ asset($review->user->avatar_original) }}"
+                                                        class="rounded-circle">
                                                 </div>
                                                 <div class="block-body">
                                                     <div class="block-body-inner">
@@ -433,10 +423,10 @@ $generalsetting = \App\Models\GeneralSetting::first();
                                                             <div class="col">
                                                                 <div class="rating text-right clearfix d-block">
                                                                     <span class="star-rating float-right">
-                                                                        @for ($i=0; $i < $review->rating; $i++)
+                                                                        @for ($i = 0; $i < $review->rating; $i++)
                                                                             <i class="fa fa-star"></i>
                                                                         @endfor
-                                                                        @for ($i=0; $i < 5-$review->rating; $i++)
+                                                                        @for ($i = 0; $i < 5 - $review->rating; $i++)
                                                                             <i class="fa fa-star-o"></i>
                                                                         @endfor
                                                                     </span>
@@ -451,12 +441,12 @@ $generalsetting = \App\Models\GeneralSetting::first();
                                             </div>
                                         @endforeach
 
-                                        @if(Auth::check())
+                                        @if (Auth::check())
                                             @php
                                                 $commentable = false;
                                             @endphp
                                             @foreach ($product->orderDetails as $key => $orderDetail)
-                                                @if($orderDetail->order->user_id == Auth::user()->id)
+                                                @if ($orderDetail->order->user_id == Auth::user()->id)
                                                     @php
                                                         $commentable = true;
                                                     @endphp
@@ -465,52 +455,72 @@ $generalsetting = \App\Models\GeneralSetting::first();
                                             @if ($commentable)
                                                 <div class="leave-review">
                                                     <div class="section-title section-title--style-1">
-                                                        <h3 class="section-title-inner heading-6 strong-600 text-uppercase">
-                                                            {{__('Write a review')}}
+                                                        <h3
+                                                            class="section-title-inner heading-6 strong-600 text-uppercase">
+                                                            {{ __('Write a review') }}
                                                         </h3>
                                                     </div>
-                                                    <form class="form-default" role="form" action="{{ route('reviews.store') }}" method="POST">
+                                                    <form class="form-default" role="form"
+                                                        action="{{ route('reviews.store') }}" method="POST">
                                                         @csrf
-                                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                        <input type="hidden" name="product_id"
+                                                            value="{{ $product->id }}">
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
-                                                                    <label for="" class="text-uppercase c-gray-light">{{__('Your name')}}</label>
-                                                                    <input type="text" name="name" value="{{ Auth::user()->name }}" class="form-control" disabled required>
+                                                                    <label for=""
+                                                                        class="text-uppercase c-gray-light">{{ __('Your name') }}</label>
+                                                                    <input type="text" name="name"
+                                                                        value="{{ Auth::user()->name }}"
+                                                                        class="form-control" disabled required>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
-                                                                    <label for="" class="text-uppercase c-gray-light">{{__('Email')}}</label>
-                                                                    <input type="text" name="email" value="{{ Auth::user()->email }}" class="form-control" required disabled>
+                                                                    <label for=""
+                                                                        class="text-uppercase c-gray-light">{{ __('Email') }}</label>
+                                                                    <input type="text" name="email"
+                                                                        value="{{ Auth::user()->email }}"
+                                                                        class="form-control" required disabled>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-sm-12">
                                                                 <div class="c-rating mt-1 mb-1 clearfix d-inline-block">
-                                                                    <input type="radio" id="star5" name="rating" value="5" required/>
-                                                                    <label class="star" for="star5" title="Awesome" aria-hidden="true"></label>
-                                                                    <input type="radio" id="star4" name="rating" value="4" required/>
-                                                                    <label class="star" for="star4" title="Great" aria-hidden="true"></label>
-                                                                    <input type="radio" id="star3" name="rating" value="3" required/>
-                                                                    <label class="star" for="star3" title="Very good" aria-hidden="true"></label>
-                                                                    <input type="radio" id="star2" name="rating" value="2" required/>
-                                                                    <label class="star" for="star2" title="Good" aria-hidden="true"></label>
-                                                                    <input type="radio" id="star1" name="rating" value="1" required/>
-                                                                    <label class="star" for="star1" title="Bad" aria-hidden="true"></label>
+                                                                    <input type="radio" id="star5" name="rating" value="5"
+                                                                        required />
+                                                                    <label class="star" for="star5"
+                                                                        title="Awesome" aria-hidden="true"></label>
+                                                                    <input type="radio" id="star4" name="rating" value="4"
+                                                                        required />
+                                                                    <label class="star" for="star4" title="Great"
+                                                                        aria-hidden="true"></label>
+                                                                    <input type="radio" id="star3" name="rating" value="3"
+                                                                        required />
+                                                                    <label class="star" for="star3"
+                                                                        title="Very good" aria-hidden="true"></label>
+                                                                    <input type="radio" id="star2" name="rating" value="2"
+                                                                        required />
+                                                                    <label class="star" for="star2" title="Good"
+                                                                        aria-hidden="true"></label>
+                                                                    <input type="radio" id="star1" name="rating" value="1"
+                                                                        required />
+                                                                    <label class="star" for="star1" title="Bad"
+                                                                        aria-hidden="true"></label>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="row mt-3">
                                                             <div class="col-sm-12">
-                                                                <textarea class="form-control" rows="4" name="comment" placeholder="{{__('Your review')}}" required></textarea>
+                                                                <textarea class="form-control" rows="4" name="comment" placeholder="{{ __('Your review') }}" required></textarea>
                                                             </div>
                                                         </div>
 
                                                         <div class="text-right">
-                                                            <button type="submit" class="btn btn-styled btn-base-1 btn-circle mt-4">
-                                                                {{__('Send review')}}
+                                                            <button type="submit"
+                                                                class="btn btn-styled btn-base-1 btn-circle mt-4">
+                                                                {{ __('Send review') }}
                                                             </button>
                                                         </div>
                                                     </form>
@@ -532,7 +542,8 @@ $generalsetting = \App\Models\GeneralSetting::first();
                         <div class="caorusel-box" style="height: 400px;">
                             <div class="slick-carousel" data-slick-items="4" data-slick-lg-items="4"
                                 data-slick-md-items="3" data-slick-sm-items="2" data-slick-xs-items="2">
-                                @foreach (filter_products(\App\Models\Product::where('subcategory_id', $product->subcategory_id)->where('id', '!=', $product->id))->limit(10)->get() as $key => $related_product)
+                                @foreach (filter_products(\App\Models\Product::where('subcategory_id', $product->subcategory_id)->where('id', '!=', $product->id))->limit(10)->get()
+        as $key => $related_product)
                                     <div class="product-card-2 card card-product shop-cards shop-tech">
                                         <div class="card-body p-0">
                                             <div class="card-image">
@@ -556,8 +567,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
                                                 </h2>
                                             </div>
                                             <div class="mb-2">
-                                                <button type="button"
-                                                    class="addCartBtn btn btn-sm mt-3"
+                                                <button type="button" class="addCartBtn btn btn-sm mt-3"
                                                     onclick="showAddToCartModal({{ $related_product->id }})">
                                                     <i class="fa fa-eye"></i> Quick View
                                                 </button>
@@ -576,12 +586,11 @@ $generalsetting = \App\Models\GeneralSetting::first();
 
 @endsection
 
- <script type="text/javascript"
-            src="https://platform-api.sharethis.com/js/sharethis.js#property=60ba46686cfa7d00118e7e92&product=inline-share-buttons"
-            async="async"></script>
-        <script src="https://vjs.zencdn.net/7.14.3/video.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/2.6.1/Youtube.min.js"></script>
-    <script>
-        var player = videojs('product-vplayer');
-    </script>
-
+<script type="text/javascript"
+src="https://platform-api.sharethis.com/js/sharethis.js#property=60ba46686cfa7d00118e7e92&product=inline-share-buttons"
+async="async"></script>
+<script src="https://vjs.zencdn.net/7.14.3/video.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/2.6.1/Youtube.min.js"></script>
+<script>
+    var player = videojs('product-vplayer');
+</script>
