@@ -511,7 +511,9 @@ $generalsetting = \App\Models\GeneralSetting::first();
                 <p class="my-2">New customer?
                     <a href="#userRegister" data-icon="ph:user-thin" data-toggle="modal" data-target="#userRegister"
                         class="link">Create your account</a>
+                        OR
                     {{-- <span  data-icon="ph:user-thin" data-toggle="modal" data-target="#userRegister">Create your account</span> --}}
+                    <a href="{{ route('forget.password.get') }}" class="link link-xs link--style-3">{{__('Forgot password?')}}</a>
                 </p>
             </div>
         </div>
@@ -598,6 +600,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
                 <p class="my-2"> Already have a acoount?
                     <a href="#userLogin" data-icon="ph:user-thin" data-toggle="modal" data-target="#userLogin"
                         class="link"> Login</a>
+                        <a href="#userRegister" data-icon="ph:user-thin" data-toggle="modal" data-target="#userRegister" class="link">Create your account</a>
                 </p>
             </div>
         </div>

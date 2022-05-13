@@ -91,7 +91,6 @@
                                                 </div>
                                                 <div class="col-6 text-right">
                                                     <a href="{{ route('forget.password.get') }}" class="link link-xs link--style-3">{{__('Forgot password?')}}</a>
-                                                    {{-- <a href="{{ route('password.request') }}" class="link link-xs link--style-3">{{__('Forgot password?')}}</a> --}}
                                                 </div>
                                             </div>
 

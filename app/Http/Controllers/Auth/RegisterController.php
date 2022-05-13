@@ -70,29 +70,8 @@ class RegisterController extends Controller
      */
     protected function store(Request $data)
     {
+        // dd('work');
     if($data['password']==$data['password_confirmation']){       
-        
-        // $commission = Master::where('softcode', '=','ref_commission')->first()->hardcode;
-        //update user
-        // if($data['reference'] == 'reference'){
-            
-        // }else{
-            
-        //     $reference_id = User::where('ref_id', '=', $data['reference'])->first()->id;
-        //     $updateuser = User::find(User::where('ref_id', '=', $data['reference'])->first()->id);
-        //     $updateuser->balance = $updateuser->balance+$commission;
-        //     $updateuser->save();
-           
-        //     $tran = new Transaction;
-        //     $tran->user_id = $reference_id;
-        //     $tran->ref_by = $data['reference'];
-        //     $tran->status = "Pending";
-        //     $tran->amount = $commission;
-        //     $tran->earning_type = "Reference";
-        //     $tran->save();
-        // }
-        //update user
-        // dd($data['emailAddress']);
         $phone = $data['email'];
         $codeverify = rand(1234, 4568);
         $user = User::create([
@@ -109,24 +88,26 @@ class RegisterController extends Controller
         $mobile_verify->user_id = $user_id;
         $mobile_verify->code = $codeverify;
 
-    //   if($mobile_verify->save()){
-    //       $curl = curl_init();
-    //       curl_setopt_array($curl, array(
-    //           CURLOPT_URL => "https://api.mobireach.com.bd/SendTextMessage?Username=lextlink&Password=Dhaka@5599&From=Apon%20Health&To=88".$phone."&Message=".urlencode('Your Apon Health varification code is: '.$codeverify)."",
-    //           CURLOPT_RETURNTRANSFER => true,
-    //           CURLOPT_TIMEOUT => 30,
-    //           CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-    //           CURLOPT_CUSTOMREQUEST => "GET",
-    //           CURLOPT_HTTPHEADER => array(
-    //               "cache-control: no-cache"
-    //           ),
-    //       ));
-    //       $response = curl_exec($curl);
-    //       $err = curl_error($curl);
-    //       curl_close($curl);
-    //   }
-        // return redirect()->route('varified',encrypt($user_id));
-        return redirect()->route('dashboard');
+      if($mobile_verify->save()){
+            $sms = "Your Ehavene varification code is: $codeverify";
+            $url = 'https://www.24bulksmsbd.com/api/smsSendApi';
+            $data = array(
+                'customer_id' => 128,
+                'api_key' => 172929182721250301911695556,
+                'message' =>$sms,	
+                'mobile_no' => $phone
+            );
+            $curl = curl_init($url);
+            curl_setopt($curl, CURLOPT_POST, true);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);     
+            $output = curl_exec($curl);
+            curl_close($curl);
+      }
+        return redirect()->route('varified',encrypt($user_id));
+        // return redirect()->route('dashboard');
     }else{
         flash(__('Opps! Password Did not match'))->error();
         return back();
@@ -180,19 +161,21 @@ class RegisterController extends Controller
             $mobile_verify->code = $codeverify;
 
         if($mobile_verify->save()){
-            $curl = curl_init();
-            curl_setopt_array($curl, array(
-                CURLOPT_URL => "https://api.mobireach.com.bd/SendTextMessage?Username=lextlink&Password=Dhaka@5599&From=Apon%20Health&To=88".$phone."&Message=".urlencode('your varification code: '.$codeverify)."",
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_TIMEOUT => 30,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => "GET",
-                CURLOPT_HTTPHEADER => array(
-                    "cache-control: no-cache"
-                ),
-            ));
-            $response = curl_exec($curl);
-            $err = curl_error($curl);
+            $sms = "Your Ehavene varification code is: $codeverify";
+            $url = 'https://www.24bulksmsbd.com/api/smsSendApi';
+            $data = array(
+                'customer_id' => 128,
+                'api_key' => 172929182721250301911695556,
+                'message' =>$sms,	
+                'mobile_no' => $phone
+            );
+            $curl = curl_init($url);
+            curl_setopt($curl, CURLOPT_POST, true);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);     
+            $output = curl_exec($curl);
             curl_close($curl);
         }
         return redirect()->route('varified',encrypt($request->user_id));
@@ -205,24 +188,88 @@ class RegisterController extends Controller
         $mobile_verify->code = $codeverify;
 
     if($mobile_verify->save()){
-        $curl = curl_init();
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://api.mobireach.com.bd/SendTextMessage?Username=lextlink&Password=Dhaka@5599&From=Apon%20Health&To=88".$phone."&Message=".urlencode('your varification code: '.$codeverify)."",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "GET",
-            CURLOPT_HTTPHEADER => array(
-                "cache-control: no-cache"
-            ),
-        ));
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
+        $sms = "Your Ehavene varification code is: $codeverify";
+        $url = 'https://www.24bulksmsbd.com/api/smsSendApi';
+        $data = array(
+            'customer_id' => 128,
+            'api_key' => 172929182721250301911695556,
+            'message' =>$sms,	
+            'mobile_no' => $phone
+        );
+        $curl = curl_init($url);
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);     
+        $output = curl_exec($curl);
         curl_close($curl);
     }
     return redirect()->route('varified',encrypt($request->user_id));
     }
 
+    }
+
+    public function resendsms(Request $request)
+    {
+        $detail = MobileVerify::where('user_id', $request->user_id)->first();
+        if($detail){
+            $details=MobileVerify::where('user_id',$request->user_id)->delete();
+            $phone = $request->phone;
+            $codeverify = rand(1234, 4568);
+            $mobile_verify = new MobileVerify();
+            $mobile_verify->user_id = $request->user_id;
+            $mobile_verify->code = $codeverify;
+
+        if($mobile_verify->save()){
+            $sms = "Your Ehavene varification code is: $codeverify";
+            $url = 'https://www.24bulksmsbd.com/api/smsSendApi';
+            $data = array(
+                'customer_id' => 128,
+                'api_key' => 172929182721250301911695556,
+                'message' =>$sms,	
+                'mobile_no' => $phone
+            );
+            $curl = curl_init($url);
+            curl_setopt($curl, CURLOPT_POST, true);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);     
+            $output = curl_exec($curl);
+            curl_close($curl);
+        }
+        flash(__('SMS Send succesfully'))->success();
+        return "sms send";;
+
+    }else{
+        $phone = $request->phone;
+        $codeverify = rand(1234, 4568);
+        $mobile_verify = new MobileVerify();
+        $mobile_verify->user_id = $request->user_id;
+        $mobile_verify->code = $codeverify;
+
+    if($mobile_verify->save()){
+        $sms = "Your Ehavene varification code is: $codeverify";
+        $url = 'https://www.24bulksmsbd.com/api/smsSendApi';
+        $data = array(
+            'customer_id' => 128,
+            'api_key' => 172929182721250301911695556,
+            'message' =>$sms,	
+            'mobile_no' => $phone
+        );
+        $curl = curl_init($url);
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);     
+        $output = curl_exec($curl);
+        curl_close($curl);
+    }
+    flash(__('SMS Send succesfully'))->success();
+    return "sms send";
+    }
     }
 
 }
