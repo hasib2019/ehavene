@@ -335,16 +335,16 @@
             </div>
         </div>
     </section>
-     <section class="py-5 ">
-    <div class="container">
-        <div class="row">
+        <section class="py-4 border-top">
+            <div class="container">
+         <p class="mb-0">
            @php
 $generalsetting = \App\Models\GeneralSetting::first();
 @endphp
+{!! $generalsetting->home_description !!}
 
- {!! $generalsetting->home_description !!}
 
-        </div>
+         </p>
 
     </div>
 </section>

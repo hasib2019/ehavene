@@ -95,7 +95,7 @@ style="background-color:#EE3324;"
                      Product Listing
                  @endif
                 </h2>
-              
+
             </div>
         </div>
     </div>
@@ -105,7 +105,7 @@ style="background-color:#EE3324;"
     <div class="container">
          <form class="" id="search-form" action="{{ route('search') }}" method="GET">
         <div class="row pt-3">
-           
+
                 @isset($category_id)
                     <input type="hidden" name="category_id" value="{{ $category_id }}">
                 @endisset
@@ -242,15 +242,12 @@ style="background-color:#EE3324;"
         <hr>
         <div class="container">
             <div class="row">
-                <div class="col-md-4 col-xs-4">
-                    
-                </div>
-                <div class="col-md-4 col-xs-4">
+
+               {{-- Pagination --}}
+        <div class="d-flex" style="margin: 0 auto;">
                     {{ $products->links() }}
                 </div>
-                <div class="col-md-4 col-xs-4">
-                    
-                </div>
+
                 </div>
         </div>
     </div>
@@ -269,7 +266,7 @@ style="background-color:#EE3324;"
                  @endif
                 </p>
                 </div>
- </section> 
+ </section>
 
  {{-- <section class="py-4 border-top">
      <div class="container">
