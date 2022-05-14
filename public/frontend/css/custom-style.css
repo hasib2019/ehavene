@@ -2726,7 +2726,7 @@ ul.seller-brand-list .brand-item {
 
 .product-gal-img {
     width: calc(100% - 60px);
-    border: 1px solid black;
+    border: 1px solid #e1dddd;
 }
 .xzoom-source{
     z-index: 1060;
