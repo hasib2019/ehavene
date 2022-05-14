@@ -253,12 +253,12 @@ body {
     position: relative;
 }
 
-.productFeatured .productContainer .proBadge {
+/* .productFeatured .productContainer .proBadge {
     height: 40px;
     position: absolute;
     top: 15px;
     border-radius: 40%;
-    background: #2f3e4c;
+    background: #fd0000;
     z-index: 1;
     width: 40px;
     color: #ffff;
@@ -272,18 +272,59 @@ body {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+} */
+.proBadge {
+    height: 40px;
+    border-radius: 40%;
+    background: #fd0000;
+    z-index: 1;
+    width: 40px;
+    color: #ffff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    float: right;
+    margin: 10px 5px;
 }
-
+.productBadge {
+    position: absolute;
+    right: 5px;
+    z-index: 1;
+}
 .productFeatured .productContainer .proBadge.minus {
     background: #FF3E1D;
 }
 
-.productFeatured .productContainer .proBadgePer {
+.proBadgePer {
+    height: 40px;
+    border-radius: 40%;
+    background: #2f3e4c;
+    width: 40px;
+    color: #ffff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    float: right;
+    margin: 10px 5px;
+}
+/* .productFeatured .productContainer .proBadgePer {
     height: 40px;
     position: absolute;
     top: 15px;
     border-radius: 40%;
-    background: #fd0000;
+    background: #2f3e4c;
     z-index: 1;
     width: 40px;
     color: #ffff;
@@ -297,7 +338,7 @@ body {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-}
+} */
 
 .productFeatured .productContainer .inner {
     opacity: 0;

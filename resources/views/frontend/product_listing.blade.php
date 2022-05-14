@@ -84,15 +84,19 @@ style="background-color:#EE3324;"
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
-                <h2 class="mb-0" style="color: #ffffff; background-color: #999999; opacity: 90%;">
+                <h2 class="mb-0" style="color: #000000;">
+                @if(isset($brand_id))
+                <b> {{ \App\Models\Brand::find($brand_id)->name }} Brands Product </b>
+                
+                @endif
                     @if(isset($category_id))
-                    {{ \App\Models\Category::find($category_id)->name }} | Product Listing
+                    <b>{{ \App\Models\Category::find($category_id)->name }} | Product Listing</b>
                  @elseif(isset($subcategory_id))
-                     {{ \App\Models\SubCategory::find($subcategory_id)->name }} | Product Listing
+                     <b>{{ \App\Models\SubCategory::find($subcategory_id)->name }} | Product Listing</b>
                  @elseif(isset($subsubcategory_id))
-                     {{ \App\Models\SubSubCategory::find($subsubcategory_id)->name }} | Product Listing
+                     <b>{{ \App\Models\SubSubCategory::find($subsubcategory_id)->name }} | Product Listing</b>
                      @else
-                     Product Listing
+                     {{-- Product Listing --}}
                  @endif
                 </h2>
 
@@ -116,7 +120,7 @@ style="background-color:#EE3324;"
                     <input type="hidden" name="subsubcategory_id" value="{{ $subsubcategory_id }}">
                 @endisset
 
-                    <div class="col-md-5 col-sm-12 pb-2">
+                    <div class="col-md-6 col-sm-12 pb-2">
                         <div class="search-widget">
                             <input class="form-control input-lg" type="text" name="q" placeholder="{{__('Search products')}}" @isset($query) value="{{ $query }}" @endisset>
                             <button type="submit" class="btn-inner" style="margin-top: -8px;">
@@ -125,8 +129,8 @@ style="background-color:#EE3324;"
                         </div>
                     </div>
 
-                    <div class="col-xs-6 pl-3 pr-4">
-                        <select name="" id="" class="form-control sorting sortSelect" data-minimum-results-for-search="Infinity" name="sort_by" onchange="filter()">
+                    <div class="col-md-3 col-sm-6 pb-2">
+                        <select name="" id="" class="form-control input-lg" data-minimum-results-for-search="Infinity" name="sort_by" onchange="filter()">
                             <option value="">--Select Feature--</option>
                             <option value="1" @isset($sort_by) @if ($sort_by == '1') selected @endif @endisset>{{__('Newest')}}</option>
                             <option value="2" @isset($sort_by) @if ($sort_by == '2') selected @endif @endisset>{{__('Oldest')}}</option>
@@ -136,8 +140,9 @@ style="background-color:#EE3324;"
                         </select>
                     </div>
 
-                    <div class="col-xs-6">
-                        <select name="" id="" class="form-control sorting sortSelect" data-placeholder="{{__('All Brands')}}" name="brand_id" onchange="filter()">
+                    <div class="col-md-3 col-sm-6 pb-2">
+                        {{-- sorting sortSelect --}}
+                        <select name="" id="" class="form-control input-lg" data-placeholder="{{__('All Brands')}}" name="brand_id" onchange="filter()">
                             <option value="">{{__('All Brands')}}</option>
                             @foreach ($brands as $key => $id)
                                 @if (\App\Models\Brand::find($id) != null)
@@ -163,11 +168,19 @@ style="background-color:#EE3324;"
 
             <div class="productDesign">
                 <div class="productContainer">
-                    @if (strtotime($product->created_at) > strtotime('-10 day'))
-                    <div class="proBadge">
-                            {{__('New')}}
+                    <div class="productBadge">
+                        @if ($product->todays_deal == 1)
+                        <div class="proBadgePer">
+                            New
+                        </div>
+                        @else
+                        @endif
+                        @if (percentage($product->id) > 0)
+                            <div class="proBadge">
+                                -{{ percentage($product->id) }}%
+                            </div>
+                        @endif
                     </div>
-                    @endif
                     <a href="{{ route('product', strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product->slug)))) }}">
                         <img class="img-fluid product-photo" src="{{ asset($product->thumbnail_img) }}" alt="" />
                     </a>
@@ -210,10 +223,10 @@ style="background-color:#EE3324;"
                     <span class="price" style="margin-top: -30px;">
                         @if(home_base_price($product->id) != home_discounted_base_price($product->id))
                             {{-- <span class="old-product-price strong-300"></span> --}}
-                            <del>{{ home_base_price($product->id) }}</del>
+                            <del class="pl-3">{{ home_base_price($product->id) }}</del>
                         @endif
 
-                        <ins class="pl-2">{{ home_discounted_base_price($product->id) }}</ins>
+                        <ins class="pl-3">{{ home_discounted_base_price($product->id) }}</ins>
                     </span>
                     {{-- <div class="variationSec">
                         <!-- color 1 -->

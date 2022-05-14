@@ -84,7 +84,7 @@ Route::get('/products', 'App\Http\Controllers\HomeController@listing')->name('pr
 Route::get('/search?category_id={category_id}', 'App\Http\Controllers\HomeController@search')->name('products.category');
 Route::get('/search?subcategory_id={subcategory_id}', 'App\Http\Controllers\HomeController@search')->name('products.subcategory');
 Route::get('/search?subsubcategory_id={subsubcategory_id}', 'App\Http\Controllers\HomeController@search')->name('products.subsubcategory');
-Route::get('//search?brand_id={brand_id}', 'App\Http\Controllers\HomeController@search')->name('products.brand');
+Route::get('/search?brand_id={brand_id}', 'App\Http\Controllers\HomeController@search')->name('products.brand');
 Route::post('/product/variant_price', 'App\Http\Controllers\HomeController@variant_price')->name('products.variant_price');
 Route::get('/shops/visit/{slug}', [HomeController::class,'shop'])->name('shop.visit');
 Route::get('/shops/visit/{slug}/{type}', [HomeController::class,'filter_shop'])->name('shop.visit.type');

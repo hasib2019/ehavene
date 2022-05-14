@@ -52,7 +52,6 @@
                     $secendCategory = \App\Models\Category::where('id', 26)->first();
                     $therdCategory = \App\Models\Category::where('id', 29)->first();
                     $fourthCategory = \App\Models\Category::where('id', 30)->first();
-                    // dd($fastCategory);
                 @endphp
                 <div class="catCol cat_space_item">
                     <a href="{{ route('products.category', $fastCategory->id) }}">
@@ -169,21 +168,24 @@
                     </div>
                 </div>
                 <div class="row productView mx-lg-auto">
-                    @foreach (filter_products(\App\Models\Product::inRandomOrder()->where('category_id', $category->id))->limit(8)->get()
-        as $key => $related_product)
+                    {{-- @foreach (filter_products(\App\Models\Product::inRandomOrder()->where('category_id', $category->id))->limit(8)->get() as $key => $related_product) --}}
+                    @foreach (filter_products(\App\Models\Product::where('category_id', $category->id))->limit(8)->orderBy('id', 'ASC')->get() as $key => $related_product)
                         <div class="productDesign">
                             <div class="productContainer">
-                                @if ($related_product->todays_deal == 1)
-                                    <div class="proBadge">
+                                <div class="productBadge">
+                                    @if ($related_product->todays_deal == 1)
+                                    <div class="proBadgePer">
                                         New
                                     </div>
-                                @else
-                                @endif
-                                @if (percentage($related_product->id) > 0)
-                                    <div class="proBadgePer">
-                                        -{{ percentage($related_product->id) }}%
-                                    </div>
-                                @endif
+                                    @else
+                                    @endif
+                                    @if (percentage($related_product->id) > 0)
+                                        <div class="proBadge">
+                                            -{{ percentage($related_product->id) }}%
+                                        </div>
+                                    @endif
+                                </div>
+                               
                                 <a href="{{ route('product', strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $related_product->slug)))) }}">
                                     <img class="img-fluid product-photo"
                                         src="{{ asset($related_product->thumbnail_img) }}" alt="" />
