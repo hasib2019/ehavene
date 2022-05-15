@@ -1,50 +1,63 @@
 @extends('frontend.layouts.app')
 @section('title')
-    About Us
+   Track Your Ehavene Products
 @stop
 @section('content')
 
     <section class="gry-bg py-4">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+        <style>
+
+
+.searchButton {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #00B4CC;
+  background: #00B4CC;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+
+        </style>
         <div class="container">
             <div class="row">
-                <div class="col">
-                    <div class="bg-white">
 
-                        <div class="col-md-12">
-                            <div class="card">
+
+                        <div class="col-md-12 col-xs-6">
+
                                 <div class="card-header">
-                                    <h4>Truck Product</h4>
+                                    <h4>Track Order</h4>
                                 </div>
-                                <div class="card-body" id="offersContainer">
-                                    <div class="card">
-                                        <div class="card-body">
+
                                              {{-- search strt  --}}
                                             <form  action="{{route('product_truck.show')}}" method ="POST">
                                                 @csrf
                                                 <br>
-                                                <div class="container-fluid" style="background-color: rgb(0 0 0 / 20%); border: 1px solid #8a753bbf;">
+                                                <div class="container-fluid" >
                                                     <div class="row">
                                                         <div class="col-8">
-                                                            <input type="text" class="form-control" style="margin-top: 2px;" id="code" name="code" required placeholder="Input Order Number">
+                                                            <input type="text" class="form-control" style="margin-top: 2px;" id="code" name="code" required  placeholder="Track Order looking for Products?">
                                                         </div>
                                                         <div class="col-2">
-                                                            <button type="submit" class="btn btn-sm btn-success" name="search" title="Search" style="width: 220px;margin-top: 3px;"><img src="https://img.icons8.com/android/24/000000/search.png"/>Search</button>
+                                                            <button type="submit" class="searchButton" name="search" title="Search">   <i class="fa fa-search"></i></button>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <br>
                                             </form>
                                             {{-- search end  --}}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
 
-                    </div>
-                </div>
             </div>
+
         </div>
+
     </section>
 
 @endsection

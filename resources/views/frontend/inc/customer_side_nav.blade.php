@@ -29,6 +29,12 @@
                     Orders
                 </a>
             </li>
+            <li class="nav-item {{ areActiveRoutesHome(['product-truck'])}}">
+                <a href="{{ route('product-truck') }}" class="">
+                    <span class="iconify" data-icon="raphael:history"></span>
+                    Track Orders
+                </a>
+            </li>
             <li class="nav-item {{ areActiveRoutesHome(['wishlists.index'])}}">
                 <a href="{{ route('wishlists.index') }}" class="">
                     <span class="iconify" data-icon="clarity:heart-solid"></span>
@@ -67,22 +73,22 @@
                     Address
                 </a>
             </li>
-            <li class="nav-item {{ areActiveRoutesHome(['wallet.index'])}}">
+            {{-- <li class="nav-item {{ areActiveRoutesHome(['wallet.index'])}}">
                 <a href="{{ route('wallet.index') }}" class="">
                     <span class="iconify" data-icon="fontisto:wallet"></span>
                     Wallet
                 </a>
-            </li>
-            
-            
+            </li> --}}
+
+
             <li class="nav-item {{ areActiveRoutesHome(['message.index'])}}">
                 <a href="{{ route('message.index') }}" class="">
                     <span class="iconify" data-icon="bpmn:end-event-message"></span>
                     Message
                 </a>
             </li>
-            
-            
+
+
             <!--new code -->
             <!--@if(isset(Auth::user()->ref_id))-->
             <!--<li class="nav-item {{ areActiveRoutesHome(['withdraw.index'])}}">-->
@@ -104,10 +110,10 @@
             <!--    </a>-->
             <!--</li>-->
             <!--@endif-->
-            
-            
+
+
             <!--end -->
-                
+
             <!--<li class="nav-item {{ areActiveRoutesHome(['affiliate.index'])}}">-->
             <!--    <a href="{{ route('affiliate.index') }}" class="">-->
             <!--        <span class="iconify" data-icon="ri:lock-password-fill"></span>-->
