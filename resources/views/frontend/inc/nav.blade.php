@@ -25,7 +25,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
                 <a style="padding: 0.5rem 1rem;" href="{{ route('contactus') }}">Contact
                     Us</a>
                 <a style="padding: 0.5rem 1rem;" href="{{ route('faq') }}">FAQ</a>
-                <a style="padding: 0.5rem 1rem;" href="{{ route('product-truck') }}">Product Truck</a>
+                <a style="padding: 0.5rem 1rem;" href="{{ route('product-truck') }}">Order Track</a>
             </div>
 
             <div class="col-md-3">
@@ -289,6 +289,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
                             <li class="list-group-item"><a href="{{ route('aboutus') }}">About us</a></li>
                             <li class="list-group-item"><a href="{{ route('contactus') }}">Contact Us</a></li>
                             <li class="list-group-item"><a href="{{ route('faq') }}">FAQ</a></li>
+                            <li class="list-group-item">  <a href="{{ route('product-truck') }}">Order Track</a></li>
 
                         </ul>
                     </div>
