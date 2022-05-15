@@ -24,6 +24,42 @@
 /*Resize the wrap to see the search bar change!*/
 
         </style>
+
+<div class="dashbaord-main">
+    @if(Auth::user()->user_type == 'seller')
+        @include('frontend.inc.seller_side_nav')
+    @elseif(Auth::user()->user_type == 'customer')
+        @include('frontend.inc.customer_side_nav')
+    @elseif(Auth::user()->user_type == 'doctor')
+        @include('frontend.inc.doctor_side_nav')
+    @endif
+    <div class="rightSection">
+        <div class="topbar">
+            <div class="fold" onclick='foldSidebar();'>
+                <span class="iconify" data-icon="eva:menu-fill"></span>
+            </div>
+            <!-- <img src="images/logo.png" class="mobile-menu-logo"> -->
+            <!--<div class="right-element">-->
+            <!--    <div class="dropdown">-->
+            <!--        <a class="btn dropdown-toggle profile-manage" href="#" role="button" id="dropdownMenuLink"-->
+            <!--            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+            <!--            @if(!empty(Auth::user()->avatar_original))-->
+            <!--            <img src="{{asset(Auth::user()->avatar_original)}}" alt="">-->
+            <!--            @else-->
+            <!--                <img src="{{asset('uploads/1.jpg')}}" alt="">-->
+            <!--            @endif-->
+            <!--        </a>-->
+
+            <!--        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">-->
+            <!--            <a class="dropdown-item" href="{{ route('profile') }}"><span class="iconify"-->
+            <!--                    data-icon="carbon:user-avatar"></span> Profile</a>-->
+            <!--            <a class="dropdown-item" href="{{ route('logout') }}"><span class="iconify"-->
+            <!--                    data-icon="ion:log-out-outline"></span> Log Out</a>-->
+            <!--        </div>-->
+            <!--    </div>-->
+            <!--</div>-->
+
+        </div>
         <div class="container">
             <div class="row">
 
