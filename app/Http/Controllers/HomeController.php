@@ -634,11 +634,11 @@ class HomeController extends Controller
             }
         }
 
-        $products = filter_products(Product::where('published', 1)->where('name', 'like', '%'.$request->search.'%'))->get()->take(3);
+        $products = filter_products(Product::where('published', 1)->where('name', 'like', '%'.$request->search.'%'))->get()->take(5);
 
         $subsubcategories = SubSubCategory::where('name', 'like', '%'.$request->search.'%')->get()->take(3);
 
-        $shops = Shop::where('name', 'like', '%'.$request->search.'%')->get()->take(3);
+        $shops = Shop::where('name', 'like', '%'.$request->search.'%')->get()->take(5);
 
         if(sizeof($keywords)>0 || sizeof($subsubcategories)>0 || sizeof($products)>0 || sizeof($shops) >0){
             return view('frontend.partials.search_content', compact('products', 'subsubcategories', 'keywords', 'shops'));
@@ -706,6 +706,9 @@ class HomeController extends Controller
                     // code...
                     break;
             }
+        }
+        else{
+            $products->orderBy('id', 'DESC');
         }
 
         $products = filter_products($products)->paginate(32)->appends(request()->query());
@@ -1098,6 +1101,10 @@ class HomeController extends Controller
 
     public function product_truck()
     {
+        if(!Auth::check()){
+            flash('As a customer, you must first login or register')->success();
+            return redirect()->route('user.login');
+        }
         return view("frontend.truckProduct.index");
     }
 

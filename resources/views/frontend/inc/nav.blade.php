@@ -25,7 +25,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
                 <a style="padding: 0.5rem 1rem;" href="{{ route('contactus') }}">Contact
                     Us</a>
                 <a style="padding: 0.5rem 1rem;" href="{{ route('faq') }}">FAQ</a>
-                <a style="padding: 0.5rem 1rem;" href="{{ route('product-truck') }}">Product Truck</a>
+                <a style="padding: 0.5rem 1rem;" href="{{ route('product-truck') }}">Order Track</a>
             </div>
 
             <div class="col-md-3">
@@ -74,7 +74,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
                                     @if (Session::has('cart'))
                                         <div class="cartitemsf">
                                             {{ count(Session::get('cart')) }}
-                                        </div> 
+                                        </div>
                                     @else
                                         <div class="cartitemsg">
                                             0
@@ -83,7 +83,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
                                 </div>
                             </span>
                         </div>
-                        
+
                         {{-- ////////////////////////////////////////////////////////////// --}}
                         <div style="position: relative; left: -11px; top: 8px; float: right;">
                             <div id="cartThakUpdate">
@@ -95,7 +95,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
                                     @php
                                         $product = \App\Models\Product::find($cartItem['id']);
                                         $total = $total + $cartItem['price'] * $cartItem['quantity'];
-        
+
                                     @endphp
                                 @endforeach
                                 <span >{{ single_price($total) }}</span>
@@ -151,7 +151,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
         <div class=" userActivitiesMobile">
             <span class="iconify mx-2" data-toggle="modal" data-target="#searchbar"
             data-icon="clarity:search-line"></span>
-          
+
             <span class="iconify mr-2 text-dark" data-icon="ei:cart" data-toggle="modal" data-target="#cart"></span>
             <span class="cartNumberMobileTop">
                 <div id="cartNumberTMobile">
@@ -159,7 +159,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
                         <div class="cartitemsf">
                             {{ count(Session::get('cart')) }}
                         </div>
-                        
+
                     @else
                         <div class="cartitemsg">
                             0
@@ -167,9 +167,9 @@ $generalsetting = \App\Models\GeneralSetting::first();
                     @endif
                 </div>
             </span>
-           
+
         </div>
-     
+
         {{-- <nav class="menuBar bg-white sticky">
             <div class="container-fluid">
                 <ul id="nav">
@@ -234,7 +234,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
             </li>
             @endforeach
         </ul>
- 
+
     </div>
         {{-- Hasib modified nav bar  --}}
 
@@ -245,7 +245,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
 <style>
     .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
         background-color: rgba(0,0,0,.05);
-    
+
     }
     .nav-item .nav-link{    text-align: center;
     text-transform: uppercase;
@@ -289,7 +289,8 @@ $generalsetting = \App\Models\GeneralSetting::first();
                             <li class="list-group-item"><a href="{{ route('aboutus') }}">About us</a></li>
                             <li class="list-group-item"><a href="{{ route('contactus') }}">Contact Us</a></li>
                             <li class="list-group-item"><a href="{{ route('faq') }}">FAQ</a></li>
-                            
+                            <li class="list-group-item">  <a href="{{ route('product-truck') }}">Order Track</a></li>
+
                         </ul>
                     </div>
                     <div class="tab-pane fade" style="overflow-y: auto; max-height: 100vh;" id="categories"
@@ -302,9 +303,9 @@ $generalsetting = \App\Models\GeneralSetting::first();
                                             data-toggle="collapse" data-target="#category-{{ $key }}"
                                             aria-expanded="true">
                                             <a href="{{ route('products.category', $category->id) }}">
-                                                <img src="{{ asset($category->icon) }}" alt="Girl in a jacket" width="30px" height="30px"> 
+                                                <img src="{{ asset($category->icon) }}" alt="Girl in a jacket" width="30px" height="30px">
                                                 {{ __($category->name) }}</a>
-                                                 
+
                                         </button>
 
                                         <div id="category-{{ $key }}" class="collapse">
@@ -342,7 +343,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
 </div>
 <!-- modal for search -->
 <div class="modal " id="searchbar" tabindex="-1" role="dialog" aria-hidden="true">
-    
+
     <div class="modal-dialog custom" role="document">
         <div class="modal-content h-100">
             <div class="modal-header">
@@ -355,7 +356,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
                 {{-- <select name="product_type" class=" rounded form-control">
                     <option value="*">All Categories</option>
                     <option value="Accessories">Accessories</option>
-                    
+
                 </select>
                 <input class="form-control rounded  my-3" type="text" placeholder="Search for products">
 
@@ -430,7 +431,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
                                         @endisset
                                         >{{ __($category->name) }}</option>
                                     @endforeach
-                                
+
                             </select>
                             {{-- /////////////////////// --}}
                             {{-- <div class="form-group category-select d-xl-block">
@@ -493,9 +494,9 @@ $generalsetting = \App\Models\GeneralSetting::first();
                         @endif
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Email</label>
+                        <label for="exampleInputEmail1">Phone Number</label>
                         <input type="phone" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}"
-                            value="{{ old('phone') }}" placeholder="{{ __('Phone') }}" name="email" id="email"
+                            value="{{ old('phone') }}" placeholder="{{ __('Phone Number') }}" name="email" id="email"
                             required>
                     </div>
                     <div class="form-group">
@@ -553,7 +554,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
                             </span>
                         @enderror
                     </div>
-                   
+
                     <div class="form-group">
                         <label for="exampleInputEmail1">Phone</label>
                         <input id="emailreg" type="number" class="form-control @error('error') is-invalid @enderror"
@@ -598,9 +599,9 @@ $generalsetting = \App\Models\GeneralSetting::first();
                 </form>
                 {{ csrf_field() }}
                 <p class="my-2"> Already have a acoount?
-                    <a href="#userLogin" data-icon="ph:user-thin" data-toggle="modal" data-target="#userLogin"
+                    <a href="#userRegister" data-icon="ph:user-thin" data-toggle="modal" data-target="#userRegister"
                         class="link"> Login</a>
-                        <a href="#userRegister" data-icon="ph:user-thin" data-toggle="modal" data-target="#userRegister" class="link">Create your account</a>
+                        {{-- <a href="#userRegister" data-icon="ph:user-thin" data-toggle="modal" data-target="#userRegister" class="link">Create your account</a> --}}
                 </p>
             </div>
         </div>

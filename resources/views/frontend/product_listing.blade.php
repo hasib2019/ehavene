@@ -1,13 +1,15 @@
 @extends('frontend.layouts.app')
 @section('title')
     @if(isset($category_id))
-       {{ \App\Models\Category::find($category_id)->name }} | Product Listing
-    @endif
-    @if(isset($subcategory_id))
-        {{ \App\Models\SubCategory::find($subcategory_id)->name }} | Product Listing
-    @endif
-    @if(isset($subsubcategory_id))
-        {{ \App\Models\SubSubCategory::find($subsubcategory_id)->name }} | Product Listing
+       {{ \App\Models\Category::find($category_id)->name }}
+    @elseif(isset($subcategory_id))
+        {{ \App\Models\SubCategory::find($subcategory_id)->name }}
+    @elseif(isset($subsubcategory_id))
+        {{ \App\Models\SubSubCategory::find($subsubcategory_id)->name }}
+     @elseif(isset($brand_id))
+     {{ \App\Models\Brand::find($brand_id)->name }}
+     @else
+    Shop
     @endif
 
 @stop
@@ -84,20 +86,21 @@ style="background-color:#EE3324;"
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
-                <h2 class="mb-0" style="color: #000000;">
-                @if(isset($brand_id))
-                <b> {{ \App\Models\Brand::find($brand_id)->name }} Brands Product </b>
-                
-                @endif
+                <h2 class="mb-0" style="color: #ffffff;">
                     @if(isset($category_id))
-                    <b>{{ \App\Models\Category::find($category_id)->name }} | Product Listing</b>
+                    {{ \App\Models\Category::find($category_id)->name }}
                  @elseif(isset($subcategory_id))
-                     <b>{{ \App\Models\SubCategory::find($subcategory_id)->name }} | Product Listing</b>
+                     {{ \App\Models\SubCategory::find($subcategory_id)->name }}
                  @elseif(isset($subsubcategory_id))
-                     <b>{{ \App\Models\SubSubCategory::find($subsubcategory_id)->name }} | Product Listing</b>
+                     {{ \App\Models\SubSubCategory::find($subsubcategory_id)->name }}
+
+                     @elseif(isset($brand_id))
+                     {{ \App\Models\Brand::find($brand_id)->name }}
                      @else
-                     {{-- Product Listing --}}
+                     Shop
                  @endif
+
+
                 </h2>
 
             </div>

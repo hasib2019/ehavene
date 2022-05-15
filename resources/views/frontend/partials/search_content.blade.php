@@ -1,9 +1,9 @@
 <div>
-   
+
     <div class="product">
         @if (count($products) > 0)
             <div class="title">{{__('Products')}}</div>
-            
+
             <ul>
                 @foreach ($products as $key => $product)
                     <li>
@@ -11,11 +11,11 @@
 ">
                             <div class="productCartList">
                                 <div class="items">
-                                    <img src="{{ asset($product->thumbnail_img) }}" style="width:80px; height:101px;"
+                                    <img src="{{ asset($product->thumbnail_img) }}" style="width:90px; height:91px;"
                                     class="img-fluid" alt="">
                                 </div>
                                 <div class="items">
-                                    <a href="{{ route('product', $product->slug) }}" class="" style="font-weight: 500; line-height: 24px;">
+                                    <a href="{{ route('product', $product->slug) }}" class="" style="font-weight: 500; line-height: 20px;">
                                         <p>{{ __($product->name) }}</p>
                                     </a>
                                     <div class="type"> @php
