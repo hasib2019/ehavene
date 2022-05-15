@@ -1103,7 +1103,7 @@ class HomeController extends Controller
     {
         if(!Auth::check()){
             flash('As a customer, you must first login or register')->success();
-            return redirect()->route('home');
+            return redirect()->route('user.login');
         }
         return view("frontend.truckProduct.index");
     }

@@ -598,9 +598,9 @@ $generalsetting = \App\Models\GeneralSetting::first();
                 </form>
                 {{ csrf_field() }}
                 <p class="my-2"> Already have a acoount?
-                    <a href="#userLogin" data-icon="ph:user-thin" data-toggle="modal" data-target="#userLogin"
+                    <a href="#userRegister" data-icon="ph:user-thin" data-toggle="modal" data-target="#userRegister"
                         class="link"> Login</a>
-                        <a href="#userRegister" data-icon="ph:user-thin" data-toggle="modal" data-target="#userRegister" class="link">Create your account</a>
+                        {{-- <a href="#userRegister" data-icon="ph:user-thin" data-toggle="modal" data-target="#userRegister" class="link">Create your account</a> --}}
                 </p>
             </div>
         </div>
