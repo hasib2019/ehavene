@@ -89,7 +89,7 @@
 		   data:$('#sendSmsResend').serialize(),
 		   success: function(data){
 			   $('#smsNew').html(data);
-               CountDown(60,$('#display')); 
+               CountDown(300,$('#display')); 
 		   }
 	   });
 	} 

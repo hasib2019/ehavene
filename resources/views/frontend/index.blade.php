@@ -57,7 +57,7 @@
                     <a href="{{ route('products.category', $fastCategory->id) }}">
                         <img class="categoriImgone" src="{{ asset($fastCategory->banner) }}" class="img-fluid">
                     </a>
-                    <a href="{{ route('products.category', $fastCategory->id) }}" class="catButton">
+                    <a href="" class="catButton">
                         {{ $fastCategory->name }}
                     </a>
                 </div>
