@@ -362,7 +362,11 @@
                             <div class="tab-content pt-0">
                                 <!--<div class="tab-pane active show" id="tab_default_1">-->
                                 <div class="tab-pane active show" id="tab_default_1">
-
+<style>
+    ul {
+    list-style: inside !important;
+}
+</style>
                                     <div class="row">
                                         <div class="col-md-12">
                                             {!! $product->description !!}
