@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/testdata', [CustomerController::class, 'testData']);
+Route::get('/banner', [ApiController::class, 'banner']);
+Route::get('/categories', [ApiController::class, 'categories']);
