@@ -24,6 +24,7 @@
 /*Resize the wrap to see the search bar change!*/
 
         </style>
+        
 
 <div class="dashbaord-main">
     @if(Auth::user()->user_type == 'seller')
