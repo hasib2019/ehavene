@@ -57,7 +57,7 @@
                     <a href="{{ route('products.category', $fastCategory->id) }}">
                         <img class="categoriImgone" src="{{ asset($fastCategory->banner) }}" class="img-fluid">
                     </a>
-                    <a href="" class="catButton">
+                    <a href="{{ route('products.category', $fastCategory->id) }}" class="catButton">
                         {{ $fastCategory->name }}
                     </a>
                 </div>
@@ -169,7 +169,7 @@
                 </div>
                 <div class="row productView mx-lg-auto">
                     {{-- @foreach (filter_products(\App\Models\Product::inRandomOrder()->where('category_id', $category->id))->limit(8)->get() as $key => $related_product) --}}
-                    @foreach (filter_products(\App\Models\Product::where('category_id', $category->id))->limit(8)->orderBy('id', 'ASC')->get() as $key => $related_product)
+                    @foreach (filter_products(\App\Models\Product::inRandomOrder()->where('category_id', $category->id))->limit(8)->orderBy('id', 'ASC')->get() as $key => $related_product)
                         <div class="productDesign">
                             <div class="productContainer">
                                 <div class="productBadge">
@@ -185,7 +185,7 @@
                                         </div>
                                     @endif
                                 </div>
-                               
+
                                 <a href="{{ route('product', strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $related_product->slug)))) }}">
                                     <img class="img-fluid product-photo"
                                         src="{{ asset($related_product->thumbnail_img) }}" alt="" />

@@ -335,6 +335,12 @@
                 </div>
                 <div class="col-xl-9">
                     <div class="product-desc-tab bg-white">
+                        <style>
+                            #tab_default_1 li {
+                            list-style: inside !important;
+                        }
+                        </style>
+
                         <div class="tabs tabs--style-2">
                             <ul class="nav nav-tabs justify-content-center sticky-top bg-gray">
                                 <li class="nav-item">
@@ -362,12 +368,7 @@
                             <div class="tab-content pt-0">
                                 <!--<div class="tab-pane active show" id="tab_default_1">-->
                                 <div class="tab-pane active show" id="tab_default_1">
-<style>
-    ul {
-    list-style: inside !important;
-}
-</style>
-                                    <div class="row">
+                        <div class="row">
                                         <div class="col-md-12">
                                             {!! $product->description !!}
                                         </div>
