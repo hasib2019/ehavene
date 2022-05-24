@@ -45,11 +45,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/sitemap', function(){
-    $sitemap = Sitemap::create()
-    ->add(Url::create('/home'))
-    ->add(Url::create('/shop'))
-    ->add(Url::create('/'));
-   
+    $sitemap = Sitemap::create();   
     $post = ModelsSiteMap::all();
     foreach ($post as $post) {
         $sitemap->add(Url::create("/product/{$post->slug}"));
