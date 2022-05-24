@@ -19,7 +19,11 @@ use App\Http\Controllers\PurchaseHistoryController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\ShippingAddessController;
 use App\Http\Controllers\RegularMedicationController;
-
+use App\Http\Controllers\SiteMapController;
+use App\Models\SiteMap as ModelsSiteMap;
+use App\Models\Product;
+use Spatie\Sitemap\Sitemap;
+use Spatie\Sitemap\Tags\Url;
 require "admin.php";
 
 //  cache clear
@@ -36,7 +40,28 @@ Route::get('/clear', function() {
  });
 Route::get('/', [HomeController::class, 'index'])->middleware('page-cache')->name('home');
 Route::get('/home', [HomeController::class, 'index'])->middleware('page-cache')->name('home');
-
+// sitemap 
+Route::get('/', function () {
+    return view('welcome');
+});
+Route::get('/sitemap', function(){
+    $sitemap = Sitemap::create()
+    ->add(Url::create('/home'))
+    ->add(Url::create('/shop'))
+    ->add(Url::create('/'));
+   
+    $post = ModelsSiteMap::all();
+    foreach ($post as $post) {
+        $sitemap->add(Url::create("/product/{$post->slug}"));
+    }
+	$post = Product::all();
+    foreach ($post as $post) {
+        $sitemap->add(Url::create("/product/{$post->slug}"));
+    }
+    $sitemap->writeToFile(public_path('sitemap.xml'));
+    $sitemap->writeToFile(base_path('sitemap.xml'));
+});
+// sitemap end 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::post('/language', 'App\Http\Controllers\LanguageController@changeLanguage')->name('language.change');
 Route::post('/currency', 'App\Http\Controllers\CurrencyController@changeCurrency')->name('currency.change');
