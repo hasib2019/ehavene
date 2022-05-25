@@ -32,6 +32,139 @@ body {
     color: #878787;
     font-weight: 400;
 }
+/* front page  */
+#nav {
+
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+#nav li {
+    display: block;
+    position: relative;
+    float: left;
+    background: #ffffff;
+    /* menu background color */
+}
+
+
+#nav li a {
+    display: block;
+    padding: 0;
+    text-decoration: none;
+    width: 120px;
+    /* this is the width of the menu items */
+    line-height: 50px;
+    /* this is the hieght of the menu items */
+    color: #0c0909;
+    /* list item font color */
+}
+
+#nav li li a {
+    font-size: 100%;
+    display: block;
+    padding: 0;
+    text-decoration: none;
+    width: 200px;
+    /* this is the width of the menu items */
+    line-height: 30px;
+    /* this is the hieght of the menu items */
+    color: #0c0909;
+    /* list item font color */
+}
+
+
+/* smaller font size for sub menu items */
+
+#nav li li:hover {
+    background: red;
+}
+
+/* highlights current hovered list item and the parent list items when hovering over sub menues */
+
+#nav ul {
+    position: absolute;
+    padding: 0;
+    left: 0;
+    display: none;
+    /* hides sublists */
+}
+
+#nav li:hover ul ul {
+    display: none;
+}
+
+/* hides sub-sublists */
+
+#nav li:hover ul {
+    display: block;
+}
+
+/* shows sublist on hover */
+
+#nav li li:hover ul {
+    display: block;
+    /* shows sub-sublist on hover */
+    margin-left: 120px;
+    /* this should be the same width as the parent list item */
+    margin-top: -35px;
+    /* aligns top of sub menu with top of list item */
+}
+
+#nav1 li:hover ul {
+    display: block;
+    /* shows sub-sublist on hover */
+    margin-right: 330px;
+    /* this should be the same width as the parent list item */
+    margin-top: -35px;
+    /* aligns top of sub menu with top of list item */
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    div.lglogo {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+
+    nav.menuBar {
+        display: none;
+    }
+
+    .mbl {
+        border-radius: 40px;
+        font-size: 14px;
+        font-weight: 600;
+        min-height: 35px;
+        cursor: pointer;
+        width: 74%;
+        display: block;
+        margin-bottom: 14px;
+    }
+
+    .mbMargin {
+        margin-left: 11px;
+        margin-right: 1px !important;
+    }
+
+    .hr {
+        margin-top: 1rem !important;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 1px solid rgba(0, 0, 0, .1) !important;
+
+    }
+
+    .ml {
+        margin-left: 55px;
+    }
+
+}
+/* main page end  */
 .paddingRemove {
     padding: 0 !important;
 }

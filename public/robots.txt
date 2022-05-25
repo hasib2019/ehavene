@@ -1,2 +1,7 @@
+User-agent: Googlebot
+Disallow: /nogooglebot/
+
 User-agent: *
-Disallow:
+Allow: /
+
+Sitemap: https://www.ehavene.com.bd/public/sitemap.xml
