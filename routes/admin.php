@@ -22,7 +22,7 @@ use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\DocDepartmentController;
 use App\Http\Controllers\ShippingAddessController;
 use App\Http\Controllers\OrderController;
-
+use App\Http\Controllers\SiteMapController;
 use App\Http\Controllers\RegularMedicationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EmailTempleteController;
@@ -377,6 +377,10 @@ Route::group(['prefix' =>'admin', 'middleware' => ['auth', 'admin']], function()
 	Route::post('/withdraw/update_payment_status', 'App\Http\Controllers\WithdrawController@update_payment_status')->name('withdraw.update_payment_status');
 	Route::get('withdraw/seller/{order_id}', 'App\Http\Controllers\InvoiceController@withdraw_invoice_download')->name('withdraw.invoice.download');
 	// withdraw end.
+	// sitemap start 
+	Route::get('/all-sitemap', [SiteMapController::class, 'index'])->name('sitemap.index');
+	Route::post('/all-sitemap-store', [SiteMapController::class, 'store'])->name('sitemap.store');
+	Route::post('/all-sitemap-update', [SiteMapController::class, 'update'])->name('sitemap.update');
 
 
 });

@@ -486,7 +486,14 @@
                             </a>
                         </li>
                         @endif
-
+                        @if(Auth::user()->user_type == 'admin' || in_array('18', json_decode(Auth::user()->staff->role->permissions)))
+                        <li class="{{ areActiveRoutes(['sitemap.index'])}}">
+                            <a class="nav-link" href="{{ route('sitemap.index') }}">
+                                <i class="fa fa-sitemap"></i>
+                                <span class="menu-title">{{__('SiteMap')}}</span>
+                            </a>
+                        </li>
+                        @endif
                         @if(Auth::user()->user_type == 'admin' || in_array('18', json_decode(Auth::user()->staff->role->permissions)))
                         <li>
                             <a href="#">
@@ -509,7 +516,7 @@
                             </ul>
                         </li>
                         @endif
-
+                       
 
 
 

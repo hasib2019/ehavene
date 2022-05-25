@@ -14,10 +14,9 @@ class SiteMapController extends Controller
      */
     public function index()
     {
-        $posts = SiteMap::all();
-        return response()->view('sitemap/index', [
-            'posts' => $posts
-        ])->header('Content-Type', 'text/xml');
+        $siteMap = SiteMap::all();
+        // dd($siteMap);
+        return view('sitemap.index', compact('siteMap'));
     }
 
     /**
@@ -38,7 +37,15 @@ class SiteMapController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $siteMap = new SiteMap();
+        $siteMap->title = $request->title;
+        $siteMap->slug = $request->slug;
+        $siteMap->body = $request->desc;
+        if($siteMap->save()){
+            flash(__('Your Site Mao has been created successfully!'))->success();
+            return redirect()->route('sitemap.index');
+        }
+
     }
 
     /**
@@ -72,7 +79,14 @@ class SiteMapController extends Controller
      */
     public function update(Request $request, SiteMap $siteMap)
     {
-        //
+        $siteMap = SiteMap::find($request->id);
+        $siteMap->title = $request->title;
+        $siteMap->slug = $request->slug;
+        $siteMap->body = $request->desc;
+        if($siteMap->save()){
+            flash(__('Your Site Mao has been Update successfully!'))->success();
+            return redirect()->route('sitemap.index');
+        }
     }
 
     /**
