@@ -110,7 +110,7 @@
             j.src =
                 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
             f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-NLJ5K3M');
+        })(window, document, 'script', 'dataLayer', 'GTM-M6MJM36');
     </script>
     <!-- End Google Tag Manager -->
     <!-- Facebook Chat style -->
@@ -259,6 +259,7 @@
                 display: block;
                 margin-bottom: 14px;
             }
+
             .mbMargin {
                 margin-left: 11px;
                 margin-right: 1px !important;
@@ -303,7 +304,10 @@
 </head>
 
 <body>
-
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M6MJM36" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <!-- MAIN WRAPPER -->
     {{-- <div class="body-wrap shop-default shop-cards shop-tech"> --}}
