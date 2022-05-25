@@ -122,7 +122,6 @@ class ShopController extends Controller
     public function update(Request $request, $id)
     {
         $shop = Shop::find($id);
-
         if($request->has('name') && $request->has('address')){
             $shop->name = $request->name;
             $shop->address = $request->address;

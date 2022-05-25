@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SiteMap;
 use Illuminate\Http\Request;
-
+use App\Models\SiteMap as ModelsSiteMap;
+use App\Models\Product;
+use Spatie\Sitemap\Sitemap;
+use Spatie\Sitemap\Tags\Url;
 class SiteMapController extends Controller
 {
     /**
@@ -14,7 +16,7 @@ class SiteMapController extends Controller
      */
     public function index()
     {
-        $siteMap = SiteMap::all();
+        $siteMap = ModelsSiteMap::all();
         // dd($siteMap);
         return view('sitemap.index', compact('siteMap'));
     }
@@ -37,7 +39,7 @@ class SiteMapController extends Controller
      */
     public function store(Request $request)
     {
-        $siteMap = new SiteMap();
+        $siteMap = new ModelsSiteMap();
         $siteMap->title = $request->title;
         $siteMap->slug = $request->slug;
         $siteMap->body = $request->desc;
@@ -79,7 +81,7 @@ class SiteMapController extends Controller
      */
     public function update(Request $request, SiteMap $siteMap)
     {
-        $siteMap = SiteMap::find($request->id);
+        $siteMap = ModelsSiteMap::find($request->id);
         $siteMap->title = $request->title;
         $siteMap->slug = $request->slug;
         $siteMap->body = $request->desc;
@@ -98,5 +100,22 @@ class SiteMapController extends Controller
     public function destroy(SiteMap $siteMap)
     {
         //
+    }
+
+    public function generate()
+    {
+        $sitemap = Sitemap::create();   
+        $post = ModelsSiteMap::all();
+        foreach ($post as $post) {
+            $sitemap->add(Url::create("/product/{$post->slug}"));
+        }
+        $post = Product::all();
+        foreach ($post as $post) {
+            $sitemap->add(Url::create("/product/{$post->slug}"));
+        }
+        $sitemap->writeToFile(public_path('sitemap.xml'));
+        $sitemap->writeToFile(base_path('sitemap.xml'));
+        flash(__('Your Site Mao has been Update successfully!'))->success();
+            return redirect()->route('sitemap.index');
     }
 }

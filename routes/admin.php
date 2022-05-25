@@ -381,6 +381,7 @@ Route::group(['prefix' =>'admin', 'middleware' => ['auth', 'admin']], function()
 	Route::get('/all-sitemap', [SiteMapController::class, 'index'])->name('sitemap.index');
 	Route::post('/all-sitemap-store', [SiteMapController::class, 'store'])->name('sitemap.store');
 	Route::post('/all-sitemap-update', [SiteMapController::class, 'update'])->name('sitemap.update');
+	Route::get('/generate-sitemap', [SiteMapController::class, 'generate'])->name('sitemap.generate');
 
 
 });

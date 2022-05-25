@@ -4,7 +4,9 @@
 
 <div class="row">
     <div class="col-sm-12">
-        <button type="button" class="btn btn-purple pull-right mb-2 pb-2" data-toggle="modal" data-target="#sitemap"> Add </button>
+        <a href="{{route('sitemap.generate')}}"><button type="button" class="btn btn-success pull-left mb-2 pb-2"> Generate Site Map </button></a>
+        <button type="button" class="btn btn-purple pull-right mb-2 pb-2" data-toggle="modal" data-target="#sitemap"> Add Site Map</button>
+     
     </div>
 </div>
 <br>
