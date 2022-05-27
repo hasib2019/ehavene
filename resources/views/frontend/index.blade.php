@@ -170,73 +170,76 @@
                 <div class="row productView mx-lg-auto">
                     {{-- @foreach (filter_products(\App\Models\Product::inRandomOrder()->where('category_id', $category->id))->limit(8)->get() as $key => $related_product) --}}
                     @foreach (filter_products(\App\Models\Product::inRandomOrder()->where('category_id', $category->id))->limit(8)->orderBy('id', 'ASC')->get() as $key => $related_product)
-                        <div class="productDesign">
-                            <div class="productContainer">
-                                <div class="productBadge">
-                                    @if ($related_product->todays_deal == 1)
-                                    <div class="proBadgePer">
-                                        New
-                                    </div>
-                                    @else
-                                    @endif
-                                    @if (percentage($related_product->id) > 0)
-                                        <div class="proBadge">
-                                            -{{ percentage($related_product->id) }}%
+                        <div class="col-md-3 col-xl-3 col-lg-3 col-sm-6" style="padding: 10px !important">
+                            <div class="productDesign">
+                                <div class="productContainer">
+                                    <div class="productBadge">
+                                        @if ($related_product->todays_deal == 1)
+                                        <div class="proBadgePer">
+                                            New
                                         </div>
-                                    @endif
-                                </div>
-
-                                <a href="{{ route('product', strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $related_product->slug)))) }}">
-                                    <img class="img-fluid product-photo"
-                                        src="{{ asset($related_product->thumbnail_img) }}" alt="" />
-                                </a>
-                                <div class="inner">
-                                    <button class="btn-invisible"
-                                        onclick="showAddToCartModal({{ $related_product->id }})">
-                                        <span class="iconify" data-icon="clarity:eye-show-solid"></span>
-                                        <article class="d-inline">Quick View</article>
-                                    </button>
+                                        @else
+                                        @endif
+                                        @if (percentage($related_product->id) > 0)
+                                            <div class="proBadge">
+                                                -{{ percentage($related_product->id) }}%
+                                            </div>
+                                        @endif
+                                    </div>
+    
                                     <a href="{{ route('product', strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $related_product->slug)))) }}">
-                                        <button class="btn-invisible">
-                                            <span class="iconify" data-icon="ei:cart"></span>
-                                            <article class="d-inline">Details View</article>
-                                        </button>
+                                        <img class="img-fluid product-photo"
+                                            src="{{ asset($related_product->thumbnail_img) }}" alt="" />
                                     </a>
+                                    <div class="inner">
+                                        <button class="btn-invisible"
+                                            onclick="showAddToCartModal({{ $related_product->id }})">
+                                            <span class="iconify" data-icon="clarity:eye-show-solid"></span>
+                                            <article class="d-inline">Quick View</article>
+                                        </button>
+                                        <a href="{{ route('product', strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $related_product->slug)))) }}">
+                                            <button class="btn-invisible">
+                                                <span class="iconify" data-icon="ei:cart"></span>
+                                                <article class="d-inline">Details View</article>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+    
+                                <div class="product-info mb-2">
+                                    <h6 class="product-title">
+                                        <a class=""
+                                            href="{{ route('product', strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $related_product->slug)))) }}">{{ __($related_product->name) }}</a>
+                                    </h6>
+                                    <span class="price p-2">
+                                        @if (home_discounted_base_price($related_product->id) != home_price($related_product->id))
+                                            <del class="pl-2">{{ home_price($related_product->id) }}</del>
+                                        @endif
+    
+                                        <ins
+                                            class="pl-2">{{ home_discounted_base_price($related_product->id) }}</ins>
+                                    </span>
+                                    {{-- <div class="variationSec">
+                                <!-- color 1 -->
+                                <input type="radio" id="grey" class="variation" name="variation" value="1">
+                                <label for="grey" title="grey">
+                                    <div class="setColor grey"></div>
+                                </label>
+                                <!-- color2 -->
+                                <input type="radio" id="pink" class="variation" name="variation" value="2">
+                                <label for="pink" title="pink">
+                                    <div class="setColor pink"></div>
+                                </label>
+                                <!-- color 3 -->
+                                <input type="radio" id="black" class="variation" name="variation" value="2">
+                                <label for="black" title="black">
+                                    <div class="setColor black"></div>
+                                </label>
+                            </div> --}}
+    
                                 </div>
                             </div>
-
-                            <div class="product-info mb-2">
-                                <h6 class="product-title">
-                                    <a class=""
-                                        href="{{ route('product', strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $related_product->slug)))) }}">{{ __($related_product->name) }}</a>
-                                </h6>
-                                <span class="price p-2">
-                                    @if (home_discounted_base_price($related_product->id) != home_price($related_product->id))
-                                        <del class="pl-2">{{ home_price($related_product->id) }}</del>
-                                    @endif
-
-                                    <ins
-                                        class="pl-2">{{ home_discounted_base_price($related_product->id) }}</ins>
-                                </span>
-                                {{-- <div class="variationSec">
-                            <!-- color 1 -->
-                            <input type="radio" id="grey" class="variation" name="variation" value="1">
-                            <label for="grey" title="grey">
-                                <div class="setColor grey"></div>
-                            </label>
-                            <!-- color2 -->
-                            <input type="radio" id="pink" class="variation" name="variation" value="2">
-                            <label for="pink" title="pink">
-                                <div class="setColor pink"></div>
-                            </label>
-                            <!-- color 3 -->
-                            <input type="radio" id="black" class="variation" name="variation" value="2">
-                            <label for="black" title="black">
-                                <div class="setColor black"></div>
-                            </label>
-                        </div> --}}
-
-                            </div>
+                            
                         </div>
                     @endforeach
                 </div>
