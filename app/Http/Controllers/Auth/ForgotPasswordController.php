@@ -92,7 +92,7 @@ class ForgotPasswordController extends Controller
             ]);
 
           Mail::send('emails.forgetPassword', ['token' => $token], function($message) use($request){
-            $message->from('info@aponpharmacy.com', 'Apon Health');
+            $message->from('support@ehavene.com.bd', 'ehavene');
             $message->to($request->email);
             $message->subject('Reset Password');
           });
