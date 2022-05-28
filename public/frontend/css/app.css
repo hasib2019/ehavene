@@ -2686,6 +2686,7 @@ footer .social-sites li a .iconify {
     -ms-flex-align: center;
     align-items: center;
     position: relative;
+    /* margin-top: 78px; */
 }
 
 .dashbaord-main .leftSection .user-profile .close-dashboard-sidebar {
@@ -2705,7 +2706,7 @@ footer .social-sites li a .iconify {
     justify-content: center;
     position: absolute;
     right: 16px;
-    top: 100px;
+    top: -18px;
     display: none;
 }
 
@@ -2714,6 +2715,9 @@ footer .social-sites li a .iconify {
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
+    }
+    .dashbaord-main .leftSection .user-profile {
+        margin-top: 78px;
     }
 }
 

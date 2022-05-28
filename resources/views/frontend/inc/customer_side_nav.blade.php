@@ -6,14 +6,14 @@
         <div class="close-dashboard-sidebar">
             <span class="iconify" onclick="foldSidebar();" data-icon="mdi:window-close"></span>
         </div>
-        @if(!empty(Auth::user()->avatar_original))
+        {{-- @if(!empty(Auth::user()->avatar_original))
             <img src="{{asset(Auth::user()->avatar_original)}}" alt="">
         @else
             <img src="{{asset('uploads/1.jpg')}}" alt="">
         @endif
         <p class='user-name mb-0'>
             <span>{{ Auth::user()->name }}</span>
-        </p>
+        </p> --}}
     </div>
     <nav class="sidenav">
         <ul>
