@@ -206,57 +206,58 @@
                                 </div>
                             @endforeach
                             <div class="addCart">
-                                <div class="row">
+                                <div class="row mr-1">
                                     <div class="col-6 col-md-4 col-sm-6 mt-2 pr-0">
                                         <div class="cart">
                                             <span class="m">
-                                                <button class="btn btn-number" type="button" data-type="minus" data-field="quantity"
-                                                    disabled="disabled">
+                                                <button class="btn btn-number" type="button" data-type="minus"
+                                                    data-field="quantity" disabled="disabled">
                                                     <i class="la la-minus"></i>
                                                 </button>
                                             </span>
                                             <input type="text" name="quantity" class="form-control input-number text-center"
                                                 placeholder="1" value="1" min="1" max="100">
                                             <span class="input-group-btn">
-                                                <button class="btn btn-number" type="button" data-type="plus" data-field="quantity">
+                                                <button class="btn btn-number" type="button" data-type="plus"
+                                                    data-field="quantity">
                                                     <i class="la la-plus"></i>
                                                 </button>
                                             </span>
                                         </div>
                                     </div>
-                                   
+
                                     <div class="col-6 col-md-4 col-sm-6 mt-2  pr-0">
                                         @php
                                             $generalsetting = \App\Models\GeneralSetting::first();
                                         @endphp
-                                        <div class="text-secondary" id="colFour" >
+                                        <div class="text-secondary" id="colFour">
                                             @if ($generalsetting->phone != null)
                                                 <a class="btn btn-outline btn-base-1 strong-800 w-100"
                                                     href="tel:{{ $generalsetting->phone }}">
                                                     <i class="la la-phone-square"></i>
                                                     <span class="d-md-inline-block"> {{ $generalsetting->phone }}</span>
-        
+
                                                 </a>
                                             @else
                                                 <a class="strong-800" href="tel:01755944277">
                                                     <i class="la la-phone-square"></i>
                                                     01755944277
-        
+
                                                 </a>
                                             @endif
-        
+
                                         </div>
                                     </div>
                                 </div>
-                                
-                               
-                               
+
+
+
                             </div>
                     </form>
                     {{-- form close --}}
                 </div>
                 <div>
-                    <div class="row">
+                    <div class="row mr-1">
                         <div class="col-md-4 col-sm-12 mt-2 pr-0">
                             <button class="addCartBtn" onclick="addToCart()">Add to Cart</button>
 
@@ -264,20 +265,20 @@
                         <div class="col-6 col-sm-6 col-md-4 mt-2 pr-0">
                             <!-- Add to wishlist button -->
                             <button type="button" class="btn btn-outline btn-base-1 btn-icon-left w-100"
-                            onclick="addToWishList({{ $product->id }})">
-                            <i class="la la-heart-o"></i>
-                            <span class="d-md-inline-block"> {{ __('Add to wishlist') }}</span>
+                                onclick="addToWishList({{ $product->id }})">
+                                <i class="la la-heart-o"></i>
+                                <span class="d-md-inline-block"> {{ __('Add to wishlist') }}</span>
                             </button>
                         </div>
                         <div class="col-6 col-sm-6 col-md-4 mt-2 pr-0">
                             <!-- Add to compare button -->
                             <button type="button" class="btn btn-outline btn-base-1 btn-icon-left w-100"
-                            onclick="addToCompare({{ $product->id }})">
-                            <i class="la la-refresh"></i>
-                            <span class="d-md-inline-block"> {{ __('Add to compare') }}</span>
+                                onclick="addToCompare({{ $product->id }})">
+                                <i class="la la-refresh"></i>
+                                <span class="d-md-inline-block"> {{ __('Add to compare') }}</span>
                             </button>
                         </div>
-                    </div>                   
+                    </div>
                 </div>
                 <hr style="padding-bottom: 10px">
                 <div style="text-align:center;" class="sharethis-inline-share-buttons"></div>
@@ -351,8 +352,9 @@
                     <div class="product-desc-tab bg-white">
                         <style>
                             #tab_default_1 li {
-                            list-style: inside !important;
-                        }
+                                list-style: inside !important;
+                            }
+
                         </style>
 
                         <div class="tabs tabs--style-2">
@@ -382,7 +384,7 @@
                             <div class="tab-content pt-0">
                                 <!--<div class="tab-pane active show" id="tab_default_1">-->
                                 <div class="tab-pane active show" id="tab_default_1">
-                        <div class="row">
+                                    <div class="row">
                                         <div class="col-md-12">
                                             {!! $product->description !!}
                                         </div>
@@ -561,8 +563,7 @@
                         <div class="caorusel-box" style="height: 400px;">
                             <div class="slick-carousel" data-slick-items="4" data-slick-lg-items="4"
                                 data-slick-md-items="3" data-slick-sm-items="2" data-slick-xs-items="2">
-                                @foreach (filter_products(\App\Models\Product::where('subcategory_id', $product->subcategory_id)->where('id', '!=', $product->id))->limit(10)->get()
-        as $key => $related_product)
+                                @foreach (filter_products(\App\Models\Product::where('subcategory_id', $product->subcategory_id)->where('id', '!=', $product->id))->limit(10)->get() as $key => $related_product)
                                     <div class="product-card-2 card card-product shop-cards shop-tech">
                                         <div class="card-body p-0">
                                             <div class="card-image">
