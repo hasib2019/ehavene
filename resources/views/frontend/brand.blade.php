@@ -9,7 +9,6 @@
 @endsection
 @section('content')
 <div class="container-fluid">
-  
                 {{-- brand start  --}}
             <div class="row">
                 <div class="single_section" style="padding-top: 50px">
@@ -24,7 +23,7 @@
                             <div class="col-lg-2 col-md-4 col-sm-6 brandmob p-1">
                                 <a href="{{ route('products.brand', $brand->id) }}">
                                 <div class="single_item">
-                                        <img src="{{ asset($brand->logo) }}" width="180px;" alt="" style="margin-left: 15px;">
+                                        <img src="{{ asset($brand->logo) }}" class="img-thumbnail" alt="Ehavene Brands">
                                     <div class="product_info">
                                         {{-- <div class="pro_logo">
                                             <a href="{{ route('products.brand', $brand->id) }}"><img src="{{ asset($brand->banner) }}" alt=""></a>
