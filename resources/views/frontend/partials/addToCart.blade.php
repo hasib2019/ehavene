@@ -61,10 +61,7 @@
 
                 <form id="option-choice-form">
                     @csrf
-                    <input type="hidden" name="id" value="{{ $product->id }}">
-                    <input type="hidden" name="prescribed" value="{{ $product->prescribed }}">
-
-                  
+                    <input type="hidden" name="id" value="{{ $product->id }}">              
 
                       @if (count(json_decode($product->colors)) > 0)
                             <small class="font-weight-bold text-uppercase text-dark"> Color:

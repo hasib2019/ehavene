@@ -3,13 +3,14 @@
     Ehavene | Skin Care, Health & Beauty Shop in Bangladesh
 @stop
 @section('css')
-
+    
     <style>
         .cat_space_item {
             margin-left: 10px;
             margin-right: 10px;
             margin-bottom: 20px;
         }
+
         .nt_bg_lz {
             display: block;
             width: 100%;
@@ -18,6 +19,7 @@
             background-repeat: no-repeat;
             background-size: cover;
         }
+
     </style>
 
 @endsection
@@ -124,6 +126,7 @@
             /* padding: 15px; */
             padding-bottom: 10px
         }
+
         .cat-item .cat-item-inner {
             display: block;
             background: #ffffff;
@@ -131,17 +134,17 @@
             box-shadow: 0px 0px 7px 0px rgb(0 0 0 / 10%);
             padding: 15px 0 5px 0;
         }
+
         .cat-item a:hover {
             color: red
         }
 
     </style>
 
-   {{-- <section>
+    {{-- <section>
         <div class="container">
             <div class="cat-items-wrap">
-                @foreach (\App\Models\Category::inRandomOrder()->get()
-                as $category)
+                @foreach (\App\Models\Category::inRandomOrder()->get() as $category)
                 <div class="cat-item">
                     <a href="{{ route('products.category', $category->id) }}" class="cat-item-inner">
                         <span class="cat-icon"><img
@@ -156,8 +159,96 @@
 
     </section> --}}
     {{-- category section  end --}}
+
+    {{-- flash deal --}}
+    @php
+    $flash_deal = \App\Models\FlashDeal::where('status', 1)->first();
+    @endphp
+
+    @if ($flash_deal != null && strtotime(date('d-m-Y')) >= $flash_deal->start_date && strtotime(date('d-m-Y')) <= $flash_deal->end_date)
+        <section class="productFeatured productFetRem">
+            <div class="container">
+                {{-- <div class="row">
+                    <div class="col-md-12 text-center my-2">
+                        <h4 class="mb-0 titlePro text-danger">
+                            {{$flash_deal->title}}
+                        <h4>
+                        <!--<h6 class="mb-0"><i>Top view in this week</i></h6>-->
+                    </div>
+                </div> --}}
+                {{-- <p>
+                    <div class="wrap-countdown mercado-countdown" data-expire="{{ Carbon\Carbon::parse($flash_deal->end_date)->format('Y/m/d h:i:s') }}"></div>
+                    </p> --}}
+                <div class="row productView mx-lg-auto">
+                    @foreach ($flash_deal->flash_deal_products as $key => $flash_deal_product)
+                        @foreach (\App\Models\Product::where('id', $flash_deal_product->product_id)->limit(12)->get() as $key => $related_product)
+                            <div class="col-md-3 col-sm-6 col-xl-3 col-lg-3" style="padding: 5px !important">
+                                <div class="productDesign">
+                                    <div class="productContainer">
+                                        <div class="productBadge">
+                                            @if ($related_product->todays_deal == 1)
+                                                <div class="proBadgePer">
+                                                    New
+                                                </div>
+                                            @else
+                                            @endif
+                                            @if (percentage($related_product->id) > 0)
+                                                <div class="proBadge">
+                                                    -{{ percentage($related_product->id) }}%
+                                                </div>
+                                            @endif
+                                        </div>
+
+                                        <a
+                                            href="{{ route('product', strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $related_product->slug)))) }}">
+                                            <img class="img-fluid product-photo"
+                                                src="{{ asset($related_product->thumbnail_img) }}" alt="" />
+                                        </a>
+                                        <div class="inner">
+                                            <button class="btn-invisible"
+                                                onclick="showAddToCartModal({{ $related_product->id }})">
+                                                <span class="iconify" data-icon="clarity:eye-show-solid"></span>
+                                                <article class="d-inline">Quick View</article>
+                                            </button>
+                                            <a
+                                                href="{{ route('product', strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $related_product->slug)))) }}">
+                                                <button class="btn-invisible">
+                                                    <span class="iconify" data-icon="ei:cart"></span>
+                                                    <article class="d-inline">Details View</article>
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-info mb-2">
+                                        <h6 class="product-title">
+                                            <a class=""
+                                                href="{{ route('product', strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $related_product->slug)))) }}">{{ __($related_product->name) }}</a>
+                                        </h6>
+                                        <span class="price p-2">
+                                            @if (home_discounted_base_price($related_product->id) != home_price($related_product->id))
+                                                <del class="pl-2">{{ home_price($related_product->id) }}</del>
+                                            @endif
+
+                                            <ins
+                                                class="pl-2">{{ home_discounted_base_price($related_product->id) }}</ins>
+                                        </span>
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        @endforeach
+                    @endforeach
+                </div>
+            </div>
+        </section>
+    @endif
+
+    {{-- flash deal end --}}
     {{-- product section --}}
-    <section class="productFeatured productFetRem">
+    <section class="productFeatured productFetRem mt-2">
         @foreach (\App\Models\Category::where('featured', 1)->get() as $key => $category)
             <div class="container">
                 <div class="row">
@@ -168,16 +259,18 @@
                     </div>
                 </div>
                 <div class="row productView mx-lg-auto">
-                    {{-- @foreach (filter_products(\App\Models\Product::inRandomOrder()->where('category_id', $category->id))->limit(8)->get() as $key => $related_product) --}}
-                    @foreach (filter_products(\App\Models\Product::inRandomOrder()->where('category_id', $category->id))->limit(8)->orderBy('id', 'ASC')->get() as $key => $related_product)
-                        <div class="col-md-3 col-xl-3 col-lg-3 col-sm-6" style="padding: 10px !important">
+                    {{-- @foreach (filter_products(\App\Models\Product::inRandomOrder()->where('category_id', $category->id))->limit(8)->get()
+    as $key => $related_product) --}}
+                    @foreach (filter_products(\App\Models\Product::inRandomOrder()->where('category_id', $category->id))->limit(8)->orderBy('id', 'ASC')->get()
+        as $key => $related_product)
+                        <div class="col-md-3 col-xl-3 col-lg-3 col-sm-6" style="padding: 5px !important">
                             <div class="productDesign">
                                 <div class="productContainer">
                                     <div class="productBadge">
                                         @if ($related_product->todays_deal == 1)
-                                        <div class="proBadgePer">
-                                            New
-                                        </div>
+                                            <div class="proBadgePer">
+                                                New
+                                            </div>
                                         @else
                                         @endif
                                         @if (percentage($related_product->id) > 0)
@@ -186,8 +279,9 @@
                                             </div>
                                         @endif
                                     </div>
-    
-                                    <a href="{{ route('product', strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $related_product->slug)))) }}">
+
+                                    <a
+                                        href="{{ route('product', strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $related_product->slug)))) }}">
                                         <img class="img-fluid product-photo"
                                             src="{{ asset($related_product->thumbnail_img) }}" alt="" />
                                     </a>
@@ -197,7 +291,8 @@
                                             <span class="iconify" data-icon="clarity:eye-show-solid"></span>
                                             <article class="d-inline">Quick View</article>
                                         </button>
-                                        <a href="{{ route('product', strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $related_product->slug)))) }}">
+                                        <a
+                                            href="{{ route('product', strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $related_product->slug)))) }}">
                                             <button class="btn-invisible">
                                                 <span class="iconify" data-icon="ei:cart"></span>
                                                 <article class="d-inline">Details View</article>
@@ -205,7 +300,7 @@
                                         </a>
                                     </div>
                                 </div>
-    
+
                                 <div class="product-info mb-2">
                                     <h6 class="product-title">
                                         <a class=""
@@ -215,7 +310,7 @@
                                         @if (home_discounted_base_price($related_product->id) != home_price($related_product->id))
                                             <del class="pl-2">{{ home_price($related_product->id) }}</del>
                                         @endif
-    
+
                                         <ins
                                             class="pl-2">{{ home_discounted_base_price($related_product->id) }}</ins>
                                     </span>
@@ -236,10 +331,10 @@
                                     <div class="setColor black"></div>
                                 </label>
                             </div> --}}
-    
+
                                 </div>
                             </div>
-                            
+
                         </div>
                     @endforeach
                 </div>
@@ -292,12 +387,11 @@
                 {{-- <h6 class="mb-0"><i>Top view in this week</i></h6> --}}
             </div>
             <div class="slider slider-nav px-3" id="brand">
-                @foreach (\App\Models\Brand::latest()->get()
-        as $brand)
+                @foreach (\App\Models\Brand::latest()->get() as $brand)
                     <a href="{{ route('products.brand', $brand->id) }}">
-                        <div class="d-flex justify-content-center ml-1 mr-2" >
+                        <div class="d-flex justify-content-center ml-1 mr-2">
                             <img src="{{ asset($brand->logo) }}" class="img-fluid" style="border-radius: 10px;
-            box-shadow: 2px 2px 2px 2px rgb(0 0 0 / 20%);">
+                    box-shadow: 2px 2px 2px 2px rgb(0 0 0 / 20%);">
                         </div>
                     </a>
                 @endforeach
@@ -340,21 +434,54 @@
             </div>
         </div>
     </section>
-        <section class="py-4 border-top">
-            <div class="container">
-         <p class="mb-0">
-           @php
-$generalsetting = \App\Models\GeneralSetting::first();
-@endphp
-{!! $generalsetting->home_description !!}
+    <section class="py-4 border-top">
+        <div class="container">
+            <p class="mb-0">
+                @php
+                    $generalsetting = \App\Models\GeneralSetting::first();
+                @endphp
+                {!! $generalsetting->home_description !!}
 
 
-         </p>
+            </p>
 
-    </div>
-</section>
+        </div>
+    </section>
 @endsection
 @section('script')
+{{-- timmer  --}}
+{{-- <script src="{{asset('frontend/js/timmer.js')}}"></script>
+
+<script>
+    ;(function($) {
+      
+     var MERCADO_JS = {
+       init: function(){
+          this.mercado_countdown();
+           
+       }, 
+     mercado_countdown: function() {
+          if($(".mercado-countdown").length > 0){
+                 $(".mercado-countdown").each( function(index, el){
+                   var _this = $(this),
+                   _expire = _this.data('expire');
+                _this.countdown(_expire, function(event) {
+                         $(this).html( event.strftime('<span><b>%D</b> Days</span> <span><b>%-H</b> Hrs</span> <span><b>%M</b> Mins</span> <span><b>%S</b> Secs</span>'));
+                     });
+                 });
+          }
+       },
+     
+    }
+     
+       window.onload = function () {
+          MERCADO_JS.init();
+       }
+     
+       })(window.Zepto || window.jQuery, window, document);
+ </script> --}}
+{{-- timmer  --}}
+
     <script>
         const swiper = new Swiper('.swiper-container', {
             // Optional parameters
@@ -389,9 +516,9 @@ $generalsetting = \App\Models\GeneralSetting::first();
             nextArrow: "<span class='arrow next'><i class='fa fa-angle-right'></i></span>",
             customPaging: function(slider, i) {
                 /* ADDING CUSTOM PAGING
-                     Example
-                     return  return '<li>Something you want to insert</li>';
-             */
+                         Example
+                         return  return '<li>Something you want to insert</li>';
+                 */
             },
             responsive: [{
                     breakpoint: 1920,

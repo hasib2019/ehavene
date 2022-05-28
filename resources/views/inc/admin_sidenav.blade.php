@@ -149,9 +149,17 @@
                                 </ul>
                             </li>
                         @endif
+                        {{-- flash deal  --}}
+                        @if(Auth::user()->user_type == 'admin' || in_array('2', json_decode(Auth::user()->staff->role->permissions)))
+                        <li class="{{ areActiveRoutes(['flash_deals.index', 'flash_deals.create', 'flash_deals.edit'])}}">
+                            <a class="nav-link" href="{{ route('flash_deals.index') }}">
+                                <i class="fa fa-bolt"></i>
+                                <span class="menu-title">{{__('Flash Deal')}}</span>
+                            </a>
+                        </li>
+                        @endif
 
-
-
+                        {{-- flash deal end --}}
                         @if(Auth::user()->user_type == 'admin' || in_array('3', json_decode(Auth::user()->staff->role->permissions)))
                             @php
                                 $orders = DB::table('orders')
