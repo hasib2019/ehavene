@@ -90,7 +90,7 @@ class CartController extends Controller
         //discount calculation based on flash deal and regular discount
         //calculation of taxes
         $flash_deal = \App\Models\FlashDeal::where('status', 1)->first();
-        if ($flash_deal != null && strtotime(date('d-m-Y')) >= $flash_deal->start_date && strtotime(date('d-m-Y')) <= $flash_deal->end_date && \App\FlashDealProduct::where('flash_deal_id', $flash_deal->id)->where('product_id', $product->id)->first() != null) {
+        if ($flash_deal != null && strtotime(date('d-m-Y')) >= $flash_deal->start_date && strtotime(date('d-m-Y')) <= $flash_deal->end_date && \App\Models\FlashDealProduct::where('flash_deal_id', $flash_deal->id)->where('product_id', $product->id)->first() != null) {
             $flash_deal_product = \App\Models\FlashDealProduct::where('flash_deal_id', $flash_deal->id)->where('product_id', $product->id)->first();
             if ($flash_deal_product->discount_type == 'percent') {
                 $price -= ($price * $flash_deal_product->discount) / 100;
