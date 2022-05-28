@@ -168,7 +168,7 @@ style="background-color:#EE3324;"
     <div class="container">
         <div class="row productView">
         @foreach ($products as $key => $product)
-        <div class="col-md-3 col-xl-3 col-lg-3 col-sm-6" style="padding: 10px !important">
+        <div class="col-md-3 col-xl-3 col-lg-3 col-sm-6" style="padding: 5px !important">
             <div class="productDesign">
                 <div class="productContainer">
                     <div class="productBadge">
