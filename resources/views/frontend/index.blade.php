@@ -171,7 +171,7 @@
                 <div class="row">
                     <div class="col-md-12 text-center my-2">
                         <h4 class="mb-0 titlePro text-danger">
-                           Flash Deal {{$flash_deal->title}}
+                           {{$flash_deal->title}}
                         <h4>
                         <!--<h6 class="mb-0"><i>Top view in this week</i></h6>-->
                     </div>
