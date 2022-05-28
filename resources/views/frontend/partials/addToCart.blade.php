@@ -152,19 +152,12 @@
                 </form>
 
                 <div class="d-table mt-3">
-                    <div class="d-table-cell">
+                    {{-- <div class="d-table-cell">
                         <!-- Add to cart button -->
                         <button type="button" class="addCartBtn btn-lg mb-2" onclick="addToCart()">
                             <i class="icon ion-bag"></i> {{__('Add to cart')}}
                         </button>
                          <!-- Add to cart button -->
-                         {{-- <button type="button" class="btn btn-base-2 btn-sm  btn-icon-left" onclick="addToCart()">
-                            <i class="icon ion-bag"></i> {{__('Add to cart')}}
-                        </button>
-
-                         <button type="button" class="btn btn-base-3 btn-sm  btn-icon-left" onclick="addToCart()">
-                            <i class="icon ion-bag"></i> {{__('Add to cart')}}
-                        </button> --}}
                     
                             <!-- Add to wishlist button -->
                       <button type="button" class="btn btn-outline btn-sm btn-base-1 btn-icon-left" onclick="addToWishList({{ $product->id }})">
@@ -177,7 +170,31 @@
                         <span class="d-md-inline-block"> {{__('Add to compare')}}</span>
                     </button>
                    
+                    </div> --}}
+                    {{--  --}}
+                    <div class="row mr-1">
+                        <div class="col-12 col-md-12 col-sm-12 mt-2 pr-0">
+                            <button class="addCartBtn" onclick="addToCart()">Add to Cart</button>
+
+                        </div>
+                        <div class="col-6 col-sm-6 col-md-6 mt-2 pr-0">
+                            <!-- Add to wishlist button -->
+                            <button type="button" class="btn btn-outline btn-base-1 btn-icon-left w-100"
+                                onclick="addToWishList({{ $product->id }})">
+                                <i class="la la-heart-o"></i>
+                                <span class="d-md-inline-block"> {{ __('Add to wishlist') }}</span>
+                            </button>
+                        </div>
+                        <div class="col-6 col-sm-6 col-md-6 mt-2 pr-0">
+                            <!-- Add to compare button -->
+                            <button type="button" class="btn btn-outline btn-base-1 btn-icon-left w-100"
+                                onclick="addToCompare({{ $product->id }})">
+                                <i class="la la-refresh"></i>
+                                <span class="d-md-inline-block"> {{ __('Add to compare') }}</span>
+                            </button>
+                        </div>
                     </div>
+                    {{--  --}}
                     
                 </div>
                 
