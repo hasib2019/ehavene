@@ -205,10 +205,10 @@
                                     <br>
                                 </div>
                             @endforeach
-                            <div class="addCart">
+                            <div class="addCarts">
                                 <div class="row mr-1">
                                     <div class="col-6 col-md-4 col-sm-6 mt-2 pr-0">
-                                        <div class="cart">
+                                        <div class="carts">
                                             <span class="m">
                                                 <button class="btn btn-number" type="button" data-type="minus"
                                                     data-field="quantity" disabled="disabled">
