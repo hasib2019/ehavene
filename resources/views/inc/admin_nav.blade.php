@@ -85,7 +85,15 @@
                     ->count();
 
                 @endphp
-
+                <li class="dropdown" id="lang-change">
+                    @php
+                        $url = "https://www.24bulksmsbd.com/api/balance?customer_id=128&api_key=172929182721250301911695556";
+                      $response = Http::post($url)['balance'];
+                    @endphp
+                    <a href="" class="dropdown-toggle top-bar-item" data-toggle="dropdown">
+                        <span class="language">Total Remaing <b><?php echo $response ?></b> SMS </span>
+                    </a>
+                </li>
                 <li class="dropdown" id="lang-change">
                     @php
                         if(Session::has('locale')){

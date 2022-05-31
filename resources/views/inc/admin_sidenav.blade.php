@@ -494,7 +494,7 @@
                             </a>
                         </li>
                         @endif
-                        @if(Auth::user()->user_type == 'admin' || in_array('18', json_decode(Auth::user()->staff->role->permissions)))
+                        @if(Auth::user()->user_type == 'admin' || in_array('19', json_decode(Auth::user()->staff->role->permissions)))
                         <li class="{{ areActiveRoutes(['sitemap.index'])}}">
                             <a class="nav-link" href="{{ route('sitemap.index') }}">
                                 <i class="fa fa-sitemap"></i>
