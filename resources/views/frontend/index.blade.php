@@ -3,7 +3,7 @@
     Ehavene | Skin Care, Health & Beauty Shop in Bangladesh
 @stop
 @section('css')
-    
+
     <style>
         .cat_space_item {
             margin-left: 10px;
@@ -356,10 +356,10 @@
                     <div class="col-md-6 mb-4">
                         <div class="innerSale">
                             <img src="{{ asset($banner->photo) }}" class="img-fluid">
-                            <a href="" class="info">
+                            {{-- <a href="" class="info">
                                 <h3 class="mb-0">LOOKBOOK 2021</h3>
                                 <h4 class="mb-0">MAKE LOVE THIS LOOK</h4>
-                            </a>
+                            </a> --}}
                         </div>
                     </div>
                 @endforeach
@@ -454,12 +454,12 @@
 
 <script>
     ;(function($) {
-      
+
      var MERCADO_JS = {
        init: function(){
           this.mercado_countdown();
-           
-       }, 
+
+       },
      mercado_countdown: function() {
           if($(".mercado-countdown").length > 0){
                  $(".mercado-countdown").each( function(index, el){
@@ -471,13 +471,13 @@
                  });
           }
        },
-     
+
     }
-     
+
        window.onload = function () {
           MERCADO_JS.init();
        }
-     
+
        })(window.Zepto || window.jQuery, window, document);
  </script> --}}
 {{-- timmer  --}}

@@ -5,6 +5,11 @@
 @section('content')
 
     <section class="gry-bg py-4">
+        <style>
+            img {
+                max-width: -webkit-fill-available;
+    }
+        </style>
         <div class="container">
             <div class="row">
                 <div class="col">

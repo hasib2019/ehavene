@@ -449,9 +449,10 @@ $generalsetting = \App\Models\GeneralSetting::first();
                                 </select>
                             </div> --}}
                             <input type="text" aria-label="Search" id="search" name="q" class="form-control rounded  my-3" placeholder="{{ __('I am shopping for...') }}" autocomplete="off">
-                            <button class="mb-2 shadow-sm text-center btn btn-success w-100 text-dark" type="submit">
+                            {{-- <button class="mb-2 shadow-sm text-center btn btn-success w-100 text-dark" type="submit">
                                 <i class="la la-search la-flip-horizontal"></i> View All
-                            </button>
+                            </button> --}}
+                            <a class="mb-2 shadow-sm text-center btn btn-success w-100 text-dark" href="{{ route('products') }}"><i class="la la-search la-flip-horizontal"></i> View All</a>
                             {{-- <input type="submit" class="py-2 shadow-sm my-3 text-center d-block text-dark btn btn-success" value="View All"> --}}
                             {{-- <a type="submit" class="py-2 shadow-sm my-3 text-center d-block text-dark" href="">View All</a> --}}
                             <div class="typed-search-box d-none">

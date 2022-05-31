@@ -37,7 +37,7 @@ use App\Models\BlogCategory;
 use App\Models\Division;
 use App\Models\District;
 use App\Models\Upazila;
-
+use Illuminate\Support\Facades\Http;
 
 class HomeController extends Controller
 {
@@ -277,6 +277,7 @@ class HomeController extends Controller
 
     public function admin_dashboard()
     {
+        
         return view('admin_dashboard');
     }
 
