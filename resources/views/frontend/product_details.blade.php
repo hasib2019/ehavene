@@ -157,12 +157,15 @@
                         </div>
                     </div>
                     <style>
-                        #ullisthid li {
+                        .ullisthid li {
                             list-style: inside !important;
                         }
 
                     </style>
-                    <p id="ullisthid">{{ $product->short_description }} </p>
+                    <div class="ullisthid">
+                        <p >{!! $product->short_description !!} </p>
+                    </div>
+
                     {{-- form start --}}
                     <form id="option-choice-form">
                         @csrf
