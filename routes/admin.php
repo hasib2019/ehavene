@@ -352,32 +352,32 @@ Route::group(['prefix' =>'admin', 'middleware' => ['auth', 'admin']], function()
 	Route::resource('special-offer','App\Http\Controllers\SpecialOfferController');
 	Route::get('/special-offer/destroy/{id}', 'App\Http\Controllers\SpecialOfferController@destroy')->name('special-offer.destroy');
 	Route::post('/special-offer/featured', [SpecialOfferController::class, 'updateFeatured'])->name('specialoffer.featured');
-	
+
 	// contact message show
 	Route::get('/user-contact-info', [RegularMedicationController::class, 'showregularmedication'])->name('user-message.index');
     Route::post('/user-contact-info', [RegularMedicationController::class, 'newmedicationuser'])->name('madication.regular');
 
-	
+
 	// affiliate user
 	Route::get('/affiliate-userlist', 'App\Http\Controllers\AffiliateController@userlist')->name('affiliate-user.index');
 	Route::post('/affiliate-userlist', 'App\Http\Controllers\AffiliateController@affiliateUserStore')->name('affiliate.store');
 	Route::get('/affiliate-user', 'App\Http\Controllers\AffiliateController@affiliateuser')->name('affiliate-user.show');
-	
-	//code master 
+
+	//code master
 	Route::resource('softcode','App\Http\Controllers\Admin\SoftcodeController');
 	Route::resource('master','App\Http\Controllers\Admin\MasterController');
 	//code master end
-	
-		// withdraw 
+
+		// withdraw
 	Route::get('/withdraw', 'App\Http\Controllers\WithdrawController@admin_withdraw')->name('withdraw.index.admin');
 	Route::get('/withdraw/{id}/show', 'App\Http\Controllers\WithdrawController@show')->name('withdraw.show');
 	Route::get('/withdraw/destroy/{id}', 'App\Http\Controllers\WithdrawController@destroy')->name('withdraw.destroy');
-	
+
 	Route::post('/withdraw/update_delivery_status', 'App\Http\Controllers\WithdrawController@update_delivery_status')->name('withdraw.update_delivery_status');
 	Route::post('/withdraw/update_payment_status', 'App\Http\Controllers\WithdrawController@update_payment_status')->name('withdraw.update_payment_status');
 	Route::get('withdraw/seller/{order_id}', 'App\Http\Controllers\InvoiceController@withdraw_invoice_download')->name('withdraw.invoice.download');
 	// withdraw end.
-	// sitemap start 
+	// sitemap start
 	Route::get('/all-sitemap', [SiteMapController::class, 'index'])->name('sitemap.index');
 	Route::post('/all-sitemap-store', [SiteMapController::class, 'store'])->name('sitemap.store');
 	Route::post('/all-sitemap-update', [SiteMapController::class, 'update'])->name('sitemap.update');
