@@ -173,7 +173,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div style="text-align:center;">
+                        <div>
                             @if (count(json_decode($product->colors)) > 0)
                                 <small class="font-weight-bold text-uppercase text-dark"> Color:
                                     <span id="colorName" class="text-capitalize"></span>
