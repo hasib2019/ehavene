@@ -89,13 +89,22 @@
                                 $qty += $variation->qty;
                             }
                         @endphp
-                        @if (count(json_decode($product->variations, true)) >= 1)
-                            @if ($qty > 0)
-                                <span class="badge badge-md badge-pill bg-green">{{ __('In stock') }}</span>
+
+                            @if (count(json_decode($product->variations, true)) >= 1)
+                                @if ($qty > 0)
+                                    <span class="badge badge-md badge-pill bg-green">{{ __('In stock') }}</span>
+                                @else
+                                    <span class="badge badge-md badge-pill bg-red">{{ __('Out of stock') }}</span>
+                                @endif
                             @else
+                            @if ($product->is_stock==1)
+                                <span class="badge badge-md badge-pill bg-green">{{ __('In stock') }}</span>
+                                @else
                                 <span class="badge badge-md badge-pill bg-red">{{ __('Out of stock') }}</span>
                             @endif
-                        @endif
+                            @endif
+
+
                     </h5>
                     @if (count(json_decode($product->variations, true)) >= 1)
                         <div class="avialable-amount">({{ $qty }} {{ __('available') }})</div>
