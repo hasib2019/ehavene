@@ -277,7 +277,7 @@ class HomeController extends Controller
 
     public function admin_dashboard()
     {
-        
+
         return view('admin_dashboard');
     }
 
@@ -581,7 +581,7 @@ class HomeController extends Controller
 
     public function listing(Request $request)
     {
-        $products = filter_products(Product::inRandomOrder())->simplePaginate(36);
+        $products = filter_products(Product::inRandomOrder())->paginate(140);
         return view('frontend.product_listing', compact('products'));
     }
 
@@ -712,7 +712,7 @@ class HomeController extends Controller
             $products->orderBy('id', 'DESC');
         }
 
-        $products = filter_products($products)->paginate(32)->appends(request()->query());
+        $products = filter_products($products)->paginate(72)->appends(request()->query());
 
         return view('frontend.product_listing', compact('products', 'query', 'category_id', 'subcategory_id', 'subsubcategory_id', 'brand_id', 'sort_by', 'seller_id','min_price', 'max_price'));
     }
