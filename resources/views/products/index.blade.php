@@ -51,6 +51,7 @@
                         <th>{{__('Todays Deal')}}</th>
                         <th>{{__('Published')}}</th>
                         <th>{{__('Featured')}}</th>
+                        <th>{{__('Stock')}}</th>
                         <th>{{__('Options')}}</th>
                     </tr>
                 </thead>
@@ -79,6 +80,9 @@
                             <td><label class="switch">
                                 <input onchange="update_featured(this)" value="{{ $product->id }}" type="checkbox" <?php if($product->featured == 1) echo "checked";?> >
                                 <span class="slider round"></span></label></td>
+                                <td><label class="switch">
+                                    <input onchange="update_isstock(this)" value="{{ $product->id }}" type="checkbox" <?php if($product->is_stock == 1) echo "checked";?> >
+                                    <span class="slider round"></span></label></td>
                             <td>
                                 <div class="btn-group dropdown">
                                     <button class="btn btn-primary dropdown-toggle dropdown-toggle-icon" data-toggle="dropdown" type="button">
@@ -158,6 +162,23 @@
             $.post('{{ route('products.featured') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
                     showAlert('success', 'Featured products updated successfully');
+                }
+                else{
+                    showAlert('danger', 'Something went wrong');
+                }
+            });
+        }
+
+        function update_isstock(el){
+            if(el.checked){
+                var status = 1;
+            }
+            else{
+                var status = 0;
+            }
+            $.post('{{ route('products.is_stock') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
+                if(data == 1){
+                    showAlert('success', ' Products Stock updated successfully');
                 }
                 else{
                     showAlert('danger', 'Something went wrong');

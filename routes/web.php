@@ -40,12 +40,12 @@ Route::get('/clear', function() {
  });
 Route::get('/', [HomeController::class, 'index'])->middleware('page-cache')->name('home');
 Route::get('/home', [HomeController::class, 'index'])->middleware('page-cache')->name('home');
-// sitemap 
+// sitemap
 Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/sitemap', function(){
-    $sitemap = Sitemap::create();   
+    $sitemap = Sitemap::create();
     $post = ModelsSiteMap::all();
     foreach ($post as $post) {
         $sitemap->add(Url::create("/product/{$post->slug}"));
@@ -57,7 +57,7 @@ Route::get('/sitemap', function(){
     $sitemap->writeToFile(public_path('sitemap.xml'));
     $sitemap->writeToFile(base_path('sitemap.xml'));
 });
-// sitemap end 
+// sitemap end
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::post('/language', 'App\Http\Controllers\LanguageController@changeLanguage')->name('language.change');
 Route::post('/currency', 'App\Http\Controllers\CurrencyController@changeCurrency')->name('currency.change');
@@ -300,6 +300,7 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::post('/products/sku_combination', 'App\Http\Controllers\ProductController@sku_combination')->name('products.sku_combination');
 	Route::post('/products/sku_combination_edit', 'App\Http\Controllers\ProductController@sku_combination_edit')->name('products.sku_combination_edit');
 	Route::post('/products/featured', 'App\Http\Controllers\ProductController@updateFeatured')->name('products.featured');
+    Route::post('/products/is_stock', 'App\Http\Controllers\ProductController@isStock')->name('products.is_stock');
 	Route::post('/products/published', 'App\Http\Controllers\ProductController@updatePublished')->name('products.published');
 
 	Route::get('invoice/customer/{order_id}', 'App\Http\Controllers\InvoiceController@customer_invoice_download')->name('customer.invoice.download');

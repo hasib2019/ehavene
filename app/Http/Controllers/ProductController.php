@@ -560,6 +560,16 @@ class ProductController extends Controller
         return 0;
     }
 
+    public function isStock(Request $request)
+    {
+        $product = Product::findOrFail($request->id);
+        $product->is_stock = $request->status;
+        if($product->save()){
+            return 1;
+        }
+        return 0;
+    }
+
     public function sku_combination(Request $request)
     {
         $options = array();
