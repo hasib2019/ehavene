@@ -277,7 +277,21 @@
                 <div>
                     <div class="row mr-1">
                         <div class="col-md-4 col-sm-12 mt-2 pr-0">
+                            @if (count(json_decode($product->variations, true)) >= 1)
+                            @if ($qty < 0)
+                            <button class="addCartBtn" disabled title="This Product Out of stock at this momment">Add to Cart</button>
+                            @else
                             <button class="addCartBtn" onclick="addToCart()">Add to Cart</button>
+                            @endif
+                        @else
+                        @if ($product->is_stock==0)
+                        <button class="addCartBtn" disabled title="This Product Out of stock at this momment">Add to Cart</button>
+                        @else
+                        <button class="addCartBtn" onclick="addToCart()">Add to Cart</button>
+                        @endif
+
+                        @endif
+
 
                         </div>
                         <div class="col-6 col-sm-6 col-md-4 mt-2 pr-0">
