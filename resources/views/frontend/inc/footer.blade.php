@@ -12,7 +12,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
             <div class="row justify-content-lg-between">
                 <div class="col-lg-3 col-md-3 col-sm-6">
                     <h5 onclick="mobileViewActive('logos');" class="text-secondary d-flex justify-content-between">
-                    <span class="getfooter">GET IN TOUCH</span>                  
+                    <span class="getfooter">GET IN TOUCH</span>
                         <span class="iconify clickableIcon" data-icon="akar-icons:plus"></span>
                     </h5>
                     <!-- Nav Link -->
@@ -104,7 +104,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
                             <span class="iconify clickableIcon" data-icon="akar-icons:plus"></span>
                         </h5>
                         <div class="text-secondary visualcolumn" id="colFour">
-                            <span class="iconify" data-icon="dashicons:phone" data-inline="false"></span>
+                            <i class="la la-phone-square"></i>
                             @if ($generalsetting->phone != null)
                                 <a class="cg" href="tel:{{ $generalsetting->phone }}">
 
@@ -269,12 +269,12 @@ $generalsetting = \App\Models\GeneralSetting::first();
                 <span class="iconify" data-icon="lucide:layout-dashboard"></span>
                 <span>Shop</span>
           </a>
-           
+
         </div>
         <a href="{{ route('wishlists.index') }}">
             <span class="iconify" data-icon="ant-design:heart-outlined"></span>
-            <span>Wishlist</span> 
-        </a> 
+            <span>Wishlist</span>
+        </a>
         <a data-icon="ei:cart" data-toggle="modal" data-target="#cart">
             <span class="iconify" data-icon="clarity:shopping-cart-line"></span>
             <span>Cart</span>
