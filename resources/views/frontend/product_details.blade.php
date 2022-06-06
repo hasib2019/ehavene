@@ -156,7 +156,13 @@
                             <span class="text-dark ml-2">(12 reviews)</span>
                         </div>
                     </div>
-                    <p>{!! $product->short_description !!} </p>
+                    <style>
+                        .ullisthid li {
+                            list-style: inside !important;
+                        }
+
+                    </style>
+                    <p class="ullisthid">{!! $product->short_description !!} </p>
                     {{-- form start --}}
                     <form id="option-choice-form">
                         @csrf
