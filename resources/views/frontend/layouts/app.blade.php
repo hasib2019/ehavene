@@ -76,6 +76,23 @@
     @endif
     {{-- webmaster --}}
     <meta name="yandex-verification" content="b6b328dcbe4cc92a" />
+    {{-- webmaster counter code  --}}
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+    
+        ym(89171552, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true,
+            ecommerce:"dataLayer"
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/89171552" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
     {{-- serch console add --}}
     <meta name="google-site-verification" content="-fRrJFS_wfFvJoxRghPnoOdehBLbMYnvwG-CpX5WZD4" />
     <meta name="google-site-verification" content="X0iUvCMcdm0zes5mzq2Y_0IBbqS4rKAF-9jBY7VR6s0" />
