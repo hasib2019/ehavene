@@ -70,6 +70,16 @@
                     @enderror
                 </div>
                 <div class="form-group">
+                  <label class="col-sm-3 control-label" for="status">{{__('Status')}}</label>
+                  <div class="col-sm-9">
+                      <select class="form-control" name="status" id="status">
+                        <option value="1" @if($customers->status == 1) selected @endif>{{__('Active')}}</option>
+                        <option value="0" @if($customers->status == 0) selected @endif>{{__('Inactive')}}</option>
+                      </select>
+                  </div>
+              </div>
+
+                <div class="form-group">
                     <label class="col-sm-3 control-label" for="dob">{{__('Date Of Birth')}}</label>
                     <div class="col-sm-9">
                         <input type="date" id="dob" name="dob"  value="{{ $customers->dob}}"  class="form-control" required>

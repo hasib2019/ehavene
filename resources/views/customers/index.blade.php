@@ -4,7 +4,7 @@
 
 <div class="row">
     <div class="col-sm-12">
-     <a href="{{ route('patient.create') }}" class="btn btn-info pull-right">{{__('Add New Patient')}}</a>
+     <a href="{{ route('patient.create') }}" class="btn btn-info pull-right">{{__('Add New Customer')}}</a>
     </div>
 </div>
 
@@ -63,7 +63,7 @@
                     <th>{{__('Email Address')}}</th>
                     <th>{{__('Phone')}}</th>
                     <th>{{__('Message')}}</th>
-                    <th>{{__('Medication')}}</th>
+                    <th>{{__('Status')}}</th>
                     <th width="10%">{{__('Action')}}</th>
                 </tr>
             </thead>
@@ -78,13 +78,19 @@
                         <td><button type="button" class="btn btn-sm btn-purple" data-toggle="modal" data-target="#{{$customer->id}}"> Add </button>
                             <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#view{{$customer->id}}"> View </button>
                         </td>
-                        <td>{{ $customer->medication }}</td>
+                        <td>
+                            <select class="form-control" data-minimum-results-for-search="Infinity" id="update_status">
+                                <option class="color-danger" value="1" @if ($customer->status==1) selected @endif>{{__('Active')}}</option>
+                                <option value="0" @if ($customer->status==0) selected @endif>{{__('Deactive')}}</option>
+                            </select>
+                        </td>
+                        {{-- <td>@if ($customer->status==1) Active @else Deactive @endif</td> --}}
                         <td>@if($customer->medication!='Yes')
                             <a href="{{ route('madication.newuserorder', encrypt($customer->id))}}"><i class="fa fa-plus" aria-hidden="true"></i></a>
                             @endif
                             <a href="{{ route('user.profile', encrypt($customer->id))}}"><i class="fa fa-eye" aria-hidden="true"></i></a>
                             <a href="{{ route('patient.edit', encrypt($customer->id))}}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                            {{-- <a onclick="confirm_modal('{{route('customers.destroy', $customer->id)}}');"><i class="fa fa-trash" aria-hidden="true"></i></a> --}}
+                            <a onclick="confirm_modal('{{route('customers.destroy', $customer->id)}}');"><i class="fa fa-trash" aria-hidden="true"></i></a>
                         </td>
                     </tr>
                     
@@ -168,7 +174,18 @@
                         </div>
                     </div>
                     {{-- view model end  --}}
-
+                    <script>
+                        $('#update_status').on('change', function(){
+                        var customerId = {{ $customer->id }};
+                        var status = $('#update_status').val();
+                
+                        $.post('{{ route('customers.update_status') }}', {_token:'{{ @csrf_token() }}',customerId:customerId,status:status}, function(data){
+                            showAlert('success', 'Customer status has been updated');
+                            //console.log(data);
+                            location.reload();
+                        });
+                    });
+                    </script>
                 @endforeach
             </tbody>
         </table>
@@ -184,4 +201,5 @@
             $("select").select2();
         });
     </script>
+    
 @endsection

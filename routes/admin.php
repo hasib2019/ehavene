@@ -252,7 +252,7 @@ Route::group(['prefix' =>'admin', 'middleware' => ['auth', 'admin']], function()
 
 	//user profile
     Route::get('/user/profile/{id}', [CustomerController::class, 'userprofile'])->name('user.profile');
-
+	Route::post('/user/update_status', [CustomerController::class, 'UserUpdateStatus'])->name('customers.update_status');
 
     // user order request
     Route::get('/request-order', [MedicationController::class, 'userneworder'])->name('medication.userneworder');
