@@ -228,33 +228,36 @@ class CustomerController extends Controller
         $patient->postal_code = $request->postal_code;
         $patient->shipping_cost = $request->shipping_cost;
         $patient->phone = $request->phone;
-        $patient->status = '1';
+        $patient->status = $request->status;
 
         if ($patient->save()) {
+            if (ShippingAddess::where('user_id', $id)->first() !=null){
+                //new code start
+                $shipping = ShippingAddess::findOrFail(ShippingAddess::where('user_id', $id)->first()->id);
+                $shipping->user_id = $patient->id;
+                $shipping->name = $request->name;
+                $shipping->email = $request->email;
+                $shipping->address = $request->address;
+                $shipping->phone = $request->phone;
+                $shipping->city = $request->city;
+                $shipping->region = $request->region;
+                $shipping->area = $request->area;
+                $shipping->post_code = $request->postal_code;
+                $shipping->shipping_cost = $request->shipping_cost;
 
-            //new code start
-            $shipping = ShippingAddess::findOrFail(ShippingAddess::where('user_id', $id)->first()->id);
-            $shipping->user_id = $patient->id;
-            $shipping->name = $request->name;
-            $shipping->email = $request->email;
-            $shipping->address = $request->address;
-            $shipping->phone = $request->phone;
-            $shipping->city = $request->city;
-            $shipping->region = $request->region;
-            $shipping->area = $request->area;
-            $shipping->post_code = $request->postal_code;
-            $shipping->shipping_cost = $request->shipping_cost;
-
-            if ($shipping->save()) {
-                $user = User::findOrFail($id);
-                $user->shipping_address = $shipping->id;
-                $user->save();
+                if ($shipping->save()) {
+                    $user = User::findOrFail($id);
+                    $user->shipping_address = $shipping->id;
+                    $user->save();
+                }
+                // new code end
+                flash(__('Patient has been Updated successfully'))->success();
+                return redirect()->route('customers.index');
+            } else{
+                flash(__('Patient has been Updated successfully'))->success();
+                return redirect()->route('customers.index');
             }
-            // new code end
-
-
-            flash(__('Patient has been Updated successfully'))->success();
-            return redirect()->route('customers.index');
+           
         }
 
         flash(__('Something went wrong'))->error();
@@ -283,6 +286,14 @@ class CustomerController extends Controller
 
         flash(__('Something went wrong'))->error();
         return redirect()->route('customers.medication');
+    }
+
+    public function UserUpdateStatus(Request $request)
+    {
+        $customer = User::findOrFail($request->customerId);
+        $customer->status = $request->status;
+        $customer->save();
+        return 1;
     }
 
     public function destroy($id)
