@@ -581,7 +581,7 @@ class HomeController extends Controller
 
     public function listing(Request $request)
     {
-        $products = filter_products(Product::inRandomOrder())->paginate(140);
+        $products = filter_products(Product::inRandomOrder())->paginate(60);
         return view('frontend.product_listing', compact('products'));
     }
 
