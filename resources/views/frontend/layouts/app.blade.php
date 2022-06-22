@@ -129,6 +129,15 @@
             f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-M6MJM36');
     </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6X1HHJ1DQV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-6X1HHJ1DQV');
+    </script>
     <!-- End Google Tag Manager -->
     <!-- Facebook Chat style -->
     {{-- <link href="{{ asset('frontend/css/fb-style.css')}}" rel="stylesheet"> --}}
