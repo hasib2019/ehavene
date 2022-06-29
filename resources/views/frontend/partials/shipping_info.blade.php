@@ -24,7 +24,7 @@
                                 <i class="icon-finance-067"></i>
                             </div>
                             <div class="block-content d-none d-md-block">
-                                <h3 class="heading heading-sm strong-300 c-gray-light text-capitalize">2. {{__('Shipping info')}}</h3>
+                                <h3 class="heading heading-sm strong-300 c-gray-light text-capitalize"><b style="color: rgb(4, 4, 54)">2. {{__('Shipping info')}}</b></h3>
                             </div>
                         </div>
                     </div>
@@ -89,20 +89,20 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        {{-- <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label class="control-label">{{__('Address')}}</label>
                                          <textarea class="form-control textarea-autogrow mb-3" id="address" placeholder="Your Address" rows="4" name="address" readonly>{{ $user->address }}</textarea>
                                                 </div>
                                             </div>
-                                        </div>
-                                       {{-- @php
+                                        </div> --}}
+                                       @php
                                             $region = \App\Models\Division::where('id', '=', $user->region)->first()->name;
                                             $city = \App\Models\District::where('id', '=', $user->city)->first()->name;
                                             $area = \App\Models\Upazila::where('id', '=', $user->area)->first()->name;
-                                        @endphp--}}
-                                     {{--     <div class="row">
+                                        @endphp
+                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group has-feedback">
                                                     <label class="control-label">{{__('Region')}}</label>
@@ -128,15 +128,15 @@
                                                     <label class="control-label">{{__('Post Code')}}</label>
                                                     <input type="text" class="form-control" id="post_code" value="{{ $user->post_code }}" name="post_code" readonly>
                                                 </div>
-                                            </div>--}}
+                                            </div>
                                         </div>
-                                        <div class="row">
+                                        {{-- <div class="row">
                                             <div class="col-md-12">
                                                 <div class="ermsg">
 
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         {{-- prescription  --}}
                                         {{-- <div class="row">
                                             <div class="col-md-12">
@@ -169,10 +169,10 @@
                                                 </div>
                                             </div>
                                         </div> --}}
-
+                                    </div>
                                         <input type="hidden" class="form-control" value="{{ $user->shipping_cost }}" name="shipping" id="shippingcost" readonly>
                                         <input type="hidden" name="checkout_type" value="logged">
-  <div class="row">
+                                <div class="row">
                                     <div class="col-5">
                                         <a href="{{ route('products') }}" class="link link--style-3">
                                             <i class="la la-mail-reply"></i>
@@ -235,30 +235,9 @@
                                                 <div class="col-md-10">
                                                     <input type="text" class="form-control mb-3" placeholder="Your Phone Number" name="phone" required>
                                                 </div>
-                                            </div>
-                                             <div class="row">
-                                                <div class="col-md-2">
-                                                    <label>{{__('Shipping Cost')}}</label>
-                                                </div>
-                                                <div class="col-md-10">
-                                                    <select class="form-control mb-3" data-placeholder="Select shipping Cost " id="shipping" name="shipping_cost" required>
-                                                        <option value="">Select Shipping cost</option>
-                                                <option value="50">Inside Dhaka</option>
-                                                <option value="100">Outside Dhaka</option>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                            </div>                                            
 
-                                            <div class="row">
-                                                <div class="col-md-2">
-                                                    <label>{{__('Address')}}</label>
-                                                </div>
-                                                <div class="col-md-10">
-                                                    <textarea class="form-control textarea-autogrow mb-3" placeholder="Your Address" rows="4" name="address" required></textarea>
-                                                </div>
-                                            </div>
-
-                                           {{-- <div class="row">
+                                        <div class="row">
                                                 <div class="col-md-2">
                                                     <label>{{__('Region')}}</label>
                                                 </div>
@@ -292,11 +271,21 @@
                                                         <option>---Select Area---</option>
                                                     </select>
                                                 </div>
-                                            </div>--}}
+                                            </div>
 
-                                           
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <label>{{__('Shipping Cost')}}</label>
+                                                </div>
+                                                <div class="col-md-10">
+                                                    <select class="form-control mb-3" data-placeholder="Select shipping Cost " id="shipping" name="shipping_cost" required>
+                                                        <option value="">Select Shipping cost</option>
+                                              
+                                                    </select>
+                                                </div>
+                                            </div>
 
-                                            {{--<div class="row">
+                                         <div class="row">
                                                 <div class="col-md-2">
                                                     <label>{{__('Post Code')}}</label>
                                                 </div>
@@ -315,7 +304,7 @@
                                                             <option value="Home" >Home</option>
                                                     </select>
                                                 </div>
-                                            </div>--}}
+                                            </div>
 
                                         </div>
                                     </div>
@@ -377,30 +366,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-                            {{--    <div class="row">
-                                    <div class="col-md-6" hidden>
-                                        <div class="form-group">
-                                            <label class="control-label">{{__('Select your country')}}</label>
-                                            <select class="form-control custome-control" data-live-search="true" name="country">
-                                                @foreach (\App\Models\Country::all() as $key => $country)
-                                                    <option value="{{ $country->name }}" <?php if($country->code == 'BD') echo "selected"; ?>>{{ $country->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group has-feedback">
-                                            <label class="control-label">{{__('City')}}</label>
-                                            <input type="text" class="form-control" placeholder="{{__('City')}}" name="city" required>
-                                        </div>
-                                    </div>--}}
-                                    {{--<div class="col-md-6">
-                                        <div class="form-group has-feedback">
-                                            <label class="control-label">{{__('Postal code')}}</label>
-                                            <input type="text" class="form-control" placeholder="{{__('Postal code')}}" name="postal_code" required>
-                                        </div>
-                                    </div>--}}
                                 </div>
 
 
