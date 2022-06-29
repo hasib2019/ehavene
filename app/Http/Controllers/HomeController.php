@@ -291,6 +291,7 @@ class HomeController extends Controller
         }
         elseif(Auth::user()->user_type == 'customer'){
             $address = ShippingAddess::where('user_id', Auth::user()->id)->where('id', Auth::user()->shipping_address)->get();
+            // dd($address);
             $billaddress = ShippingAddess::where('user_id', Auth::user()->id)->where('id', Auth::user()->billing_address)->get();
             return view('frontend.customer.dashboard', compact('address','billaddress'));
         }
