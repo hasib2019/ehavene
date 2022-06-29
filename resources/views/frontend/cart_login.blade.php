@@ -36,7 +36,7 @@
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <div class="input-group input-group--style-1">
-                                                            <input type="text"
+                                                            <input type="number"
                                                                 class="form-control form-control-sm {{ $errors->has('email') ? ' is-invalid' : '' }}"
                                                                 max="11" placeholder="{{ __('Phone') }}" name="email"
                                                                 id="email" required>
@@ -149,7 +149,7 @@
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <div class="input-group input-group--style-1">
-                                                            <input id="phone" type="text"
+                                                            <input id="phone" type="number"
                                                                 class="form-control @error('error') is-invalid @enderror"
                                                                 placeholder="{{ __('Phone') }}" name="email" required>
                                                             <span class="input-group-addon">
