@@ -100,8 +100,8 @@
                                 <tbody>
                                     <tr>
                                         <td>{{$item->address}}</td>
-                                        {{--<td>{{App\Models\District::where('id', '=', $item->city)->first()->name}}</td>
-                                        <td>{{\App\Models\Division::where('id', '=', $item->region)->first()->name}}</td>--}}
+                                        <td>{{App\Models\District::where('id', '=', $item->city)->first()->name}}</td>
+                                        <td>{{\App\Models\Division::where('id', '=', $item->region)->first()->name}}</td>
                                         <td>{{$item->post_code}}</td>
                                         <td>{{$item->phone}}</td>
                                     </tr>
