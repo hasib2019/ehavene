@@ -90,7 +90,7 @@
                             @endif
                             <a href="{{ route('user.profile', encrypt($customer->id))}}"><i class="fa fa-eye" aria-hidden="true"></i></a>
                             <a href="{{ route('patient.edit', encrypt($customer->id))}}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                            <a onclick="confirm_modal('{{route('customers.destroy', $customer->id)}}');"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                            {{-- <a onclick="confirm_modal('{{route('customers.destroy', $customer->id)}}');"><i class="fa fa-trash" aria-hidden="true"></i></a> --}}
                         </td>
                     </tr>
                     
