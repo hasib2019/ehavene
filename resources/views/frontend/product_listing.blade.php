@@ -52,25 +52,39 @@
         </div>
     </div>
     <section class="py-5"
-        @if (isset($category_id)) style="background-image: url('{{ asset(\App\Models\Category::find($category_id)->banner) }}');" @else style="background-color:#EE3324;" @endif>
+        @if (isset($category_id)) style="background-image: url('{{ asset(\App\Models\Category::find($category_id)->banner) }}');"
+        @elseif (isset($subcategory_id)) style="background-image: url('{{ asset('frontend/images/Banner-2.jpg') }}');"
+        @elseif (isset($subsubcategory_id)) style="background-image: url('{{ asset('frontend/images/Banner-3.jpg') }}');"
+        @elseif (isset($brand_id)) style="background-image: url('{{ asset('frontend/images/Banner-4.jpg') }}');"
+        @else  style="background-image: url('{{ asset('frontend/images/Shop-Banner.jpg') }}');" @endif>
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <h2 class="mb-0" style="color: #ffffff;">
+
                         @if (isset($category_id))
+                        <h2 class="mb-0" style="color: #EE3324;">
                             {{ \App\Models\Category::find($category_id)->name }}
+                        </h2>
                         @elseif(isset($subcategory_id))
+                        <h2 class="mb-0" style="color: #EE3324;">
                             {{ \App\Models\SubCategory::find($subcategory_id)->name }}
+                        </h2>
                         @elseif(isset($subsubcategory_id))
+                        <h2 class="mb-0" style="color: #EE3324;">
                             {{ \App\Models\SubSubCategory::find($subsubcategory_id)->name }}
+                        </h2>
                         @elseif(isset($brand_id))
+                        <h2 class="mb-0" style="color: #ffff;">
                             {{ \App\Models\Brand::find($brand_id)->name }}
+                        </h2>
                         @else
+                        <h2 class="mb-0" style="color: #ffff;">
                             Shop
+                        </h2>
                         @endif
 
 
-                    </h2>
+
 
                 </div>
             </div>
@@ -215,7 +229,7 @@
                                         <div class="col-6 border"><a href="{{ route('products.brand', $id) }}"><img src="{{ asset(\App\Models\Brand::find($id)->logo) }}" alt="" class="img-fluid"></a></div>
                                     @endif
                                 @endforeach
-                            </div>     
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -462,7 +476,8 @@
 
                {{-- Pagination --}}
         <div class="d-flex" style="margin: 0 auto;">
-                    {{ $products->links() }}
+                    {{-- {{ $products->links() }} --}}
+                    {!! $products->links() !!}
                 </div>
 
                 </div>
