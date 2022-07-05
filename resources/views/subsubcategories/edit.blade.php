@@ -33,7 +33,12 @@
                 <div class="form-group">
                     <label class="col-sm-3 col-lg-2 control-label" for="name">{{__('Subcategory')}}</label>
                     <div class="col-sm-9 col-lg-10">
-                        <select name="sub_category_id" id="sub_category_id" class="form-control demo-select2" required>
+                        <select name="sub_category_id" class="form-control demo-select2" required>
+                            @foreach ($subCategories as $sCategory)
+                            <option @if($subsubcategory->sub_category_id==$sCategory->id) selected @endif  value="{{$subsubcategory->sub_category_id}}">
+                                        {{__($sCategory->name)}}
+                            </option>
+                            @endforeach
 
                         </select>
                     </div>
