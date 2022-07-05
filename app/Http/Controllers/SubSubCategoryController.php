@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\SubSubCategory;
+use App\Models\SubCategory;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Language;
@@ -84,8 +85,10 @@ class SubSubCategoryController extends Controller
     {
         $subsubcategory = SubSubCategory::findOrFail(decrypt($id));
         $categories = Category::all();
+        $subCategories = SubCategory::all();
         $brands = Brand::all();
-        return view('subsubcategories.edit', compact('subsubcategory', 'categories', 'brands'));
+        // dd($subCategory);
+        return view('subsubcategories.edit', compact('subsubcategory', 'categories', 'brands','subCategories'));
     }
 
     /**
