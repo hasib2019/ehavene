@@ -88,7 +88,7 @@ class SubSubCategoryController extends Controller
         $subCategories = SubCategory::all();
         $brands = Brand::all();
         // dd($subCategory);
-        return view('subsubcategories.edit', compact('subsubcategory', 'categories', 'brands','subCategories"'));
+        return view('subsubcategories.edit', compact('subsubcategory', 'categories', 'brands','subCategories'));
     }
 
     /**
