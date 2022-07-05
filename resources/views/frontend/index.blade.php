@@ -343,6 +343,7 @@
                     <button class="btn-visible"><a href="{{ route('products.category', $category->id) }}"> Load More
                             Product </a></button>
                 </div>
+
             </div>
         @endforeach
     </section>
@@ -385,6 +386,10 @@
             <div class="col-md-12 text-center mb-5">
                 <h4 class="mb-0 titlePro ">Our Most Popular Brand</h4>
                 {{-- <h6 class="mb-0"><i>Top view in this week</i></h6> --}}
+                <div class="col-md-12 text-center mt-2">
+                    <button class="btn-visible"><a href="{{ route('brands.all') }}"> Load More Brand
+                           </a></button>
+                </div>
             </div>
             <div class="slider slider-nav px-3" id="brand">
                 @foreach (\App\Models\Brand::latest()->get() as $brand)
