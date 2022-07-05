@@ -166,8 +166,9 @@
                                             // ->orderBy('code', 'desc')
                                             // ->join('order_details', 'orders.id', '=', 'order_details.order_id')
                                             // //->where('order_details.seller_id', Auth::user()->id)
-                                            ->where('orders.meduserorder', 0)
-                                            ->where('orders.viewed', 0)
+                                            // ->where('orders.meduserorder', 0)
+                                            // ->where('orders.viewed', 0)
+                                            ->where('delivery_status', 'pending')
                                             // ->select('orders.id')
                                             // ->distinct()
                                             ->count();
@@ -204,31 +205,31 @@
                              <!--Submenu-->
                              <ul class="collapse">
                                 <li class="{{ areActiveRoutes(['orders.pending', 'orders.show'])}}">
-                                    <a class="nav-link" href="{{ route('orders.pending') }}">{{__('New Order')}}<span class="pull-right badge badge-success">{{ $orders }}</span></a>
+                                    <a class="nav-link" href="{{ route('orders.pending') }}">{{__('Pending Orders')}}<span class="pull-right badge badge-success">{{ $orders }}</span></a>
 
                                 </li>
                                 <li class="{{ areActiveRoutes(['orders.processing', 'orders.show'])}}">
-                                    <a class="nav-link" href="{{ route('orders.processing') }}">{{__('Processing Order')}}
+                                    <a class="nav-link" href="{{ route('orders.processing') }}">{{__('Processing Orders')}}
                                         <span class="pull-right badge badge-info">{{ $processingOrder }}</span>
                                     </a>
                                 </li>
                                 <li class="{{ areActiveRoutes(['orders.complain', 'orders.show'])}}">
-                                    <a class="nav-link" href="{{ route('orders.complain') }}">{{__('Complain Order')}}
+                                    <a class="nav-link" href="{{ route('orders.complain') }}">{{__('Complain Orders')}}
                                         <span class="pull-right badge badge-warning">{{ $complainOrder }}</span>
                                     </a>
                                 </li>
                                 <li class="{{ areActiveRoutes(['orders.on_delivery', 'orders.show'])}}">
-                                    <a class="nav-link" href="{{ route('orders.on_delivery') }}">{{__('On Delivery Order')}}
+                                    <a class="nav-link" href="{{ route('orders.on_delivery') }}">{{__('On Delivery Orders')}}
                                         <span class="pull-right badge badge-info">{{ $on_deliveryOrder }}</span>
                                     </a>
                                 </li>
                                 <li class="{{ areActiveRoutes(['orders.delivered', 'orders.show'])}}">
-                                    <a class="nav-link" href="{{ route('orders.delivered') }}">{{__('Delivered Order')}}
+                                    <a class="nav-link" href="{{ route('orders.delivered') }}">{{__('Delivered Orders')}}
                                         <span class="pull-right badge badge-info">{{ $deliveredOrder }}</span>
                                     </a>
                                 </li>
                                 <li class="{{ areActiveRoutes(['orders.rejected', 'orders.show'])}}">
-                                    <a class="nav-link" href="{{ route('orders.rejected') }}">{{__('Rejected Order')}}
+                                    <a class="nav-link" href="{{ route('orders.rejected') }}">{{__('Rejected Orders')}}
                                         <span class="pull-right badge badge-danger">{{ $rejectedOrder }}</span>
                                     </a>
                                 </li>
@@ -450,7 +451,7 @@
                                 {{-- <li class="{{ areActiveRoutes(['career.index'])}}">
                                     <a class="nav-link" href="{{route('career.index','career')}}">{{__('Career')}}</a>
                                 </li> --}}
-                                
+
 
                                 <li>
                                     <a href="#">
@@ -524,7 +525,7 @@
                             </ul>
                         </li>
                         @endif
-                       
+
 
 
 
