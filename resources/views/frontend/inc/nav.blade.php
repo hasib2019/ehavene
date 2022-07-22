@@ -690,8 +690,8 @@ $generalsetting = \App\Models\GeneralSetting::first();
                             </div>
                         </div>
                     @else
-                        <div class="shadow-sm py-2 px-1 text-center border-bottom"> Free Shipping for all orders
-                            over 100.00</div>
+                        {{-- <div class="shadow-sm py-2 px-1 text-center border-bottom"> Free Shipping for all orders
+                            over 100.00</div> --}}
                         <div class="emptyProduct d-flex flex-column align-items-center justify-content-center">
                             <span class="iconify" data-icon="clarity:shopping-bag-line"></span>
                             <span class="py-2">Your cart is empty.</span>
@@ -701,8 +701,8 @@ $generalsetting = \App\Models\GeneralSetting::first();
 
                     @endif
                 @else
-                    <div class="shadow-sm py-2 px-1 text-center border-bottom"> Free Shipping for all orders over
-                        ৳100.00</div>
+                    {{-- <div class="shadow-sm py-2 px-1 text-center border-bottom"> Free Shipping for all orders over
+                        ৳100.00</div> --}}
                     <div class="emptyProduct d-flex flex-column align-items-center justify-content-center">
                         <span class="iconify" data-icon="clarity:shopping-bag-line"></span>
                         <span class="py-2">Your cart is empty.</span>
