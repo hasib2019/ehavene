@@ -311,7 +311,7 @@
                                         @endisset
 
                                         <div class="sort-by-bar row no-gutters bg-white mb-3 px-3">
-                                            <div class="col-lg-6 col-md-5">
+                                            <div class="col-lg-6 col-md-5 col-sm-12">
                                                 <div class="sort-by-box">
                                                     <div class="form-group">
                                                         <label>{{ __('Search') }}</label>
@@ -326,53 +326,53 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-6 col-md-7 col-sm-12">
                                                 <div class="row no-gutters">
-                                                    <div class="col-lg-6">
+                                                    <div class="col-6">
                                                         <div class="sort-by-box px-1">
                                                             <div class="form-group">
                                                                 <label>{{ __('Sort by') }}</label>
                                                                 <select class="form-control"
-                                                                    data-minimum-results-for-search="Infinity" name="sort_by"
+                                                                                    data-minimum-results-for-search="Infinity" name="sort_by"
+                                                                                    onchange="filter()">
+                                                                                    <option value="1"
+                                                                                        @isset($sort_by) @if ($sort_by == '1') selected @endif
+                                                                                    @endisset>{{ __('Newest') }}</option>
+                                                                                <option value="2"
+                                                                                    @isset($sort_by) @if ($sort_by == '2') selected @endif
+                                                                                @endisset>{{ __('Oldest') }}</option>
+                                                                            <option value="3"
+                                                                                @isset($sort_by) @if ($sort_by == '3') selected @endif
+                                                                            @endisset>{{ __('Price low to high') }}</option>
+                                                                        <option value="4"
+                                                                            @isset($sort_by) @if ($sort_by == '4') selected @endif
+                                                                        @endisset>{{ __('Price high to low') }}</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="sort-by-box px-1">
+                                                            <div class="form-group">
+                                                                <label>{{ __('Brands') }}</label>
+                                                                <select class="form-control"
+                                                                    data-placeholder="{{ __('All Brands') }}" name="brand_id"
                                                                     onchange="filter()">
-                                                                    <option value="1"
-                                                                        @isset($sort_by) @if ($sort_by == '1') selected @endif
-                                                                    @endisset>{{ __('Newest') }}</option>
-                                                                <option value="2"
-                                                                    @isset($sort_by) @if ($sort_by == '2') selected @endif
-                                                                @endisset>{{ __('Oldest') }}</option>
-                                                            <option value="3"
-                                                                @isset($sort_by) @if ($sort_by == '3') selected @endif
-                                                            @endisset>{{ __('Price low to high') }}</option>
-                                                        <option value="4"
-                                                            @isset($sort_by) @if ($sort_by == '4') selected @endif
-                                                        @endisset>{{ __('Price high to low') }}</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                            <div class="sort-by-box px-1">
-                                            <div class="form-group">
-                                                <label>{{ __('Brands') }}</label>
-                                                <select class="form-control"
-                                                    data-placeholder="{{ __('All Brands') }}" name="brand_id"
-                                                    onchange="filter()">
-                                                    <option value="">{{ __('All Brands') }}</option>
-                                                    @foreach ($brands as $key => $id)
-                                                        @if (\App\Models\Brand::find($id) != null)
-                                                            <option value="{{ $id }}"
-                                                                @isset($brand_id) @if ($brand_id == $id) selected @endif
-                                                            @endisset>{{ \App\Models\Brand::find($id)->name }}
-                                                        </option>
-                                                    @endif
-                                                @endforeach
-                                                    </select>
+                                                                            <option value="">{{ __('All Brands') }}</option>
+                                                                            @foreach ($brands as $key => $id)
+                                                                                @if (\App\Models\Brand::find($id) != null)
+                                                                                    <option value="{{ $id }}"
+                                                                                        @isset($brand_id) @if ($brand_id == $id) selected @endif
+                                                                                    @endisset>{{ \App\Models\Brand::find($id)->name }}
+                                                                                </option>
+                                                                            @endif
+                                                                        @endforeach
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                             <input type="hidden" name="min_price" value="">
                             <input type="hidden" name="max_price" value="">
