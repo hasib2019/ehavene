@@ -144,10 +144,10 @@
     <!--facebook pixel-->
     <!-- Meta Pixel Code -->
     {{-- facebook c8 plugin  --}}
-    <!-- Messenger Chat Plugin Code -->
+    <!-- Messenger Chat Plugin Code added  Hasib -->
     <div id="fb-root"></div>
 
-    <!-- Your Chat Plugin code added by Hasib -->
+    <!-- Your Chat Plugin code -->
     <div id="fb-customer-chat" class="fb-customerchat">
     </div>
 
@@ -174,7 +174,7 @@
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
     </script>
-    {{-- facebook chat plugin end added by Hasib --}}
+    {{-- fb chat lugin end added Hasib --}}
     <script>
         ! function(f, b, e, v, n, t, s) {
             if (f.fbq) return;
