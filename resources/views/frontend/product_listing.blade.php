@@ -233,7 +233,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-9">
+                <div class="col-xl-9" style="padding: 5px 0px;">
                     <!-- <div class="bg-white"> -->
                     <div class="brands-bar row no-gutters pb-3 bg-white p-3 d-lg-none">
                         <div class="col-12">
