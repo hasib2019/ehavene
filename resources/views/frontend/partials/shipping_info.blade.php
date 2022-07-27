@@ -366,12 +366,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                </div>
-
-
-                                   
-
-
+                                </div>                               
                                 <input type="hidden" name="checkout_type" value="guest">
                             <div class="row align-items-center pt-4 shophide">
                                 <div class="col-5">
@@ -401,33 +396,6 @@
 @endsection
 
 @section('script')
-    {{-- <script type="text/javascript">
-
-    function getPaymentInfo(){
-        var isValid = true;
-        $('.card-body input').each(function() {
-            if ( this.value == '' ){
-                isValid = false;
-            }
-        });
-
-        if(isValid){
-            // console.log($('#shipping_form').serialize());
-             $.ajax({
-                type:"POST",
-                url:'{{ route('checkout.payment_info') }}',
-                data: $('#shipping_form').serialize(),
-                success: function(data){
-                    alart(data);
-                    $('#page-content').html(data);
-                }
-            });
-        }
-        else{
-            alert('Please fill all the fileds');
-        }
-    }
-    </script> --}}
     <script>
     $("#shipValue").on('change',function(e){
     e.preventDefault();
@@ -470,62 +438,6 @@
                 alert('Please fill all the fileds');
             }
         }
-
-    // var storedFiles = [];
-    // header for csrf-token is must in laravel
-    // $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
-    //
-    // var url = "{{URL::to('/checkout/payment_info')}}";
-    // $("#submit").click(function(){
-
-    //         var form_data = new FormData();
-    //         for(var i=0, len=storedFiles.length; i<len; i++) {
-    //             form_data.append('photos[]', storedFiles[i]);
-    //         }
-    //         form_data.append("name", $("#name").val());
-    //         form_data.append("email", $("#email").val());
-    //         form_data.append("phone", $("#phone").val());
-    //         form_data.append("address", $("#address").val());
-    //         form_data.append("region", $("#region").val());
-    //         form_data.append("city", $("#city").val());
-    //         form_data.append("area", $("#area").val());
-    //         form_data.append("post_code", $("#post_code").val());
-    //         form_data.append("checkout_type", $("#checkout_type").val());
-    //         form_data.append("shipping", $("#shippingcost").val());
-    //         form_data.append("psubmit", $("#psubmit").val());
-    //         form_data.append("prescribed", $("#prescribed").val());
-
-    //         var pid = $("#prescribed").val();
-    //         var chk = $('#psubmit').prop('checked');
-    //         var file = $("#photos").prop("files").length;
-
-    //         if((pid == 1) && ((file == 0) && (chk == false))){
-
-    //             message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>You have selected prescribed item. Please upload your prescription or if you already upload it, Please click the checkbox.</b></div>";
-    //             $(".ermsg").html(message);
-    //             exit;
-    //         }
-    //         $.ajax({
-    //             url: url,
-    //             method: "POST",
-    //             contentType: false,
-    //             processData: false,
-    //             data:form_data,
-    //             success: function(d){
-    //                 $('#page-content').html(d);
-    //             }
-    //         });
-
-    // });
-    // $(document).on('change','#photos',function(){
-    //         len_files = $("#photos").prop("files").length;
-    //         for (var i = 0; i < len_files; i++) {
-    //             var file_data = $("#photos").prop("files")[i];
-    //             storedFiles.push(file_data);
-    //         }
-    //     });
-
-
 
 // drop down select section
     $("#division").on('change',function(e){
