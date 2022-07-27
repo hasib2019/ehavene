@@ -366,12 +366,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                </div>
-
-
-                                   
-
-
+                                </div>                               
                                 <input type="hidden" name="checkout_type" value="guest">
                             <div class="row align-items-center pt-4 shophide">
                                 <div class="col-5">
