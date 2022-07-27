@@ -130,7 +130,7 @@ class CartController extends Controller
             $cart = collect([$data]);
             $request->session()->put('cart', $cart);
         }
-
+        $request->session()->put('shipCost', 0);
         return view('frontend.partials.addedToCart', compact('product', 'data'));
     }
 

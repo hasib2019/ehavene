@@ -165,14 +165,14 @@
                             if(Auth::user()->shipping_address){
                                 $shippingcost = \App\Models\ShippingAddess::where('id', Auth::user()->shipping_address)->first()->shipping_cost;
                             }else{
-                                $shippingcost = 50;
+                                $shippingcost = 120;
                             }
                             @endphp
                             <div>Delivery Charge</div>
                             <div> {{ single_price($shippingcost) }}</div>
                         @else
                         @php
-                            $shippingcost = 50;
+                            $shippingcost = Session::get('shipCost');
                         @endphp
                             <div>Delivery Charge</div>
                             <div> {{ single_price($shippingcost) }}</div>

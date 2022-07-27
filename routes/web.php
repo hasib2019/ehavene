@@ -125,6 +125,7 @@ Route::post('/cart/updateQuantity', 'App\Http\Controllers\CartController@updateQ
 Route::post('/checkout/payment', 'App\Http\Controllers\CheckoutController@checkout')->name('payment.checkout');
 Route::get('/checkout', 'App\Http\Controllers\CheckoutController@get_shipping_info')->name('checkout.shipping_info');
 Route::get('/gust-checkout', 'App\Http\Controllers\CheckoutController@gustshipping_info')->name('checkout.gustshipping_info');
+Route::get('/gust-checkoutNew', 'App\Http\Controllers\CheckoutController@gustshipping_infoNew');
 Route::post('/checkout/payment_info', 'App\Http\Controllers\CheckoutController@get_payment_info')->name('checkout.payment_info');
 
 //Paypal START

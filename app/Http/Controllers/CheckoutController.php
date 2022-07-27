@@ -15,7 +15,7 @@ use App\Models\BusinessSetting;
 use Session;
 use App\Models\PrescriptionImage;
 use Spatie\LaravelImageOptimizer\Facades\ImageOptimizer;
-
+use Response;
 class CheckoutController extends Controller
 {
 
@@ -122,6 +122,12 @@ class CheckoutController extends Controller
         $categories = Category::all();
         $gust = 1;
         return view('frontend.partials.shipping_info', compact('categories','gust'));
+    }
+
+    public function gustshipping_infoNew(Request $request)
+    {  
+            $request->session()->put('shipCost', $request->value);
+            return view('frontend.partials.cart_summary');
     }
 
     public function get_payment_info(Request $request)
