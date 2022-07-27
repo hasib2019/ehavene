@@ -400,7 +400,6 @@
     $("#shipValue").on('change',function(e){
     e.preventDefault();
     var value  = e.target.value;
-    console.log({value})
     $.ajax({
           type: 'GET',
           url: "{{url('/gust-checkoutNew')}}",
