@@ -200,6 +200,7 @@
                             $region = \App\Models\Division::all();
                             $districts = \App\Models\District::all();
                             $upazilas = \App\Models\Upazila::all();
+                            $shippingAddressData = \App\Models\ShippingMethod::all();
                             ?>
                             <div class="card-body">
                                 <form class="" action="{{ route('customer.shipping.address') }}" method="POST">
@@ -351,8 +352,14 @@
                                             <label class="control-label">{{__('Shipping Method')}}</label>
                                             <select class="form-control custome-control" data-live-search="true" id="shipValue" name="shipping" required>
                                                 <option value="">Select Shipping cost</option>
-                                                <option value="70">Inside Dhaka</option>
-                                                <option value="130">Outside Dhaka</option>
+                                                <?php
+                                                $shippingAddressData = \App\Models\ShippingMethod::all();
+                                                ?>
+                                                @foreach ($shippingAddressData as $data)
+                                                    <option value="{{ $data->price }}" >{{ $data->title }}</option>
+                                                @endforeach
+                                                {{-- <option value="70">Inside Dhaka</option>
+                                                <option value="130">Outside Dhaka</option> --}}
                                             </select>
                                         </div>
                                     </div>
@@ -400,7 +407,6 @@
     $("#shipValue").on('change',function(e){
     e.preventDefault();
     var value  = e.target.value;
-    console.log({value})
     $.ajax({
           type: 'GET',
           url: "{{url('/gust-checkoutNew')}}",

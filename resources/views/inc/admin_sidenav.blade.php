@@ -423,9 +423,9 @@
                                 <li class="{{ areActiveRoutes(['special-offer.index'])}}">
                                     <a class="nav-link" href="{{route('special-offer.index')}}">{{__('Special Offer')}}</a>
                                 </li>
-                                {{-- <li class="{{ areActiveRoutes(['shippingmethod.index'])}}">
-                                    <a class="nav-link" href="{{route('shippingmethod.index')}}">{{__('Shipping Method')}}</a>
-                                </li> --}}
+                                <li class="{{ areActiveRoutes(['shippingmethod.index'])}}">
+                                    <a class="nav-link" href="{{route('shippingmethod.index')}}">{{__('Guest Shipping Method')}}</a>
+                                </li>
                                 <li class="{{ areActiveRoutes(['shippingaddress.index'])}}">
                                     <a class="nav-link" href="{{route('shippingaddress.index')}}">{{__('Shipping Mathod')}}</a>
                                 </li>
