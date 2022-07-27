@@ -349,10 +349,10 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">{{__('Shipping Method')}}</label>
-                                            <select class="form-control custome-control" data-live-search="true" name="shipping" required>
+                                            <select class="form-control custome-control" data-live-search="true" id="shipValue" name="shipping" required>
                                                 <option value="">Select Shipping cost</option>
-                                                <option value="50">Inside Dhaka</option>
-                                                <option value="100">Outside Dhaka</option>
+                                                <option value="70">Inside Dhaka</option>
+                                                <option value="130">Outside Dhaka</option>
                                             </select>
                                         </div>
                                     </div>
@@ -390,7 +390,7 @@
                         @endif
                     </div>
 
-                <div class="col-lg-4 ml-lg-auto">
+                <div class="col-lg-4 ml-lg-auto" id="cart-view">
                     @include('frontend.partials.cart_summary')
                 </div>
             </div>
@@ -428,6 +428,24 @@
         }
     }
     </script> --}}
+    <script>
+    $("#shipValue").on('change',function(e){
+    e.preventDefault();
+    var value  = e.target.value;
+    console.log({value})
+    $.ajax({
+          type: 'GET',
+          url: "{{url('/gust-checkoutNew')}}",
+          headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+          data: {value},
+          success: function (response) {
+              updateNavCart();
+              $('#cart-view').html(response);
+          }
+      });
+  
+  });
+    </script>
 
     <script type="text/javascript">
         function getPaymentInfo(){

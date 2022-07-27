@@ -102,7 +102,7 @@
                     if(Auth::user()->shipping_address){
                         $shippingcost = \App\Models\ShippingAddess::where('id', Auth::user()->shipping_address)->first()->shipping_cost;
                     }else{
-                        $shippingcost = 0;
+                        $shippingcost = Session::get('shipCost');
                     }
                     @endphp
                      <tr class="cart-shipping">
@@ -114,7 +114,7 @@
                     </tr>
                 @else
                 @php
-                    $shippingcost = 0;
+                    $shippingcost = Session::get('shipCost');
                 @endphp
                  <tr class="cart-shipping">
                     <th>{{__('Delivery Charge')}}</th>
@@ -143,3 +143,6 @@
         </table>
     </div>
 </div>
+<script type="text/javascript">
+    cartQuantityInitialize();
+</script>
