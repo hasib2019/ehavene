@@ -420,8 +420,8 @@ $generalsetting = \App\Models\GeneralSetting::first();
                             {{-- <div class="d-lg-none search-box-back">
                                 <button class="" type="button"><i class="la la-long-arrow-left"></i></button>
                             </div> --}}
-                            <select name="category_id" class=" rounded form-control">
-                                <option value="*">All Categories</option>
+                            {{-- <select name="category_id" class=" rounded form-control">
+                                <option value="25">All Categories</option>
                                 @foreach (\App\Models\Category::all() as $key => $category)
                                     <option value="{{ $category->id }}"
                                         @isset($category_id)
@@ -432,7 +432,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
                                         >{{ __($category->name) }}</option>
                                     @endforeach
 
-                            </select>
+                            </select> --}}
                             {{-- /////////////////////// --}}
                             {{-- <div class="form-group category-select d-xl-block">
                                 <select class="form-control selectpicker select-normal" name="category_id">

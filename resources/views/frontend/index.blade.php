@@ -355,13 +355,18 @@
             <div class="row">
                 @foreach (\App\Models\Banner::all() as $key => $banner)
                     <div class="col-md-6 mb-4">
+
                         <div class="innerSale">
+                            <a href="{{$banner->url}}">
                             <img src="{{ asset($banner->photo) }}" class="img-fluid">
+                        </a>
                             {{-- <a href="" class="info">
                                 <h3 class="mb-0">LOOKBOOK 2021</h3>
                                 <h4 class="mb-0">MAKE LOVE THIS LOOK</h4>
                             </a> --}}
+
                         </div>
+
                     </div>
                 @endforeach
                 {{-- <div class="col-md-6">

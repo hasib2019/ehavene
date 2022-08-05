@@ -279,13 +279,13 @@
                         <div class="col-md-4 col-sm-12 mt-2 pr-0">
                             @if (count(json_decode($product->variations, true)) >= 1)
                             @if ($qty < 0)
-                            <button class="addCartBtn" disabled title="This Product Out of stock at this momment">Add to Cart</button>
+                            <button class="addCartBtn" disabled title="This Product Out of stock at this moment">Add to Cart</button>
                             @else
                             <button class="addCartBtn" onclick="addToCart()">Add to Cart</button>
                             @endif
                         @else
                         @if ($product->is_stock==0)
-                        <button class="addCartBtn" disabled title="This Product Out of stock at this momment">Add to Cart</button>
+                        <button class="addCartBtn" disabled title="This Product Out of stock at this moment">Add to Cart</button>
                         @else
                         <button class="addCartBtn" onclick="addToCart()">Add to Cart</button>
                         @endif
@@ -317,6 +317,12 @@
 
                 <img src="{{ asset('frontend//images/trust_img2.png') }}" class="img-fluid my-3">
                 <div class="product_meta">
+                    <span class="brand_in">
+                        <span class="">Brand:</span>
+                        <a
+                            href="{{ route('products.brand', $product->brand_id) }}">{{ $product->brand->name }}</a>
+                    </span>
+                    <br>
                     <span class="sku_wrapper">
                         <span class=""> SKU: </span>
                         <span class="sku value cg d-inline-block">{{ $product->prescribed }}</span>
@@ -328,6 +334,8 @@
                             href="{{ route('products.category', $product->category_id) }}">{{ $product->category->name }}</a>
                     </span>
                     <br>
+
+
                     <span class="tagged_as"><span class=""> Tags:</span>
                         {{ $product->tags }}
                     </span>
