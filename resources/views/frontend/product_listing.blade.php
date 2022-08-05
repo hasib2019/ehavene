@@ -216,7 +216,7 @@
                                     @endforeach
                                 @else
                                     @php
-                                        foreach (\App\Models\Brand::all() as $key => $brand) {
+                                        foreach (\App\Models\Brand::get()->take(12) as $key => $brand) {
                                             if (!in_array($brand->id, $brands)) {
                                                 array_push($brands, $brand->id);
                                             }
@@ -229,6 +229,10 @@
                                         <div class="col-6 border"><a href="{{ route('products.brand', $id) }}"><img src="{{ asset(\App\Models\Brand::find($id)->logo) }}" alt="" class="img-fluid"></a></div>
                                     @endif
                                 @endforeach
+                                <div class="col-12 text-center mt-2">
+                                    <button class="btn-visible"><a href="{{ route('brands.all') }}"> All
+                                            Brands </a></button>
+                                </div>
                             </div>
                         </div>
                     </div>

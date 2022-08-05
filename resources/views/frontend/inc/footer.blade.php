@@ -185,7 +185,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
                     </h5>
                     <!-- Nav Link -->
                     <ul class=" visualcolumn" id="colFive">
-                        <li class="text-right">
+                        <li class="text-center">
                             Subscribe to our newsletter and get 10% off your first purchase
                         </li>
                         <li class="">
@@ -200,7 +200,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
         <hr class="my-4" style="background:rgba(255,255,255,0.5)">
         <div class="space-1">
             <div class="row">
-                <div class="col-lg-7 col-md-7 col-sm-12 mb-2 my-2">
+                <div class="col-lg-12 col-md-12 col-sm-12 mb-2 my-2">
                     <!-- Copyright -->
                     <div class="text-center">
                         <p class="text-secondary small mobileHeightfooter">© Copyright <a href="https://www.ehavene.com/">Ehavene</a> 2021.

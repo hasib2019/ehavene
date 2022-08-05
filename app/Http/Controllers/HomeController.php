@@ -652,10 +652,14 @@ class HomeController extends Controller
 
     public function search(Request $request)
     {
+        // dd('hello');
         $query = $request->q;
         $brand_id = $request->brand_id;
         $sort_by = $request->sort_by;
-        $category_id = $request->category_id;
+
+            $category_id = $request->category_id;
+
+
         $subcategory_id = $request->subcategory_id;
         $subsubcategory_id = $request->subsubcategory_id;
         $min_price = $request->min_price;
@@ -715,7 +719,7 @@ class HomeController extends Controller
             $products->orderBy('id', 'DESC');
         }
 
-        $products = filter_products($products)->paginate(72)->appends(request()->query());
+        $products = filter_products($products)->paginate(32)->appends(request()->query());
 
         return view('frontend.product_listing', compact('products', 'query', 'category_id', 'subcategory_id', 'subsubcategory_id', 'brand_id', 'sort_by', 'seller_id','min_price', 'max_price'));
     }
