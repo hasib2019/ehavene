@@ -167,6 +167,7 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M6MJM36" height="0" width="0"
             style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+    
     <!-- MAIN WRAPPER -->
     {{-- <div class="body-wrap shop-default shop-cards shop-tech"> --}}
 
