@@ -596,7 +596,7 @@ class HomeController extends Controller
 
      public function all_brands(Request $request)
     {
-        $brands = Brand::all();
+        $brands = Brand::all()->sortBy('name');
         return view('frontend.brand', compact('brands'));
     }
 

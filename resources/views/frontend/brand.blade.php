@@ -11,11 +11,11 @@
     <div class="container-fluid">
         {{-- brand start --}}
         <div class="row">
-            <div class="single_section" style="padding-top: 50px">
+            <div class="single_section">
                 <div class="col-md-12 col-sm-12 padding_3">
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="section_heading">
+                        <div class="col-md-12"  style="color:white; background-image: url('{{ asset('frontend/images/Banner-4.jpg') }}'); ">
+                            <div class="" style="margin: 3%">
                                 <h2 class="text-center">All Popular Brands</h2>
                             </div>
                         </div>
