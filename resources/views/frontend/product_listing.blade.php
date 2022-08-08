@@ -216,7 +216,7 @@
                                     @endforeach
                                 @else
                                     @php
-                                        foreach (\App\Models\Brand::get()->take(54) as $key => $brand) {
+                                        foreach (\App\Models\Brand::get()->take(54)->sortBy('name') as $key => $brand) {
                                             if (!in_array($brand->id, $brands)) {
                                                 array_push($brands, $brand->id);
                                             }
@@ -278,7 +278,7 @@
                                         @endforeach
                                     @else
                                         @php
-                                            foreach (\App\Models\Brand::all() as $key => $brand) {
+                                            foreach (\App\Models\Brand::all()->sortBy('name') as $key => $brand) {
                                                 if (!in_array($brand->id, $brands)) {
                                                     array_push($brands, $brand->id);
                                                 }
