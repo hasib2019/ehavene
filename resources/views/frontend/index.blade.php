@@ -437,7 +437,7 @@
                     <div><span class="iconify mr-3" data-icon="grommet-icons:secure"></span></div>
                     <div class="content">
                         <h6 class="title mb-0 text-dark font-weight-bold">100% PAYMENT SECURE</h6>
-                        <p class="">Our payment system is COD, only delivery charge advance payable.</p>
+                        <small >Payment system is COD, only delivery charge advance payable.</small >
                     </div>
                 </div>
 
