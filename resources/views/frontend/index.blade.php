@@ -415,29 +415,29 @@
                 <div class="col-md-3 d-flex">
                     <div> <i class="iconify mr-3" data-icon="fluent:vehicle-car-48-regular"></i></div>
                     <div class="content">
-                        <h6 class="title mb-0 text-dark font-weight-bold">FREE SHIPPING</h6>
-                        <p class="">Free shipping on all US order or order above 100</p>
+                        <h6 class="title mb-0 text-dark font-weight-bold">SHIPPING POLICY</h6>
+                        <p class="">Outside Dhaka delivery charge 130/- advance payable.</p>
                     </div>
                 </div>
                 <div class="col-md-3 d-flex">
                     <div> <span class="iconify mr-3" data-icon="heroicons-outline:support"></span></div>
                     <div class="content">
                         <h6 class="title mb-0 text-dark font-weight-bold">SUPPORT 24/7</h6>
-                        <p class="">Free shipping on all US order or order above 100</p>
+                        <p class="">Our customer support open 24/7 hours for any update.</p>
                     </div>
                 </div>
                 <div class="col-md-3 d-flex">
                     <div><span class="iconify mr-3" data-icon="bi:arrow-return-left"></span> </div>
                     <div class="content">
-                        <h6 class="title mb-0 text-dark font-weight-bold">30 DAYS RETURN</h6>
-                        <p class="">Free shipping on all US order or order above 100</p>
+                        <h6 class="title mb-0 text-dark font-weight-bold">07 DAYS RETURN</h6>
+                        <p class="">If there is a problem, it should be reported within 07 days.</p>
                     </div>
                 </div>
                 <div class="col-md-3 d-flex">
                     <div><span class="iconify mr-3" data-icon="grommet-icons:secure"></span></div>
                     <div class="content">
                         <h6 class="title mb-0 text-dark font-weight-bold">100% PAYMENT SECURE</h6>
-                        <p class="">Free shipping on all US order or order above 100</p>
+                        <p class="">Our payment system is COD, only delivery charge advance payable.</p>
                     </div>
                 </div>
 
