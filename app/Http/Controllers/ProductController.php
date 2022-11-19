@@ -24,13 +24,15 @@ class ProductController extends Controller
     public function admin_products()
     {
         $type = 'All';
-        $products = Product::orderBy('created_at', 'desc')->where('published',1)->get();
+        $products = Product::orderBy('created_at', 'desc')->where('published',1)->paginate(1000);
+        // dd($products);
         return view('products.index', compact('products','type'));
     }
     public function admin_products_pending()
     {
         $type = 'All';
         $products = Product::orderBy('created_at', 'desc')->where('published',0)->get();
+        //   dd($products);
         return view('products.pending', compact('products','type'));
     }
 
