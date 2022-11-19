@@ -25,9 +25,11 @@
                                             @csrf
                                             <div class="col-lg-12">
                                                 @if ($errors->has('email'))
-                                                    <p style="color: rgb(155, 37, 37)">These credentials do not match our records.</p>
+                                                    <p style="color: rgb(155, 37, 37)">These credentials do not match our
+                                                        records.</p>
                                                 @elseif($errors->has('password'))
-                                                    <p style="color: rgb(155, 37, 37)">These credentials do not match our records.</p>
+                                                    <p style="color: rgb(155, 37, 37)">These credentials do not match our
+                                                        records.</p>
                                                 @elseif($errors->has('account'))
                                                     <p style="color: rgb(155, 37, 37)">Sorry! Account Not Found</p>
                                                 @endif
@@ -38,7 +40,7 @@
                                                         <div class="input-group input-group--style-1">
                                                             <input type="number"
                                                                 class="form-control form-control-sm {{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                                                max="11" placeholder="{{ __('Phone') }}" name="email"
+                                                                placeholder="{{ __('Phone') }}" name="email"
                                                                 id="email" required>
                                                             <span class="input-group-addon">
                                                                 <i class="text-md la la-mobile"></i>
@@ -97,7 +99,8 @@
                                             <br>
                                             <br>
                                             {{-- /////////////////////////////////////// --}}
-                                            <a href="{{ route('checkout.gustshipping_info') }}" class="btn btn-styled btn-base-1 btn-md w-100">{{__('Quick Checkout')}}</a>
+                                            <a href="{{ route('checkout.gustshipping_info') }}"
+                                                class="btn btn-styled btn-base-1 btn-md w-100">{{ __('Quick Checkout') }}</a>
                                             {{-- /////////////////////////////////////// --}}
                                         </form>
                                     </div>
@@ -129,8 +132,8 @@
                                                             <input type="text"
                                                                 class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
                                                                 value="{{ old('name') }}"
-                                                                placeholder="{{ __('Name') }}" name="name" id="name"
-                                                                required>
+                                                                placeholder="{{ __('Name') }}" name="name"
+                                                                id="name" required>
                                                             <span class="input-group-addon">
                                                                 <i class="text-md la la-user"></i>
                                                             </span>
@@ -172,7 +175,8 @@
                                                     <div class="form-group">
                                                         <div class="input-group input-group--style-1">
                                                             <input type="password" id="password2" class="form-control"
-                                                                placeholder="{{ __('Password') }}" name="password" title="Must contain at least one number and one uppercase and lowercase letter, and at least 6 or more characters"
+                                                                placeholder="{{ __('Password') }}" name="password"
+                                                                title="Must contain at least one number and one uppercase and lowercase letter, and at least 6 or more characters"
                                                                 required>
                                                             <span class="input-group-addon">
                                                                 <i class="text-md la la-lock"></i>
@@ -213,9 +217,11 @@
                                             <div class="row">
                                                 <div class="col-12">
                                                     <div class="pad-btm text-left">
-                                                        <input class="magic-checkbox" style="position: relative; top: 3px;" type="checkbox"
+                                                        <input class="magic-checkbox"
+                                                            style="position: relative; top: 3px;" type="checkbox"
                                                             name="checkbox_example_1" id="checkboxExample_1a" required>
-                                                        <label for="checkboxExample_1a" class="text-sm">By signing up you agree to our <a href="{{ route('terms') }}">terms and
+                                                        <label for="checkboxExample_1a" class="text-sm">By signing up you
+                                                            agree to our <a href="{{ route('terms') }}">terms and
                                                                 conditions</a></label>
                                                     </div>
                                                 </div>
