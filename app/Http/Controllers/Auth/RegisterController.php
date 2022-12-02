@@ -79,7 +79,7 @@ class RegisterController extends Controller
           'phone' => $data['email'],
           'email' => $data['emailAddress'],
           'password' => Hash::make($data['password']),
-          'email_verified_at' => now(),
+          'email_verified_at' => null,
           'status' => 1,
 
         ]);
