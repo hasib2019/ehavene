@@ -69,7 +69,7 @@ class CustomerController extends Controller
         $patient->name = $request->name;
         $patient->email = $request->email;
         $patient->password = Hash::make(123456);
-        $patient->email_verified_at = now();
+        $patient->email_verified_at = null;
         $patient->dob = $request->dob;
         $patient->medication = $request->medication;
         $patient->address = $request->address;
