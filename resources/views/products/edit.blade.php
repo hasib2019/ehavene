@@ -76,7 +76,8 @@
 	                        <div class="form-group" id="subcategory">
 	                            <label class="col-lg-2 control-label">{{__('Subcategory')}}</label>
 	                            <div class="col-lg-7">
-	                                <select class="form-control demo-select2-placeholder" name="subcategory_id" id="subcategory_id" >
+	                                <select class="form-control demo-select2-placeholder" name="subcategory_id" id="subcategory_id" required>
+									<option>Select an option</option>
 
 	                                </select>
 	                            </div>
@@ -85,14 +86,14 @@
 	                            <label class="col-lg-2 control-label">{{__('Sub Subcategory')}}</label>
 	                            <div class="col-lg-7">
 	                                <select class="form-control demo-select2-placeholder" name="subsubcategory_id" id="subsubcategory_id" >
-
+									<option>Select an option</option>
 	                                </select>
 	                            </div>
 	                        </div>
 	                          <div class="form-group" id="brand">
 	                            <label class="col-lg-2 control-label">{{__('Brand')}}</label>
 	                            <div class="col-lg-7">
-	                                <select class="form-control demo-select2-placeholder" name="brand_id" >
+	                                <select class="form-control demo-select2-placeholder" name="brand_id" required>
 										<option>Select an option</option>
 	                                	@foreach($brands as $brand)
 	                                	    <option value="{{$brand->id}}" <?php if($product->brand_id == $brand->id) echo "selected"; ?> >{{__($brand->name)}}</option>

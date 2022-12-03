@@ -397,10 +397,10 @@
                 </div>
             </div>
             <div class="slider slider-nav px-3" id="brand">
-                @foreach (\App\Models\Brand::latest()->get() as $brand)
-                    <a href="{{ route('products.brand', $brand->id) }}">
+                @foreach (\App\Models\FeatureBrand::latest()->get() as $brand)
+                    <a href="{{ route('products.brand', $brand->brand_id) }}">
                         <div class="d-flex justify-content-center ml-1 mr-2">
-                            <img src="{{ asset($brand->logo) }}" class="img-fluid" style="border-radius: 10px;
+                            <img src="{{ asset($brand->image) }}" class="img-fluid" style="border-radius: 10px;
                     box-shadow: 2px 2px 2px 2px rgb(0 0 0 / 20%);">
                         </div>
                     </a>

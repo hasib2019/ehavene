@@ -66,7 +66,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <input type="checkbox" name="" id="chk">
-                            <label for="chk">I agree with the terms and conditions.</label>
+                            <label for="chk">I agree with <a target="__blank" href="{{ route('privacypolicy') }}">terms</a> the  and <a target="__blank" href="{{ route('returnpolicy') }}"> conditions </a>.</label>
                         </div>
                     </div>
                     <div

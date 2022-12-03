@@ -77,7 +77,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
+        // dd($request->all());
         $product = new Product;
         $product->name = $request->name;
         $product->added_by = $request->added_by;

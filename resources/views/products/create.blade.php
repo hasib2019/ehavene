@@ -65,6 +65,7 @@
 								<label class="col-lg-2 control-label">{{__('Category')}}</label>
 								<div class="col-lg-7">
 									<select class="form-control demo-select2-placeholder" name="category_id" id="category_id" required>
+										<option value="">Select Category</option>
 										@foreach($categories as $category)
 											<option value="{{$category->id}}">{{__($category->name)}}</option>
 										@endforeach
@@ -74,7 +75,7 @@
 							<div class="form-group" id="subcategory">
 								<label class="col-lg-2 control-label">{{__('Subcategory')}}</label>
 								<div class="col-lg-7">
-									<select class="form-control demo-select2-placeholder" name="subcategory_id" id="subcategory_id">
+									<select class="form-control demo-select2-placeholder" name="subcategory_id" id="subcategory_id" required>
 
 									</select>
 								</div>
@@ -98,8 +99,8 @@
 								<div class="form-group">
 								<label class="col-lg-2 control-label">{{__('Brand')}}</label>
 								<div class="col-lg-7">
-									<select class="form-control demo-select2-placeholder" name="brand_id">
-									    <option>Select an option</option>
+				<select class="form-control demo-select2-placeholder" name="brand_id" required>
+									    <option value="">Select an option</option>
 	@foreach($brands as $brand)
 											<option value="{{$brand->id}}">{{__($brand->name)}}</option>
 										@endforeach

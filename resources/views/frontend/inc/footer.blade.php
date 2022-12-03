@@ -111,8 +111,8 @@ $generalsetting = \App\Models\GeneralSetting::first();
                                     {{ $generalsetting->phone }}
                                 </a>
                             @else
-                                <a class="cg" href="#">
-                                    01738356180
+                                <a class="cg" href="tel:01674437137">
+                                    01738356180 , 01674437137
                                 </a>
                             @endif
                         </div>

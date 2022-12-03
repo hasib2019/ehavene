@@ -37,7 +37,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
                     </a>
                 @else
                     <a class="cg" href="#">
-                        01738356180
+                       01674437137, 01738356180
                     </a>
                 @endif
                 <span class="iconify" data-icon="carbon:email"></span>
@@ -228,8 +228,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
                             @endforeach
                         </ul>
                     </li>
-                    {{--
-                    <li><a href="https://www.startech.com.bd/desktops" class="see-all">Show All Desktop</a></li> --}} @endforeach
+           @endforeach
                 </ul>
             </li>
             @endforeach
@@ -671,8 +670,8 @@ $generalsetting = \App\Models\GeneralSetting::first();
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="checkbox" name="" id="chk">
-                                        <label for="chk">I agree with the terms and conditions.</label>
+                                        
+                                        <label for="chk"> <input type="checkbox" value="" name="" id="chk" required> I agree with <a target="__blank" href="{{ route('privacypolicy') }}">terms</a> the  and <a target="__blank" href="{{ route('returnpolicy') }}"> conditions </a>.</label>
                                     </div>
                                 </div>
                                 <div
@@ -690,8 +689,7 @@ $generalsetting = \App\Models\GeneralSetting::first();
                             </div>
                         </div>
                     @else
-                        {{-- <div class="shadow-sm py-2 px-1 text-center border-bottom"> Free Shipping for all orders
-                            over 100.00</div> --}}
+                       
                         <div class="emptyProduct d-flex flex-column align-items-center justify-content-center">
                             <span class="iconify" data-icon="clarity:shopping-bag-line"></span>
                             <span class="py-2">Your cart is empty.</span>
