@@ -132,6 +132,13 @@ class CheckoutController extends Controller
 
     public function get_payment_info(Request $request)
     {
+
+        $validated = $request->validate([
+            'name' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+        ]);
+
         $data['name'] = $request->name;
         $data['email'] = $request->email;
         $data['phone'] = $request->phone;

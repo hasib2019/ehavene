@@ -4,6 +4,15 @@
 @stop
 @section('content')
     <div id="page-content">
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
         <section class="slice-xs sct-color-2 border-bottom">
             <div class="container container-sm">
                 <div class="row cols-delimited">
@@ -319,6 +328,7 @@
                         @endif
                         @else 
                             @if($gust==1)
+                 
                             <form class="form-default" data-toggle="validator" role="form" id="shipping_form">
                                 @csrf
                                 <div class="card">
@@ -369,7 +379,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="control-label">{{__('Address')}}</label>
-                                              <textarea class="form-control textarea-autogrow mb-3" placeholder="Your Full Address" rows="4" name="address" required></textarea>
+                                              <textarea class="form-control textarea-autogrow mb-3" placeholder="Your Full Address" rows="4" name="address" required="required" > </textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -415,7 +425,10 @@
           success: function (response) {
               updateNavCart();
               $('#cart-view').html(response);
-          }
+          },
+        error: function(response) {
+            alert("Address Field is Requerd for order");
+        }
       });
   
   });
