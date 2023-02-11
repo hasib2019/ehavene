@@ -24,20 +24,13 @@
                                                     <form action="{{ route('product_truck.show') }}" method="POST">
                                                         @csrf
                                                         <br>
-                                                        <div class="container-fluid"
-                                                            style="background-color: rgb(0 0 0 / 20%); border: 1px solid #8a753bbf;">
-                                                            <div class="row">
-                                                                <div class="col-8">
-                                                                    <input type="text" class="form-control"
-                                                                        style="margin-top: 2px;" id="code" name="code"
-                                                                        required placeholder="Input Order Number">
+  <div class="container-fluid" >
+    <div class="row">
+      <div class="col-8">
+ <input type="text" class="form-control" id="code" name="code" required placeholder="Order Number">
                                                                 </div>
-                                                                <div class="col-2">
-                                                                    <button type="submit" class="btn btn-sm btn-success"
-                                                                        name="search" title="Search"
-                                                                        style="width: 220px;margin-top: 3px;"><img
+    <button type="submit" class="btn btn-sm"  name="search" title="Search"><img
                                                                             src="https://img.icons8.com/android/24/000000/search.png" />Search</button>
-                                                                </div>
                                                             </div>
                                                         </div>
                                                         <br>
