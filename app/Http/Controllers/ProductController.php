@@ -24,7 +24,7 @@ class ProductController extends Controller
     public function admin_products()
     {
         $type = 'All';
-        $products = Product::orderBy('created_at', 'desc')->where('published',1)->paginate(1000);
+        $products = Product::orderBy('created_at', 'desc')->where('published',1)->paginate(10);
         // dd($products);
         return view('products.index', compact('products','type'));
     }
