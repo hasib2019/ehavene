@@ -273,6 +273,7 @@ class HomeController extends Controller
     {
         // $this->middleware('auth');
         // $this->middleware(['auth','verified']);
+        
     }
 
     public function admin_dashboard()
@@ -283,6 +284,7 @@ class HomeController extends Controller
 
     public function dashboard()
     {
+       
         if(Auth::user()->user_type == 'doctor'){
             return view('frontend.doctor.dashboard');
         }
@@ -296,6 +298,7 @@ class HomeController extends Controller
             return view('frontend.customer.dashboard', compact('address','billaddress'));
         }
         else {
+         
             // abort(404);
             return redirect()->route('home');
         }

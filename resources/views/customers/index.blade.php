@@ -79,7 +79,7 @@
                             <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#view{{$customer->id}}"> View </button>
                         </td>
                         <td>
-                            <select class="form-control" data-minimum-results-for-search="Infinity" id="update_status">
+                            <select class="form-control" data-minimum-results-for-search="Infinity" id="update_status{{$customer->id}}">
                                 <option class="color-danger" value="1" @if ($customer->status==1) selected @endif>{{__('Active')}}</option>
                                 <option value="0" @if ($customer->status==0) selected @endif>{{__('Deactive')}}</option>
                             </select>
@@ -175,14 +175,14 @@
                     </div>
                     {{-- view model end  --}}
                     <script>
-                        $('#update_status').on('change', function(){
+                        $('#update_status{{$customer->id}}').on('change', function(){
                         var customerId = {{ $customer->id }};
-                        var status = $('#update_status').val();
+                        var status = $('#update_status{{$customer->id}}').val();
                 
                         $.post('{{ route('customers.update_status') }}', {_token:'{{ @csrf_token() }}',customerId:customerId,status:status}, function(data){
                             showAlert('success', 'Customer status has been updated');
                             //console.log(data);
-                            location.reload();
+                            // location.reload();
                         });
                     });
                     </script>
