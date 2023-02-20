@@ -34,6 +34,18 @@
                     </div>
                 </div>
             </form>
+            @else
+            <form action="{{ route('products.admin') }}" method="get">
+                @csrf
+                <div class="row">
+                    <div class="col-lg-4">
+                     <input type="text" class="form-control" placeholder="Product Name" name="p_name"/>
+                    </div>
+                    <div class="col-lg-2">
+                        <button type="submit" class="btn btn-primary">Filter</button>
+                    </div>
+                </div>
+            </form>
         @endif
 
 

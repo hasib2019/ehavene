@@ -21,11 +21,16 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function admin_products()
+    public function admin_products(Request $request)
     {
         $type = 'All';
-        $products = Product::orderBy('created_at', 'desc')->where('published',1)->paginate(1000);
-        // dd($products);
+       
+       if($request->p_name != null){
+        $products = Product::orderBy('created_at', 'desc')->where('name', 'LIKE', '%'.$request->p_name.'%')->paginate();
+       }else{
+        $products = Product::orderBy('created_at', 'desc')->where('published',1)->paginate(10);
+       }
+    //    dd($products);
         return view('products.index', compact('products','type'));
     }
     public function admin_products_pending()
@@ -77,7 +82,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
+        // dd($request->all());
         $product = new Product;
         $product->name = $request->name;
         $product->added_by = $request->added_by;
