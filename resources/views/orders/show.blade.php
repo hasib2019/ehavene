@@ -278,7 +278,7 @@
             // var user_id = {{ $order->user_id }};
             var status = $('#update_delivery_status').val();
 			// console.log(status);
-            $.post('{{ route('orders.update_payment_status') }}', {_token:'{{ @csrf_token() }}',order_id:order_id,status:status}, function(data){
+            $.post('{{ route('orders.update_delivery_status') }}', {_token:'{{ @csrf_token() }}',order_id:order_id,price:price,status:status}, function(data){
                 showAlert('success', 'Payment status has been updated');
                 //console.log(data);
 				 location.reload();
