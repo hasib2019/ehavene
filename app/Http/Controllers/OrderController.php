@@ -506,13 +506,15 @@ class OrderController extends Controller
 
     public function update_delivery_status(Request $request)
     {
-        // dd($request->user_id);
+        $order = Order::find($request->order_id);
+      
+       if($order->user_id!= null){
         if ($request->status == 'delivered') {
+          
+            $user = User::where('id', $order->user_id)->first();
+            //  var_dump($user);
 
-            $user = User::where('id', '=', $request->user_id)->first()->ref_by;
-
-
-            if ($user != "reference") {
+            if ($user->ref_by == "reference") {
 
                 $reference_id = User::where('ref_id', '=', $user)->first()->id;
 
@@ -531,8 +533,9 @@ class OrderController extends Controller
                 $tran->save();
             }
         }
+       }
 
-        $order = Order::findOrFail($request->order_id);
+        
         $order->delivery_status = $request->status;
         $order->save();
         return 1;
