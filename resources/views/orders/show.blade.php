@@ -275,19 +275,10 @@
          $('#update_delivery_status').on('change', function(){
             var order_id = {{ $order->id }};
             var price = {{ $orderDetail->price }};
-            var user_id = {{ $order->user_id }};
+            // var user_id = {{ $order->user_id }};
             var status = $('#update_delivery_status').val();
-            $.post('{{ route('orders.update_delivery_status') }}', {_token:'{{ @csrf_token() }}',order_id:order_id,user_id:user_id,price:price,status:status}, function(data){
-                showAlert('success', 'Delivery status has been updated');
-				location.reload();
-            });
-        });
-
-        $('#update_payment_status').on('change', function(){
-            var order_id = {{ $order->id }};
-            var status = $('#update_payment_status').val();
-
-            $.post('{{ route('orders.update_payment_status') }}', {_token:'{{ @csrf_token() }}',order_id:order_id,status:status}, function(data){
+			// console.log(status);
+            $.post('{{ route('orders.update_delivery_status') }}', {_token:'{{ @csrf_token() }}',order_id:order_id,price:price,status:status}, function(data){
                 showAlert('success', 'Payment status has been updated');
                 //console.log(data);
 				 location.reload();
