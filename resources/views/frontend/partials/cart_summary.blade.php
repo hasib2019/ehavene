@@ -8,11 +8,15 @@
             </div>
 
             <div class="col-6 text-right">
-                <span class="badge badge-md badge-success">{{ count(Session::get('cart')) }} {{__('Items')}}</span>
+                <span class="badge badge-md badge-success">
+                    @if(Session::get('cart'))
+                    {{ count(Session::get('cart')) }} 
+                    @endif
+                    {{__('Items')}}</span>
             </div>
         </div>
     </div>
-
+    @if(Session::get('cart'))
     <div class="card-body">
         <table class="table-cart table-cart-review">
             <thead>
@@ -27,6 +31,7 @@
                     $tax = 0;
                     $shipping = 0;
                 @endphp
+                
                 @foreach (Session::get('cart') as $key => $cartItem)
                     @php
                     $product = \App\Models\Product::find($cartItem['id']);
@@ -55,6 +60,7 @@
                         </td>
                     </tr>
                 @endforeach
+               
             </tbody>
         </table>
 <hr>
@@ -142,7 +148,9 @@
             </tfoot>
         </table>
     </div>
+    @endif
 </div>
+
 <script type="text/javascript">
     cartQuantityInitialize();
 </script>

@@ -98,14 +98,14 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        {{-- <div class="row">
+                                        <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label class="control-label">{{__('Address')}}</label>
-                                         <textarea class="form-control textarea-autogrow mb-3" id="address" placeholder="Your Address" rows="4" name="address" readonly>{{ $user->address }}</textarea>
+                                         <textarea class="form-control textarea-autogrow mb-3" id="address" placeholder="Your Address" rows="4" name="address" required>{{ @$user->address }}</textarea>
                                                 </div>
                                             </div>
-                                        </div> --}}
+                                        </div> 
                                        @php
                                             $region = \App\Models\Division::where('id', '=', $user->region)->first()->name;
                                             $city = \App\Models\District::where('id', '=', $user->city)->first()->name;
@@ -368,8 +368,7 @@
                                                 @foreach ($shippingAddressData as $data)
                                                     <option value="{{ $data->price }}" >{{ $data->title }}</option>
                                                 @endforeach
-                                                {{-- <option value="70">Inside Dhaka</option>
-                                                <option value="130">Outside Dhaka</option> --}}
+                                               
                                             </select>
                                         </div>
                                     </div>

@@ -480,7 +480,6 @@
 
                {{-- Pagination --}}
         <div class="d-flex" style="margin: 0 auto;">
-                    {{-- {{ $products->links() }} --}}
                     {!! $products->links() !!}
                 </div>
 
